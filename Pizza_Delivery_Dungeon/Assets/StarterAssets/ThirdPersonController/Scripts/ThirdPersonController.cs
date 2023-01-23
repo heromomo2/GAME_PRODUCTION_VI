@@ -97,6 +97,7 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _animIDCarrying;// add by me
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -109,6 +110,10 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+
+        // momo add code
+
+        [SerializeField ]private bool _iscarry = false;
 
         private bool IsCurrentDeviceMouse
         {
@@ -156,6 +161,22 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
 
+            // add code from me
+            if (_iscarry == true) 
+            {
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDCarrying, true);
+                }
+            }
+            else 
+            {
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDCarrying, false);
+                }
+            }
+
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -173,6 +194,7 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            _animIDCarrying = Animator.StringToHash("Carrying"); // add by me
         }
 
         private void GroundedCheck()
@@ -302,6 +324,17 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
+                    //add code from me 
+                    if (_iscarry == true)
+                    {
+                        _iscarry = false;
+
+                        //if (_hasAnimator)
+                        //{
+                        //    _animator.SetBool(_animIDCarrying, false);
+                        //}
+                    }
+
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
