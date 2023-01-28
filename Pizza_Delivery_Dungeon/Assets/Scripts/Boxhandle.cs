@@ -9,18 +9,20 @@ public class Boxhandle : MonoBehaviour
     public List<GameObject> _pizzboxlist;
 
     public int _generatenumber = 6;
+    public int _generatenumbercounter = 0;
 
     public Transform _holdpoint;
 
     public bool _callonce = false;
     public bool _callonce1 = false;
 
-
+    GameObject _prevpizza = null;
+    GameObject _newpizza = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        _pizzboxlist = new List<GameObject>();   
+        _pizzboxlist = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,16 @@ public class Boxhandle : MonoBehaviour
     {
         if (_callonce == true)
         {
-            GenerateDeliverlyBoxes();
+            // GenerateDeliverlyBox();
             print(" GenerateDeliverlyBoxes()  been call from update ");
+
+            StartCoroutine(StartGenerateDeliverlyBoxes());
+
             _callonce = false;
         }
-        else 
+        else
         {
-            if (_callonce1 == true) 
+            if (_callonce1 == true)
             {
                 DelecteDeliverlyBoxes();
                 _callonce1 = false;
@@ -42,39 +47,38 @@ public class Boxhandle : MonoBehaviour
         }
     }
 
-    void GenerateDeliverlyBoxes() 
+    void GenerateDeliverlyBox()
     {
-        if (_pizzboxlist.Count < 1) 
+
+
+        print("_pizzboxlist.Count != 0 ");
+
+        if (_pizzabox != null && _holdpoint != null)
         {
-            GameObject _newpizza = null;
-            GameObject _prevpizza = null;
+            print("_pizzabox != null && _holdpoint  != null");
 
-            print("_pizzboxlist.Count != 0 ");
 
-            if (_pizzabox != null && _holdpoint  != null) 
+            if (_newpizza == null)
             {
-                print("_pizzabox != null && _holdpoint  != null");
+                _newpizza = Instantiate(_pizzabox, new Vector3(_holdpoint.transform.position.x, _holdpoint.transform.position.y + 0.2f, _holdpoint.transform.position.z), Quaternion.identity);
+                _pizzboxlist.Add(_newpizza);
+                // _newpizza.GetComponent<FixedJoint>().connectedBody = _holdpoint.GetComponent<Rigidbody>();
+                _newpizza.transform.parent = _holdpoint.transform;
+                _prevpizza = _newpizza;
 
-                for (int i = 0; i < _generatenumber; i++)
-                {
-
-                    if (_newpizza == null)
-                    {
-                        _newpizza = Instantiate(_pizzabox, _holdpoint.position, Quaternion.identity);
-                        _pizzboxlist.Add(_newpizza);
-                        _prevpizza = _newpizza;
-
-                    }
-                    else 
-                    {
-                        _newpizza = Instantiate(_pizzabox, new Vector3 (_prevpizza.transform.position.x, _prevpizza.transform.position.y , _prevpizza.transform.position.z) , Quaternion.identity);
-                        _pizzboxlist.Add(_newpizza);
-                        _prevpizza = _newpizza;
-                    }
-
-                }
             }
+            else
+            {
+                _newpizza = Instantiate(_pizzabox, new Vector3(_prevpizza.transform.position.x, _prevpizza.transform.position.y + 0.1f, _prevpizza.transform.position.z), Quaternion.identity);
+                _pizzboxlist.Add(_newpizza);
+                // _newpizza.GetComponent<FixedJoint>().connectedBody = _prevpizza.GetComponent<Rigidbody>();
+                _newpizza.transform.parent = _prevpizza.transform;
+                _prevpizza = _newpizza;
+            }
+
+
         }
+
     }
     void DelecteDeliverlyBoxes()
     {
@@ -85,9 +89,25 @@ public class Boxhandle : MonoBehaviour
                 DestroyObject(_p);
             }
         }
+        _prevpizza = null;
+        _newpizza = null;
     }
     void AddDeliverlyBox()
     {
+
+    }
+
+    IEnumerator StartGenerateDeliverlyBoxes()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (_generatenumbercounter < _generatenumber)
+        {
+            _generatenumbercounter = _generatenumbercounter + 1;
+            GenerateDeliverlyBox();
+
+            StartCoroutine(StartGenerateDeliverlyBoxes());
+
+        }
 
     }
 }
