@@ -6,9 +6,11 @@ public class OrderSystem : MonoBehaviour
 {
     public List<GameObject> destiny_location_list;
 
-    public List<GameObject> pizzalist;
+    public List<GameObject> pizza_list;
 
-    public List<Transform> PrevSpawned; 
+    public  GameObject pizza_prefab;
+
+    public List<Transform> prev_spawned; 
 
     public GameObject delivery_source = null;
 
@@ -16,6 +18,7 @@ public class OrderSystem : MonoBehaviour
 
     public float max_pizza_spawned;
 
+    public float random_timer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +36,43 @@ public class OrderSystem : MonoBehaviour
         {
             delivery_source = GameObject.FindGameObjectWithTag("DeliverySource"); 
         }
+
+        random_timer = 5.0f;//Random.Range(10, 40.0f);
+
+        StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    IEnumerator StartGenerateDeliverlyBoxes(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+
+        if (pizza_list != null) 
+        {
+            if (max_pizza_spawned > pizza_list.Count)
+            {
+                if (pizza_prefab != null && delivery_source != null)
+                {
+                    GameObject new_pizza;
+                    new_pizza = Instantiate(pizza_prefab, delivery_source.transform.position, Quaternion.identity);
+                    pizza_list.Add(new_pizza);
+
+                    random_timer = Random.Range(5.0f, 10.0f);
+
+                    StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+
+                }
+
+            } 
+        }
+
+    }
+
+
 }

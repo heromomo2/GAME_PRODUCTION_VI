@@ -231,6 +231,13 @@ MonoBehaviour:
   _holdpoint: {fileID: 1405392843}
   _callonce: 1
   _callonce1: 0
+  max_pizza_holded: 1
+  pizza_holded_counter: 0
+--- !u!1 &370454482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8113811515255753319, guid: 1d2d61452ef998641a27351cde527b7a, type: 3}
+  m_PrefabInstance: {fileID: 8113811515629431842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &456285005 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 272993188807782130, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
@@ -268,7 +275,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: m_LocalPosition.x
@@ -320,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: _iscarry
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: SprintSpeed
@@ -429,6 +436,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &774161230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 684940619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &774161238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774161230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14c153e6f6c21e4db49a70ef0427901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_boxhandle: {fileID: 309459616}
 --- !u!1001 &810128142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 601b00ca0b9de0247beae089ec7e640f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 601b00ca0b9de0247beae089ec7e640f, type: 3}
       propertyPath: m_LocalScale.x
@@ -843,7 +868,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2168
+  m_Name: pb_Mesh-1796
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1084,7 +1109,7 @@ GameObject:
   - component: {fileID: 1405392840}
   - component: {fileID: 1405392844}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: holdspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2902,6 +2927,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8338988566280778637, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
   m_PrefabInstance: {fileID: 684940619}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1856370092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856370094}
+  - component: {fileID: 1856370093}
+  m_Layer: 0
+  m_Name: OrderSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1856370093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856370092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5f29ac58d3c024998722fcecb05fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destiny_location_list: []
+  pizza_list: []
+  pizza_prefab: {fileID: 1406368634818447857, guid: e77240d20eb1b0340883786a8bb3028a, type: 3}
+  prev_spawned: []
+  delivery_source: {fileID: 370454482}
+  player: {fileID: 0}
+  max_pizza_spawned: 1
+  random_timer: 0
+--- !u!4 &1856370094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856370092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 60.428387, y: -95.83458, z: -142.99098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137504366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,9 +3037,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 7502654665723383019, guid: 0a7bc98b80b3c63458b6af6959e9a347, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7502654665723383573, guid: 0a7bc98b80b3c63458b6af6959e9a347, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7502654665723383573, guid: 0a7bc98b80b3c63458b6af6959e9a347, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3065,6 +3145,14 @@ PrefabInstance:
     - target: {fileID: 8113811515012800606, guid: 1d2d61452ef998641a27351cde527b7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113811515255753316, guid: 1d2d61452ef998641a27351cde527b7a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113811515255753316, guid: 1d2d61452ef998641a27351cde527b7a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 94.771
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d2d61452ef998641a27351cde527b7a, type: 3}

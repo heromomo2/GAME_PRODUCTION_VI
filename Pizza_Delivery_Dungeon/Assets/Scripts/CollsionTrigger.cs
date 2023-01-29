@@ -24,13 +24,6 @@ public class CollsionTrigger : MonoBehaviour
             }
         }
 
-        if (col.gameObject.CompareTag("PickupTrigger"))
-        {
-            if (this.gameObject.CompareTag("Player"))
-            {
-               
-            }
-        }
         
     }
 

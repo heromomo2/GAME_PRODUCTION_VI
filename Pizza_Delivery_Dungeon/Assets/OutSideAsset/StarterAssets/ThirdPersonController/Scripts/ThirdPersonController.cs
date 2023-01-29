@@ -113,7 +113,19 @@ namespace StarterAssets
 
         // momo add code
 
-        [SerializeField ]private bool _iscarry = false;
+        [SerializeField ] private bool _iscarry = false;
+
+        public bool _isplayercarry
+        {
+            get
+            {
+                return _iscarry;
+            }
+            set
+            {
+                _iscarry = value;
+            }
+        }
 
         private bool IsCurrentDeviceMouse
         {
@@ -180,6 +192,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            Pickup();// add
         }
 
         private void LateUpdate()
@@ -420,6 +433,18 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        // add by me
+        private void Pickup() 
+        {
+            //do the pick 
+
+            if (_input.pick_up) 
+            {
+
+            }
+
         }
     }
 }
