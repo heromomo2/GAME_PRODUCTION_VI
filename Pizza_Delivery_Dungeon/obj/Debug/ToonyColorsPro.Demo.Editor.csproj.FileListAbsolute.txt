@@ -1,0 +1,2 @@
+C:\Users\Owner\Documents\GitHub\GAME_PRODUCTION_VI\Pizza_Delivery_Dungeon\obj\Debug\ToonyColorsPro.Demo.Editor.csproj.AssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\GAME_PRODUCTION_VI\Pizza_Delivery_Dungeon\obj\Debug\ToonyColorsPro.Demo.Editor.csproj.CoreCompileInputs.cache

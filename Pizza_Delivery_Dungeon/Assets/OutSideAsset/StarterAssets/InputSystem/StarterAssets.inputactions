@@ -43,9 +43,9 @@
                 },
                 {
                     "name": "Pickup",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "fa921585-42bb-4b3f-9c48-a61ef5369013",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -231,8 +231,8 @@
                 {
                     "name": "",
                     "id": "a4a7a478-01cc-46eb-9262-e7720e60db56",
-                    "path": "<Keyboard>/e",
-                    "interactions": "Press",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Pickup",

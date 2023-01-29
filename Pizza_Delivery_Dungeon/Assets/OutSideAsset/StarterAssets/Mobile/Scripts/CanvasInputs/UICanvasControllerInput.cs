@@ -27,7 +27,12 @@ namespace StarterAssets
         {
             starterAssetsInputs.SprintInput(virtualSprintState);
         }
-        
+
+        public void VirtualPickUpInput(bool virtualSprintState)
+        {
+            starterAssetsInputs.PickUpInput(virtualSprintState);
+        }
+
     }
 
 }

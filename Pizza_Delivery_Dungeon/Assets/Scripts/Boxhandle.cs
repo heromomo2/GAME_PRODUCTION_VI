@@ -1,133 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using StarterAssets;
 
 public class Boxhandle : MonoBehaviour
 {
-    public GameObject _pizzabox;
-
-    public List<GameObject> _pizzboxlist;
-
-    public int _generatenumber = 6;
-    public int _generatenumbercounter = 0;
+    public GameObject carried_pizza_box;
 
     public Transform _holdpoint;
 
-    public bool _callonce = false;
-    public bool _callonce1 = false;
-
-    GameObject _prevpizza = null;
-    GameObject _newpizza = null;
 
     public int max_pizza_holded = 1;
     public int pizza_holded_counter = 0;
 
+
+    public ThirdPersonController player_3rd_person_controller;
+
     // Start is called before the first frame update
     void Start()
     {
-        _pizzboxlist = new List<GameObject>();
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        //    if (_callonce == true)
-        //    {
-        //        // GenerateDeliverlyBox();
-        //        print(" GenerateDeliverlyBoxes()  been call from update ");
-
-        //        StartCoroutine(StartGenerateDeliverlyBoxes());
-
-        //        _callonce = false;
-        //    }
-        //    else
-        //    {
-        //        if (_callonce1 == true)
-        //        {
-        //            DelecteDeliverlyBoxes();
-        //            _callonce1 = false;
-        //        }
-        //    }
-        //}
-
-        void GenerateDeliverlyBox()
-        {
 
 
-            print("_pizzboxlist.Count != 0 ");
-
-            if (_pizzabox != null && _holdpoint != null)
-            {
-                print("_pizzabox != null && _holdpoint  != null");
 
 
-                if (_newpizza == null)
-                {
-                    _newpizza = Instantiate(_pizzabox, new Vector3(_holdpoint.transform.position.x, _holdpoint.transform.position.y + 0.2f, _holdpoint.transform.position.z), Quaternion.identity);
-                    _pizzboxlist.Add(_newpizza);
-                    // _newpizza.GetComponent<FixedJoint>().connectedBody = _holdpoint.GetComponent<Rigidbody>();
-                    _newpizza.transform.parent = _holdpoint.transform;
-                    _prevpizza = _newpizza;
-
-                }
-                else
-                {
-                    _newpizza = Instantiate(_pizzabox, new Vector3(_prevpizza.transform.position.x, _prevpizza.transform.position.y + 0.1f, _prevpizza.transform.position.z), Quaternion.identity);
-                    _pizzboxlist.Add(_newpizza);
-                    // _newpizza.GetComponent<FixedJoint>().connectedBody = _prevpizza.GetComponent<Rigidbody>();
-                    _newpizza.transform.parent = _prevpizza.transform;
-                    _prevpizza = _newpizza;
-                }
 
 
-            }
 
-        }
-        void DelecteDeliverlyBoxes()
-        {
-            if (_pizzboxlist.Count > 0)
-            {
-                foreach (GameObject _p in _pizzboxlist)
-                {
-                    DestroyObject(_p);
-                }
-            }
-            _prevpizza = null;
-            _newpizza = null;
-        }
-        void AddDeliverlyBox()
-        {
 
-        }
-
-        //IEnumerator StartGenerateDeliverlyBoxes()
-        //{
-        //    yield return new WaitForSeconds(0.5f);
-        //    if (_generatenumbercounter < _generatenumber)
-        //    {
-        //        _generatenumbercounter = _generatenumbercounter + 1;
-        //        GenerateDeliverlyBox();
-
-        //        StartCoroutine(StartGenerateDeliverlyBoxes());
-
-        //    }
 
     }
 
 
-    public void AttendPizzToPlayer(GameObject pizza)
+    public void AttendPizzaToPlayer(GameObject pizza)
     {
-        if (pizza.tag == "Pizzabox")
+        if (player_3rd_person_controller.is_player_pick_up == true)
         {
-            if (max_pizza_holded >= pizza_holded_counter) 
+            if (pizza.tag == "Pizzabox")
             {
-                pizza_holded_counter = pizza_holded_counter + 1;
+                if (max_pizza_holded >= pizza_holded_counter)
+                {
+                    pizza_holded_counter = pizza_holded_counter + 1;
 
-               // GameObject child_object = _holdpoint.gameObject;
-                pizza.transform.position = new Vector3(_holdpoint.transform.position.x, _holdpoint.transform.position.y + 0.2f, _holdpoint.transform.position.z);
-                pizza.transform.parent = _holdpoint.transform;
-
+                    // GameObject child_object = _holdpoint.gameObject;
+                    pizza.transform.position = new Vector3(_holdpoint.transform.position.x, _holdpoint.transform.position.y + 0.2f, _holdpoint.transform.position.z);
+                    pizza.transform.parent = _holdpoint.transform;
+                    player_3rd_person_controller.is_player_carry = true;
+                    carried_pizza_box = pizza;
+                }
             }
+        }
+    }
+
+    public void RemovePizzaFromPlayer()
+    {
+        if (carried_pizza_box != null)
+        {
+            Destroy(carried_pizza_box);
+            player_3rd_person_controller.is_player_carry = false;
         }
     }
 }

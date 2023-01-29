@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
+using StarterAssets;
 public class OrderSystem : MonoBehaviour
 {
     public List<GameObject> destiny_location_list;
@@ -20,17 +21,20 @@ public class OrderSystem : MonoBehaviour
 
     public float random_timer = 0f;
 
+    public bool is_destiny_selected = false;
+    public GameObject Selected_destiny = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        destiny_location_list = new List<GameObject>();
+        //destiny_location_list = new List<GameObject>();
         
-        foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("DestinyLocation"))
-        {
+        //foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("DestinyLocation"))
+        //{
 
-            destiny_location_list.Add(fooObj);
+        //    destiny_location_list.Add(fooObj);
 
-        }
+        //}
 
         if (delivery_source == null) 
         {
@@ -47,6 +51,19 @@ public class OrderSystem : MonoBehaviour
     void Update()
     {
 
+        ///pick a destiny for the player
+        if (player != null) 
+        {
+            if (player.GetComponent<ThirdPersonController>().is_player_carry == true) 
+            {
+                if (is_destiny_selected == false)
+                {
+                    is_destiny_selected = true;
+                    Selected_destiny =  destiny_location_list[Random.Range(0, destiny_location_list.Count)];
+                    Selected_destiny.GetComponent<DestinyLocation>().SetParticleOn();
+                } 
+            }
+        }
     }
 
     IEnumerator StartGenerateDeliverlyBoxes(float timer)

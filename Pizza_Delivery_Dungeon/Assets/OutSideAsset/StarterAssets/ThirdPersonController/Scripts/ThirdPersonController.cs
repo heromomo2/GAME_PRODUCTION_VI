@@ -113,17 +113,45 @@ namespace StarterAssets
 
         // momo add code
 
-        [SerializeField ] private bool _iscarry = false;
+        [SerializeField ] private bool is_carry = false;
 
-        public bool _isplayercarry
+        public bool is_player_carry
         {
             get
             {
-                return _iscarry;
+                return is_carry;
             }
             set
             {
-                _iscarry = value;
+                is_carry = value;
+            }
+        }
+
+        [SerializeField] private bool is_overlap_pizza = false;
+
+        public bool is_player_overlap_pizza
+        {
+            get
+            {
+                return is_overlap_pizza;
+            }
+            set
+            {
+                is_overlap_pizza = value;
+            }
+        }
+
+        [SerializeField] private bool pick_up = false;
+
+        public bool is_player_pick_up
+        {
+            get
+            {
+                return pick_up;
+            }
+            set
+            {
+                pick_up = value;
             }
         }
 
@@ -174,7 +202,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
 
             // add code from me
-            if (_iscarry == true) 
+            if (is_carry == true) 
             {
                 if (_hasAnimator)
                 {
@@ -338,9 +366,9 @@ namespace StarterAssets
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
                     //add code from me 
-                    if (_iscarry == true)
+                    if (is_carry == true)
                     {
-                        _iscarry = false;
+                        is_carry = false;
 
                         //if (_hasAnimator)
                         //{
@@ -440,11 +468,14 @@ namespace StarterAssets
         {
             //do the pick 
 
-            if (_input.pick_up) 
+            if (_input.pick_up == true) 
             {
-
+                pick_up = true;
             }
-
+            else 
+            {
+                pick_up = false;
+            }
         }
     }
 }

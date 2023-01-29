@@ -10,7 +10,6 @@ public class DestinyLocation : MonoBehaviour
 
     private bool is_receive_delivery;
 
-
     public List<GameObject> particle_system_list;
 
     private Delivery_event DE;
@@ -29,9 +28,13 @@ public class DestinyLocation : MonoBehaviour
         }
     }
 
+    [SerializeField] private BoxCollider box_colleder;
+    public GameObject destiny_location_object = null;
+
     void Start()
     {
-        particle_system_list = new List<GameObject>();
+       // particle_system_list = new List<GameObject>();
+        particlesystemsOff();
     }
 
     private void OnDestroy()
@@ -50,8 +53,7 @@ public class DestinyLocation : MonoBehaviour
     }
 
 
-
-   private void  particlesystemsOn()
+    private void particlesystemsOn()
     {
         if (particle_system_list.Count > 1)
         {
@@ -62,18 +64,21 @@ public class DestinyLocation : MonoBehaviour
         }
     }
 
-   private void particlesystemsOff ()
+    private void particlesystemsOff()
     {
-        if (particle_system_list.Count > 1) 
+        Debug.Log("particlesystemsOff");
+        if (particle_system_list.Count > 1)
         {
-            foreach ( GameObject psl in particle_system_list)
+           // Debug.Log("particlesystemsOff");
+            foreach (GameObject psl in particle_system_list)
             {
+               // Debug.Log("particlesystemsOff");
                 psl.SetActive(false);
             }
         }
     }
 
-    public void  ReceiveDelivery() 
+    public void ReceiveDelivery()
     {
         if (Destiny_location_event != null)
         {
@@ -92,6 +97,26 @@ public class DestinyLocation : MonoBehaviour
         }
         particlesystemsOn();
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            Debug.Log("trigger hit the player");
+            if (this.gameObject.CompareTag("DestinyLocationTrigger"))
+            {
+                if (destiny_location_object != null)
+                {
+                    //destiny_location_object.GetComponent<DestinyLocation>().ReceiveDelivery();
+                    col.GetComponent<Boxhandle>().RemovePizzaFromPlayer();
+                    particlesystemsOff();
+                }
+
+            }
+        }
+    }
+
+
 
     public enum Delivery_event
     {
