@@ -12,7 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool pick_up;//add
+		public bool pickup;//add
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -73,9 +73,9 @@ namespace StarterAssets
 		{
 			sprint = newSprintState;
 		}
-		public void PickUpInput(bool newpickupState)
+		public void PickUpInput(bool newPickUpState)
 		{
-			pick_up = newpickupState;
+			pickup = newPickUpState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)

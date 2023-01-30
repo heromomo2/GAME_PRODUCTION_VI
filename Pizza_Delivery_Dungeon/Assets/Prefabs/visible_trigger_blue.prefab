@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6842131653787364655}
   - component: {fileID: 1988731891683805879}
   - component: {fileID: 1933701893200555776}
-  m_Layer: 0
+  - component: {fileID: 3703515122505894009}
+  m_Layer: 7
   m_Name: Triggerbox
-  m_TagString: Untagged
+  m_TagString: DestinyLocationTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +96,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3703515122505894009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137179744962770858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4826036b8baa034e933c4ccf42aeb5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box_colleder: {fileID: 1933701893200555776}
+  destiny_location: {fileID: 0}
 --- !u!1 &3515106882423603465
 GameObject:
   m_ObjectHideFlags: 0

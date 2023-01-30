@@ -28,7 +28,7 @@ public class DestinyLocation : MonoBehaviour
         }
     }
 
-    [SerializeField] private BoxCollider box_colleder;
+
     public GameObject destiny_location_object = null;
 
     void Start()
@@ -62,6 +62,11 @@ public class DestinyLocation : MonoBehaviour
                 psl.SetActive(true);
             }
         }
+        // set on trigger
+        if (destiny_location_object != null) 
+        {
+            destiny_location_object.SetActive(true);
+        }
     }
 
     private void particlesystemsOff()
@@ -75,6 +80,11 @@ public class DestinyLocation : MonoBehaviour
                // Debug.Log("particlesystemsOff");
                 psl.SetActive(false);
             }
+        }
+        // set off trigger
+        if (destiny_location_object != null)
+        {
+            destiny_location_object.SetActive(false);
         }
     }
 
@@ -98,29 +108,12 @@ public class DestinyLocation : MonoBehaviour
         particlesystemsOn();
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            Debug.Log("trigger hit the player");
-            if (this.gameObject.CompareTag("DestinyLocationTrigger"))
-            {
-                if (destiny_location_object != null)
-                {
-                    //destiny_location_object.GetComponent<DestinyLocation>().ReceiveDelivery();
-                    col.GetComponent<Boxhandle>().RemovePizzaFromPlayer();
-                    particlesystemsOff();
-                }
+    
 
-            }
-        }
-    }
-
-
-
-    public enum Delivery_event
-    {
-        Delilvery_End,
-        Delilvery_Start,
-    }
+   
+}
+public enum Delivery_event
+{
+    Delilvery_End,
+    Delilvery_Start,
 }

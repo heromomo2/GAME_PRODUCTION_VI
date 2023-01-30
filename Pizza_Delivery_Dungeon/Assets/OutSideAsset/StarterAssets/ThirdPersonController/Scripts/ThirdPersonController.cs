@@ -468,7 +468,7 @@ namespace StarterAssets
         {
             //do the pick 
 
-            if (_input.pick_up == true) 
+            if (_input.pickup == true) 
             {
                 pick_up = true;
             }

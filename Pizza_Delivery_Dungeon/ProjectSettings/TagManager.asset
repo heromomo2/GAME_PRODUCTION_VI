@@ -9,6 +9,8 @@ TagManager:
   - Pizzabox
   - DestinyLocation
   - DeliverySource
+  - DestinyLocationTrigger
+  - PlayerChild
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - PlayerChild
   - 
   - 
   - 

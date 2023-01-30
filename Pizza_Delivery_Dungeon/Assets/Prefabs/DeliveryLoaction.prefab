@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8810266142946124059}
   m_Layer: 0
   m_Name: DeliveryLoaction
-  m_TagString: Untagged
+  m_TagString: DestinyLocation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 210619180471851152, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.280056
+      value: -5.86
       objectReference: {fileID: 0}
     - target: {fileID: 210619180471851152, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: visible trigger whilte
       objectReference: {fileID: 0}
+    - target: {fileID: 3703515122505894009, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
+      propertyPath: destiny_location
+      value: 
+      objectReference: {fileID: 1416685788292447946}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
 --- !u!4 &1244490141949984860 stripped

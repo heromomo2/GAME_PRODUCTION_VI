@@ -41,16 +41,32 @@ public class PlayerCollision : MonoBehaviour
                     {
                         player_boxhandle.AttendPizzaToPlayer(hit.gameObject);
                     }
-                 
-
                 }
 
             }
         }
-        else 
+        else
         {
             player_3rd_person_controller.is_player_overlap_pizza = false;
         }
+
+        //if (hit.gameObject.CompareTag("DestinyLocationTrigger"))
+        //{
+        //    if (this.gameObject.CompareTag("Player"))
+        //    {
+        //        if (player_boxhandle != null)
+        //        {
+                   
+        //            if (player_3rd_person_controller.is_player_carry == true)
+        //            {
+        //                player_boxhandle.RemovePizzaFromPlayer();
+        //            }
+        //        }
+
+        //    }
+        //}
+       
+
     }
 
 }

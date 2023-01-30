@@ -9,9 +9,9 @@ public class OrderSystem : MonoBehaviour
 
     public List<GameObject> pizza_list;
 
-    public  GameObject pizza_prefab;
+    public GameObject pizza_prefab;
 
-    public List<Transform> prev_spawned; 
+    public List<Transform> prev_spawned;
 
     public GameObject delivery_source = null;
 
@@ -27,18 +27,30 @@ public class OrderSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //destiny_location_list = new List<GameObject>();
-        
-        //foreach (GameObject fooObj in GameObject.FindGameObjectsWithTag("DestinyLocation"))
-        //{
+       destiny_location_list = new List<GameObject>();
 
-        //    destiny_location_list.Add(fooObj);
 
-        //}
-
-        if (delivery_source == null) 
+        foreach (GameObject dl in GameObject.FindGameObjectsWithTag("DestinyLocation"))
         {
-            delivery_source = GameObject.FindGameObjectWithTag("DeliverySource"); 
+            destiny_location_list.Add(dl);
+
+            
+        }
+
+        // destiny_location_list.Add(GameObject.FindGameObjectsWithTag("DeliveryLocation"));
+
+        foreach (GameObject dl in destiny_location_list)
+        {
+
+            if (dl.GetComponent<DestinyLocation>() != null)
+            {
+                dl.GetComponent<DestinyLocation>().On_Destiny_Location_event += DestinyLocationEventListener;
+            }
+        }
+
+        if (delivery_source == null)
+        {
+            delivery_source = GameObject.FindGameObjectWithTag("DeliverySource");
         }
 
         random_timer = 5.0f;//Random.Range(10, 40.0f);
@@ -52,25 +64,27 @@ public class OrderSystem : MonoBehaviour
     {
 
         ///pick a destiny for the player
-        if (player != null) 
+        if (player != null)
         {
-            if (player.GetComponent<ThirdPersonController>().is_player_carry == true) 
+            if (player.GetComponent<ThirdPersonController>().is_player_carry == true)
             {
                 if (is_destiny_selected == false)
                 {
                     is_destiny_selected = true;
-                    Selected_destiny =  destiny_location_list[Random.Range(0, destiny_location_list.Count)];
+                    Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
                     Selected_destiny.GetComponent<DestinyLocation>().SetParticleOn();
-                } 
+                }
             }
         }
     }
+
+
 
     IEnumerator StartGenerateDeliverlyBoxes(float timer)
     {
         yield return new WaitForSeconds(timer);
 
-        if (pizza_list != null) 
+        if (pizza_list != null)
         {
             if (max_pizza_spawned > pizza_list.Count)
             {
@@ -86,7 +100,26 @@ public class OrderSystem : MonoBehaviour
 
                 }
 
-            } 
+            }
+        }
+
+    }
+
+    public void DestinyLocationEventListener(Delivery_event de)
+    {
+        if (de == Delivery_event.Delilvery_End) 
+        {
+            if (player.GetComponent<ThirdPersonController>() != null)
+            {
+                Debug.Log("OrderSystem got the message from DestinyLocation");
+
+               Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
+                if (holdpoint != null) 
+                {
+                    holdpoint.RemovePizzaFromPlayer();
+                    is_destiny_selected = false;
+                }
+            }
         }
 
     }

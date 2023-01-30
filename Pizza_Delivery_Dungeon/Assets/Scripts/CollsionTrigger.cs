@@ -6,22 +6,21 @@ public class CollsionTrigger : MonoBehaviour
 {
     [SerializeField] private BoxCollider box_colleder;
 
-    public GameObject destiny_location_object = null;
+    public GameObject destiny_location = null;
 
     // Start is called before the first frame update
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("DestinyLocationTrigger"))
+        if (col.gameObject.CompareTag("PlayerChild"))
         {
-            if (this.gameObject.CompareTag("Player"))
-            {
-                if (destiny_location_object != null) 
+            
+                if (destiny_location != null) 
                 {
-                    destiny_location_object.GetComponent<DestinyLocation>().ReceiveDelivery();
-                }
-                
-            }
+                    destiny_location.GetComponent<DestinyLocation>().ReceiveDelivery();
+                    Debug.Log("Playerchild is the the trigger1");
+                }   
+            
         }
 
         

@@ -44,7 +44,7 @@ public class Boxhandle : MonoBehaviour
         {
             if (pizza.tag == "Pizzabox")
             {
-                if (max_pizza_holded >= pizza_holded_counter)
+                if (max_pizza_holded > pizza_holded_counter)
                 {
                     pizza_holded_counter = pizza_holded_counter + 1;
 
@@ -64,6 +64,7 @@ public class Boxhandle : MonoBehaviour
         {
             Destroy(carried_pizza_box);
             player_3rd_person_controller.is_player_carry = false;
+            pizza_holded_counter = 0;
         }
     }
 }
