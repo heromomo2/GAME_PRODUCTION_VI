@@ -217,8 +217,8 @@ namespace StarterAssets
                 }
             }
 
-            JumpAndGravity();
-            GroundedCheck();
+           // JumpAndGravity();
+          //  GroundedCheck();
             Move();
             Pickup();// add
         }
@@ -472,7 +472,7 @@ namespace StarterAssets
             {
                 pick_up = true;
             }
-            else 
+            else
             {
                 pick_up = false;
             }
