@@ -54,6 +54,7 @@ public class Boxhandle : MonoBehaviour
                     player_3rd_person_controller.is_player_carry = true;
                     carried_pizza_box = pizza;
                     carried_pizza_box.tag = "Untagged";
+                    carried_pizza_box.GetComponent<Rigidbody>().isKinematic = true;
                 }
             }
         }

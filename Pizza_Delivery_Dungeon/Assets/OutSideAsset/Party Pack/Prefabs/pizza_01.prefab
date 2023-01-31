@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5210857067100133408}
   - component: {fileID: 5466068073540131540}
   - component: {fileID: 1808801060708080650}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4671030890235142921}
   - component: {fileID: 2762885812816847133}
   - component: {fileID: 5348014750244286320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4533879350042889166}
   - component: {fileID: 3099090460669812129}
   - component: {fileID: 3136800895391485664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 1702374731103769079}
   - component: {fileID: 4245047757227830949}
   - component: {fileID: 9047924692400144014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 3483379914883455095}
   - component: {fileID: 889188302698261683}
   - component: {fileID: 7192010527371329235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 1322610944682602956}
   - component: {fileID: 2159214431546750398}
   - component: {fileID: 6785592489607842448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 4574495369028615879}
   - component: {fileID: 8966259235294593509}
   - component: {fileID: 4422589647160200455}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 4009615379129919053}
   - component: {fileID: 1456698653}
   - component: {fileID: 1456698654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01
   m_TagString: Pizzabox
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 6197133674775788739}
   - component: {fileID: 5341611876442121744}
   - component: {fileID: 3669249525274668658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 352814624089355528}
   - component: {fileID: 3445105009392066289}
   - component: {fileID: 7624253842646687362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 2608769101062456163}
   - component: {fileID: 20741308634832783}
   - component: {fileID: 1486807171845871657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pizza_01 slice 06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
