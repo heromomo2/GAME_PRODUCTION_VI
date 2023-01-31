@@ -43,13 +43,13 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
-			Debug.Log(" OnSprint was called");
+	//		Debug.Log(" OnSprint was called");
 		}
 
 		public void OnPickUp(InputValue value)
 		{
 			PickUpInput(value.isPressed);
-			Debug.Log(" OnpickUP() was called");
+	//		Debug.Log(" OnpickUP() was called");
 		}
 #endif
 

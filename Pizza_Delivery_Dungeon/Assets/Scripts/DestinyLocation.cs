@@ -71,7 +71,7 @@ public class DestinyLocation : MonoBehaviour
 
     private void particlesystemsOff()
     {
-        Debug.Log("particlesystemsOff");
+       // Debug.Log("particlesystemsOff");
         if (particle_system_list.Count > 1)
         {
            // Debug.Log("particlesystemsOff");

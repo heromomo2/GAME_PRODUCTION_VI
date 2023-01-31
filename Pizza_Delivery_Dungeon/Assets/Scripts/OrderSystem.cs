@@ -111,7 +111,7 @@ public class OrderSystem : MonoBehaviour
         {
             if (player.GetComponent<ThirdPersonController>() != null)
             {
-                Debug.Log("OrderSystem got the message from DestinyLocation");
+    //            Debug.Log("OrderSystem got the message from DestinyLocation");
 
                Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
                 if (holdpoint != null) 

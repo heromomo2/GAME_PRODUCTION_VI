@@ -75,6 +75,10 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Space(10)]
+        [Tooltip("Time required to pass before being able to pickup again. Set to 0f to instantly pickup again")] // add me
+        public float PickupTimeout = 0.50f;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -90,6 +94,8 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
+        private float _PickupTimeoutDelta;
+
 
         // animation IDs
         private int _animIDSpeed;
@@ -195,6 +201,7 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _PickupTimeoutDelta = PickupTimeout;// add by me
         }
 
         private void Update()
@@ -468,14 +475,29 @@ namespace StarterAssets
         {
             //do the pick 
 
-            if (_input.pickup == true) 
+            //if (_input.pickup== true && _PickupTimeoutDelta <= 0f)
+            //{
+            //    pick_up = true;
+            //}
+            //else 
+            //{
+            //    if (pick_up == true)
+            //    {
+            //        pick_up = false;
+            //        _input.pickup = false; 
+            //    }
+            //}
+            // jump timeout
+            //if (_PickupTimeoutDelta >= 0.0f)
+            //{
+            //    _PickupTimeoutDelta -= Time.deltaTime;
+            //}
+
+            if (_input.pickup == true)
             {
                 pick_up = true;
             }
-            else
-            {
-                pick_up = false;
-            }
+          
         }
     }
 }

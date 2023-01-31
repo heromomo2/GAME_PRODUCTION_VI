@@ -53,6 +53,7 @@ public class Boxhandle : MonoBehaviour
                     pizza.transform.parent = _holdpoint.transform;
                     player_3rd_person_controller.is_player_carry = true;
                     carried_pizza_box = pizza;
+                    carried_pizza_box.tag = "Untagged";
                 }
             }
         }
@@ -63,7 +64,9 @@ public class Boxhandle : MonoBehaviour
         if (carried_pizza_box != null)
         {
             Destroy(carried_pizza_box);
+            carried_pizza_box = null;
             player_3rd_person_controller.is_player_carry = false;
+            player_3rd_person_controller.is_player_overlap_pizza = false;
             pizza_holded_counter = 0;
         }
     }
