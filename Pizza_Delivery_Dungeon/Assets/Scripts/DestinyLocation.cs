@@ -34,7 +34,7 @@ public class DestinyLocation : MonoBehaviour
     void Start()
     {
        // particle_system_list = new List<GameObject>();
-        particlesystemsOff();
+        ParticlesystemsOff();
     }
 
     private void OnDestroy()
@@ -69,7 +69,7 @@ public class DestinyLocation : MonoBehaviour
         }
     }
 
-    private void particlesystemsOff()
+    private void ParticlesystemsOff()
     {
        // Debug.Log("particlesystemsOff");
         if (particle_system_list.Count > 1)
@@ -95,7 +95,7 @@ public class DestinyLocation : MonoBehaviour
             DE = Delivery_event.Delilvery_End;
             Destiny_location_event(DE);
         }
-        particlesystemsOff();
+        ParticlesystemsOff();
     }
 
     public void SetParticleOn()
@@ -108,9 +108,12 @@ public class DestinyLocation : MonoBehaviour
         particlesystemsOn();
     }
 
-    
+    public void FailDelivery()
+    {
+        ParticlesystemsOff();
+    }
 
-   
+
 }
 public enum Delivery_event
 {

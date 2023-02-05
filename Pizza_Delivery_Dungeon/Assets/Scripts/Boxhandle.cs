@@ -20,7 +20,7 @@ public class Boxhandle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
@@ -53,6 +53,7 @@ public class Boxhandle : MonoBehaviour
                     pizza.transform.parent = _holdpoint.transform;
                     player_3rd_person_controller.is_player_carry = true;
                     carried_pizza_box = pizza;
+                    carried_pizza_box.GetComponent<PickUpItem>().is_pick_up = true;
                     carried_pizza_box.tag = "Untagged";
                     carried_pizza_box.GetComponent<Rigidbody>().isKinematic = true;
                 }
@@ -70,5 +71,14 @@ public class Boxhandle : MonoBehaviour
             player_3rd_person_controller.is_player_overlap_pizza = false;
             pizza_holded_counter = 0;
         }
+    }
+
+    public void RemoveExpiryPizzaPlayer()
+    {
+
+        player_3rd_person_controller.is_player_carry = false;
+        player_3rd_person_controller.is_player_overlap_pizza = false;
+        pizza_holded_counter = 0;
+
     }
 }

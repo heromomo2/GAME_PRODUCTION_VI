@@ -7,14 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1456698653, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1456698653, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4009615379129919053, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,5 +55,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: pizza_01 Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6583997446324158588, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
+--- !u!1 &1406368634818447857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4390679083592924407, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
+  m_PrefabInstance: {fileID: 3416753889990538502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7184233222016304484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406368634818447857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expiry_timer: 12.5
+  is_pick_up: 0
+  our_item: 0
