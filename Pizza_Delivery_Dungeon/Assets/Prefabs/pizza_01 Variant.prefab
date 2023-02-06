@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expiry_timer: 12.5
+  expiry_timer: 0
+  expiry_time_on_floor: 12.5
+  after_pick_up_expiry_time: 6.8
   is_pick_up: 0
+  is_expiry_timer_change_after_pick_up: 0
   our_item: 0

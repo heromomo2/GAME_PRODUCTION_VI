@@ -6,7 +6,10 @@ using UnityEngine;
 public class PickUpItem : MonoBehaviour
 {
     public float expiry_timer = 12.50f;
+    public float expiry_time_on_floor = 12.50f;
+    public float after_pick_up_expiry_time = 0f;
     public bool is_pick_up = false;
+    public bool is_expiry_timer_change_after_pick_up = false;
     public item_type our_item = item_type.pizza_box;
 
     // Transform initial_spawn position;
@@ -29,42 +32,50 @@ public class PickUpItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (our_item == item_type.pizza_box)
-        {
-             expiry_timer = 12.50f;
-        }
-        else if (our_item == item_type.milk)
-        {
-            expiry_timer = 7.0f;
-        }
-        //else if (our_item == item_type.hamburger) 
-        //{
-        //    expiry_timer = 30.50f;
-        //}
-        StartCoroutine(ExpiryItem(expiry_timer));
+        expiry_timer = expiry_time_on_floor;
+       // StartCoroutine(ExpiryItem(expiry_timer));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (is_expiry_timer_change_after_pick_up == false)
+        {
+            // items on the floor
+            if (expiry_timer > 0 && is_pick_up == false)
+            {
+                expiry_timer -= Time.deltaTime;
+            }// remove destory if the player doesn't pick up in time
+            else if (expiry_timer < 0 && is_pick_up == false)
+            {
+                Destroy(this.gameObject);
+            }
+            else if (expiry_timer > 0 && is_pick_up == true) 
+            {
+                is_expiry_timer_change_after_pick_up = true;
+                StartCoroutine(ExpiryItemWhileCarried(after_pick_up_expiry_time));
+            }
+        }
         
     }
 
-    IEnumerator ExpiryItem(float timer)
+    IEnumerator ExpiryItemWhileCarried(float timer)
     {
         yield return new WaitForSeconds(timer);
+
         if (is_pick_up == true)
         {
             if (pick_up_item_event != null)
             {
                 pick_up_item_event(1);
-            } 
+            }
         }
         Destroy(this.gameObject);
+
     }
     private void OnDestroy()
     {
-        
+
     }
 }
 public enum item_type

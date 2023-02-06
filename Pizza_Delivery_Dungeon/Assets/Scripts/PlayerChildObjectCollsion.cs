@@ -17,7 +17,7 @@ public class PlayerChildObjectCollsion : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Debug.Log("collision->" + collision.gameObject.name);
-        if (collision.gameObject.tag == "Pizzabox")
+        if (collision.gameObject.tag == "Pizzabox" || collision.gameObject.tag == "Item")
         {
             if (this.gameObject.tag == "PlayerChild")
             {
@@ -27,7 +27,7 @@ public class PlayerChildObjectCollsion : MonoBehaviour
 
                     if (player_3rd_person_controller.is_player_carry != true)
                     {
-                        player_boxhandle.AttendPizzaToPlayer(collision.gameObject);
+                        player_boxhandle.AttendCarriedItemToPlayer(collision.gameObject);
                     }
                 }
             }

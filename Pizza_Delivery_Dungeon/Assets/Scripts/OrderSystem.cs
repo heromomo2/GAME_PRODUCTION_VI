@@ -95,78 +95,7 @@ public class OrderSystem : MonoBehaviour
 
 
 
-    //IEnumerator StartGenerateMilkBoxes(float timer)
-    //{
-    //    yield return new WaitForSeconds(timer);
-
-    //    if (milk_list != null)
-    //    {
-    //        if (max_milk_spawned > milk_list.Count)
-    //        {
-    //            if (milk_prefab != null && delivery_source_milk != null)
-    //            {
-    //                GameObject new_milk;
-    //                new_milk = Instantiate(pizza_prefab, delivery_source.transform.position, Quaternion.identity);
-
-    //                if (new_milk.GetComponent<PickUpItem>() != null)
-    //                {
-    //                    new_milk.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
-    //                }
-    //                milk_list.Add(new_milk);
-
-    //                random_timer = Random.Range(5.0f, 10.0f);
-
-    //                StartCoroutine(StartGenerateMilkBoxes(random_timer));
-
-    //            }
-
-    //        }
-    //    }
-
-    //}
-
-    // this work
-    //IEnumerator StartGenerateDeliverlyBoxes(float timer)
-    //{
-    //    yield return new WaitForSeconds(timer);
-
-    //    if (pizza_list != null)
-    //    {
-    //        if (max_pizza_spawned > pizza_list.Count)
-    //        {
-    //            if (pizza_prefab != null && delivery_source_pizza != null)
-    //            {
-    //                max_spawn_amount = max_pizza_spawned - pizza_list.Count;
-    //                GameObject new_pizza;
-    //                int random_amount = Random.Range(1, max_spawn_amount);
-    //                for (int i = random_amount;  i > 0; i-- )
-    //                {
-    //                    new_pizza = Instantiate(pizza_prefab, delivery_source_pizza.transform.position, Quaternion.identity);
-    //                    if (new_pizza.GetComponent<PickUpItem>() != null)
-    //                    {
-    //                        new_pizza.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
-    //                    }
-    //                    pizza_list.Add(new_pizza);
-    //                }
-
-    //                random_timer = Random.Range(0.5f, 4.0f);
-
-    //                StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
-
-    //            }
-
-    //        }
-    //        else 
-    //        {
-    //            CleanUpListOfMissingGameObject(pizza_list);
-
-    //            random_timer = Random.Range(5.0f, 10.0f);
-
-    //            StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
-    //        }
-    //    }
-
-    //}
+   
 
     IEnumerator StartGenerateDeliverlyBoxes(float timer, int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
     {
@@ -189,7 +118,7 @@ public class OrderSystem : MonoBehaviour
 
                         if (new_item.GetComponent<PickUpItem>() != null)
                         {
-                            new_item.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
+                            new_item.GetComponent<PickUpItem>().On_pick_up_item_event += ItemEventListener;
                         }
 
 
@@ -231,7 +160,7 @@ public class OrderSystem : MonoBehaviour
                 Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
                 if (holdpoint != null)
                 {
-                    holdpoint.RemovePizzaFromPlayer();
+                    holdpoint.RemoveCarriedItemFromPlayer();
                     is_destiny_selected = false;
                 }
             }
@@ -239,13 +168,13 @@ public class OrderSystem : MonoBehaviour
 
     }
 
-    public void PizzaEventListener(int i)
+    public void ItemEventListener(int i)
     {  // player is carry a expiry pizza
         if (i == 1)
         {
             if (player.GetComponent<ThirdPersonController>() != null)
             {
-                Debug.Log("OrderSystem got the message from expiry pizza");
+                Debug.Log("OrderSystem got the message from expiry item");
 
                 Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
                 if (holdpoint != null)

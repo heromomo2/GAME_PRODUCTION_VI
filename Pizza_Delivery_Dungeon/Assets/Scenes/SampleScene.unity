@@ -224,10 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12779ac90da173349964d0d2bd5bf8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carried_pizza_box: {fileID: 0}
+  carried_item: {fileID: 0}
   _holdpoint: {fileID: 1405392843}
-  max_pizza_holded: 1
-  pizza_holded_counter: 0
+  max_item_holded: 1
+  item_holded_counter: 0
   player_3rd_person_controller: {fileID: 774161234}
 --- !u!1 &370454482 stripped
 GameObject:
@@ -495,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: SprintSpeed
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: LockCameraPosition

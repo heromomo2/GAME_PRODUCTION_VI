@@ -29,7 +29,7 @@ public class PlayerCollision : MonoBehaviour
 
                     if (player_3rd_person_controller.is_player_carry != true)
                     {
-                        player_boxhandle.AttendPizzaToPlayer(hit.gameObject);
+                        player_boxhandle.AttendCarriedItemToPlayer(hit.gameObject);
                     }
                 }
             }
