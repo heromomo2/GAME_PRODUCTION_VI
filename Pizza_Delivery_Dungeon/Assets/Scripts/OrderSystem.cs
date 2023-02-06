@@ -5,34 +5,32 @@ using UnityEngine.InputSystem;
 using StarterAssets;
 public class OrderSystem : MonoBehaviour
 {
+    [Header("Deliverly")]
     public List<GameObject> destiny_location_list;
 
-    public List<GameObject> pizza_list;
-    
-    public GameObject pizza_prefab;
-
-    public List<GameObject> milk_list;
-
-    public GameObject milk_prefab;
-
-    public List<Transform> prev_spawned;
-
-    public GameObject delivery_source = null;
+    public GameObject delivery_source_pizza = null;
 
     public GameObject delivery_source_milk = null;
 
     public GameObject player = null;
 
-    public int max_pizza_spawned = 10;
-
-    public float max_milk_spawned;
-
-    public float random_timer = 0f;
-
-    public int  max_spawn_amount = 0;
-
     public bool is_destiny_selected = false;
+
     public GameObject Selected_destiny = null;
+
+    [Header("Pizza")]
+    public GameObject pizza_prefab;
+    public List<GameObject> pizza_list;
+    public int max_pizza_spawned = 10;
+    public int max_spawn_amount = 0;
+    public float random_pizza_spawn_timer = 0f;
+
+    [Header("Milk")]
+    public GameObject milk_prefab;
+    public List<GameObject> milk_list;
+    public int max_milk_spawned = 5;
+    public float random_milk_spawn_timer = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,15 +56,19 @@ public class OrderSystem : MonoBehaviour
             }
         }
 
-        if (delivery_source == null)
+        if (delivery_source_pizza == null)
         {
-            delivery_source = GameObject.FindGameObjectWithTag("DeliverySource");
+            delivery_source_pizza = GameObject.FindGameObjectWithTag("DeliverySource");
         }
 
-        random_timer = 5.0f;//Random.Range(10, 40.0f);
+        random_pizza_spawn_timer = 5.0f;//Random.Range(10, 40.0f);
 
-        StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
-       // StartCoroutine(StartGenerateMilkBoxes(random_timer));
+        random_milk_spawn_timer = 3.0f;
+
+        // pizza gen
+        StartCoroutine(StartGenerateDeliverlyBoxes(random_pizza_spawn_timer, max_pizza_spawned,pizza_list,pizza_prefab,delivery_source_pizza));
+        // milk gen
+        StartCoroutine(StartGenerateDeliverlyBoxes(random_milk_spawn_timer, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
 
     }
 
@@ -88,7 +90,7 @@ public class OrderSystem : MonoBehaviour
             }
         }
 
-       // Debug.Log("Pizzacount " + pizza_list.Count);
+        // Debug.Log("Pizzacount " + pizza_list.Count);
     }
 
 
@@ -123,49 +125,96 @@ public class OrderSystem : MonoBehaviour
 
     //}
 
-    IEnumerator StartGenerateDeliverlyBoxes(float timer)
+    // this work
+    //IEnumerator StartGenerateDeliverlyBoxes(float timer)
+    //{
+    //    yield return new WaitForSeconds(timer);
+
+    //    if (pizza_list != null)
+    //    {
+    //        if (max_pizza_spawned > pizza_list.Count)
+    //        {
+    //            if (pizza_prefab != null && delivery_source_pizza != null)
+    //            {
+    //                max_spawn_amount = max_pizza_spawned - pizza_list.Count;
+    //                GameObject new_pizza;
+    //                int random_amount = Random.Range(1, max_spawn_amount);
+    //                for (int i = random_amount;  i > 0; i-- )
+    //                {
+    //                    new_pizza = Instantiate(pizza_prefab, delivery_source_pizza.transform.position, Quaternion.identity);
+    //                    if (new_pizza.GetComponent<PickUpItem>() != null)
+    //                    {
+    //                        new_pizza.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
+    //                    }
+    //                    pizza_list.Add(new_pizza);
+    //                }
+
+    //                random_timer = Random.Range(0.5f, 4.0f);
+
+    //                StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+
+    //            }
+
+    //        }
+    //        else 
+    //        {
+    //            CleanUpListOfMissingGameObject(pizza_list);
+
+    //            random_timer = Random.Range(5.0f, 10.0f);
+
+    //            StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+    //        }
+    //    }
+
+    //}
+
+    IEnumerator StartGenerateDeliverlyBoxes(float timer, int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
     {
         yield return new WaitForSeconds(timer);
 
-        if (pizza_list != null)
+        if (item_list != null)
         {
-            if (max_pizza_spawned > pizza_list.Count)
+            if (max_item_spawned > item_list.Count)
             {
-                if (pizza_prefab != null && delivery_source != null)
+                if (our_item_prefab != null && delivery_source != null)
                 {
-                    max_spawn_amount = max_pizza_spawned - pizza_list.Count;
-                    GameObject new_pizza;
+                    max_spawn_amount = max_item_spawned - item_list.Count;
+                    GameObject new_item;
+
                     int random_amount = Random.Range(1, max_spawn_amount);
-                    for (int i = random_amount;  i > 0; i-- )
+
+                    for (int i = random_amount; i > 0; i--)
                     {
-                        new_pizza = Instantiate(pizza_prefab, delivery_source.transform.position, Quaternion.identity);
-                        if (new_pizza.GetComponent<PickUpItem>() != null)
+                        new_item = Instantiate(our_item_prefab, delivery_source.transform.position, Quaternion.identity);
+
+                        if (new_item.GetComponent<PickUpItem>() != null)
                         {
-                            new_pizza.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
+                            new_item.GetComponent<PickUpItem>().On_pick_up_item_event += PizzaEventListener;
                         }
-                        pizza_list.Add(new_pizza);
+
+
+                        item_list.Add(new_item);
+
                     }
-                  
-                    random_timer = Random.Range(0.5f, 4.0f);
-                   
-                    StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+
+                    timer = Random.Range(0.5f, 4.0f);
+
+                    StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_item_spawned, item_list, our_item_prefab, delivery_source));
 
                 }
 
             }
-            else 
+            else
             {
-                CleanUpListOfMissingGameObject(pizza_list);
+                CleanUpListOfMissingGameObject(item_list);
 
-                random_timer = Random.Range(5.0f, 10.0f);
+                timer = Random.Range(5.0f, 10.0f);
 
-                StartCoroutine(StartGenerateDeliverlyBoxes(random_timer));
+                StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_item_spawned, item_list, our_item_prefab, delivery_source));
             }
         }
 
     }
-
-
 
 
 
@@ -201,15 +250,15 @@ public class OrderSystem : MonoBehaviour
                 Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
                 if (holdpoint != null)
                 {
-                    foreach (GameObject dl in destiny_location_list) 
+                    foreach (GameObject dl in destiny_location_list)
                     {
-                        if (dl.GetComponent<DestinyLocation>() != null) 
+                        if (dl.GetComponent<DestinyLocation>() != null)
                         {
                             dl.GetComponent<DestinyLocation>().FailDelivery();
                         }
                     }
                     holdpoint.RemoveExpiryPizzaPlayer();
-                   is_destiny_selected = false;
+                    is_destiny_selected = false;
                 }
             }
         }
@@ -217,9 +266,9 @@ public class OrderSystem : MonoBehaviour
 
 
 
-    void CleanUpListOfMissingGameObject(List<GameObject> our_list) 
+    void CleanUpListOfMissingGameObject(List<GameObject> our_list)
     {
-        for (var i = our_list.Count -1; i > -1; i--)
+        for (var i = our_list.Count - 1; i > -1; i--)
         {
             if (our_list[i] == null)
             {

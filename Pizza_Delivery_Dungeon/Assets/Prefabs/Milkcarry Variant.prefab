@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Milkcarry Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -115,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expiry_timer: 12.5
+  expiry_timer: 6.78
   is_pick_up: 0
   our_item: 1
