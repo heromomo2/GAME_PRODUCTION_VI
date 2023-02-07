@@ -31,6 +31,10 @@ public class OrderSystem : MonoBehaviour
     public int max_milk_spawned = 5;
     public float random_milk_spawn_timer = 0f;
 
+    [Header("Destination")]
+    public float distance;
+    public float time_between_objects;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +70,7 @@ public class OrderSystem : MonoBehaviour
         random_milk_spawn_timer = 3.0f;
 
         // pizza gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(random_pizza_spawn_timer, max_pizza_spawned,pizza_list,pizza_prefab,delivery_source_pizza));
+        StartCoroutine(StartGenerateDeliverlyBoxes(random_pizza_spawn_timer, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
         // milk gen
         StartCoroutine(StartGenerateDeliverlyBoxes(random_milk_spawn_timer, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
 
@@ -84,8 +88,16 @@ public class OrderSystem : MonoBehaviour
                 if (is_destiny_selected == false)
                 {
                     is_destiny_selected = true;
-                    Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
-                    Selected_destiny.GetComponent<DestinyLocation>().SetParticleOn();
+                    // Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
+                    SetDestination();
+                    if (Selected_destiny == null)
+                    {
+                        Debug.LogError("Selected_Destiny has not beem asignn");
+                    }
+                    else
+                    {
+                        Selected_destiny.GetComponent<DestinyLocation>().SetParticleOn();
+                    }
                 }
             }
         }
@@ -95,7 +107,7 @@ public class OrderSystem : MonoBehaviour
 
 
 
-   
+
 
     IEnumerator StartGenerateDeliverlyBoxes(float timer, int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
     {
@@ -202,6 +214,68 @@ public class OrderSystem : MonoBehaviour
             if (our_list[i] == null)
             {
                 our_list.RemoveAt(i);
+            }
+        }
+    }
+
+
+
+    void SetDestination()
+    {
+        if (player.GetComponent<ThirdPersonController>() != null)
+        {
+            // get player speed
+            speed = player.GetComponent<ThirdPersonController>().MoveSpeed;
+
+            Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
+            if (holdpoint != null)
+            {
+                GameObject temp_destination;
+                float temp_distance = 0.1f;
+                bool is_first_loop = true;
+
+                // find out what the player is carrying before pick a destinattion
+                if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.pizza_box)
+                {
+                    // find the farest destination
+
+                    foreach (GameObject dl in destiny_location_list)
+                    {
+                        distance = Vector3.Distance(player.transform.position, dl.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+
+                        if (is_first_loop == true)
+                        {
+                            is_first_loop = false;
+                            temp_distance = distance;
+                            Selected_destiny = dl;
+                        }
+                        else if (temp_distance < distance)
+                        {
+                            temp_distance = distance;
+                            Selected_destiny = dl;
+                        }
+                    }
+                }
+                else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.milk)
+                {
+                    // find the closest destination
+                    foreach (GameObject dl in destiny_location_list)
+                    {
+                        distance = Vector3.Distance(player.transform.position, dl.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+
+                        if (is_first_loop == true)
+                        {
+                            is_first_loop = false;
+                            temp_distance = distance;
+                            Selected_destiny = dl;
+                        }
+                        else if (temp_distance > distance)
+                        {
+                            temp_distance = distance;
+                            Selected_destiny = dl;
+                        }
+                    }
+                }
             }
         }
     }

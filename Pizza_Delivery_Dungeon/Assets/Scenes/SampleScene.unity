@@ -1013,7 +1013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416685788292447947, guid: 98a02650554710b419e5b74690f74df1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100.67
+      value: 100.7
       objectReference: {fileID: 0}
     - target: {fileID: 1416685788292447947, guid: 98a02650554710b419e5b74690f74df1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1021,7 +1021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1416685788292447947, guid: 98a02650554710b419e5b74690f74df1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -86.39
+      value: -87.5
       objectReference: {fileID: 0}
     - target: {fileID: 1416685788292447947, guid: 98a02650554710b419e5b74690f74df1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3152,6 +3152,9 @@ MonoBehaviour:
   milk_list: []
   max_milk_spawned: 5
   random_milk_spawn_timer: 0
+  distance: 0
+  time_between_objects: 0
+  speed: 0
 --- !u!4 &1856370094
 Transform:
   m_ObjectHideFlags: 0
