@@ -12,6 +12,8 @@ public class OrderSystem : MonoBehaviour
 
     public GameObject delivery_source_milk = null;
 
+    public GameObject delivery_source_hambuger = null;
+
     public GameObject player = null;
 
     public bool is_destiny_selected = false;
@@ -31,6 +33,12 @@ public class OrderSystem : MonoBehaviour
     public int max_milk_spawned = 5;
     public float random_milk_spawn_timer = 0f;
 
+    [Header("Hambuger")]
+    public GameObject hambuger_prefab;
+    public List<GameObject> hambuger_list;
+    public int max_hambuger_spawned = 2;
+    public float random_hambuger_spawn_timer = 0f;
+
     [Header("Destination")]
     public float distance;
     public float time_between_objects;
@@ -40,7 +48,6 @@ public class OrderSystem : MonoBehaviour
     void Start()
     {
         destiny_location_list = new List<GameObject>();
-
 
         foreach (GameObject dl in GameObject.FindGameObjectsWithTag("DestinyLocation"))
         {
@@ -73,6 +80,8 @@ public class OrderSystem : MonoBehaviour
         StartCoroutine(StartGenerateDeliverlyBoxes(random_pizza_spawn_timer, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
         // milk gen
         StartCoroutine(StartGenerateDeliverlyBoxes(random_milk_spawn_timer, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
+        // hambuger gen
+        StartCoroutine(StartGenerateDeliverlyBoxes(random_hambuger_spawn_timer, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
     }
 
@@ -237,25 +246,16 @@ public class OrderSystem : MonoBehaviour
                 // find out what the player is carrying before pick a destinattion
                 if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.pizza_box)
                 {
-                    // find the farest destination
+                    // radom
+                    Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
 
-                    foreach (GameObject dl in destiny_location_list)
-                    {
-                        distance = Vector3.Distance(player.transform.position, dl.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+                    distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
 
-                        if (is_first_loop == true)
-                        {
-                            is_first_loop = false;
-                            temp_distance = distance;
-                            Selected_destiny = dl;
-                        }
-                        else if (temp_distance < distance)
-                        {
-                            temp_distance = distance;
-                            Selected_destiny = dl;
-                        }
-                    }
-                }
+                    time_between_objects = distance / speed;
+
+                    holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects;
+
+                } // check what item is be pick up
                 else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.milk)
                 {
                     // find the closest destination
@@ -275,10 +275,64 @@ public class OrderSystem : MonoBehaviour
                             Selected_destiny = dl;
                         }
                     }
+                    // get the time for  travel time
+                    time_between_objects = distance / speed;
+
+
+                    // add the travel time to the milk 
+                    holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);
+                }
+                else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.hambuger)
+                {
+                    GameObject temp_distination3 = null;
+
+                    // get the far distination
+                    foreach (GameObject dl in destiny_location_list)
+                    {
+                        distance = Vector3.Distance(player.transform.position, dl.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+
+                        if (is_first_loop == true)
+                        {
+                            is_first_loop = false;
+                            temp_distance = distance;
+                            temp_distination3 = dl;
+                        }
+                        else if (temp_distance < distance)
+                        {
+                            temp_distance = distance;
+                            temp_distination3 = dl;
+                        }
+                    }
+
+                    Selected_destiny = temp_distination3;
+
+                    if (temp_distination3 != null && Selected_destiny != null)
+                    {
+                        // we do don't want it to this destination
+                        while (Selected_destiny == temp_distination3)
+                        {
+                            Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
+                        }
+
+                        distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+
+                        // get the time for  travel time
+                        time_between_objects = distance / speed;
+
+
+                        // add the travel time to the hambuger
+                        holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);
+                    }
+
+
+
+
                 }
             }
+
         }
     }
+
 }
 
 

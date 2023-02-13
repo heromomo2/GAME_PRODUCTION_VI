@@ -38,11 +38,12 @@ public class Boxhandle : MonoBehaviour
                     item_holded_counter = item_holded_counter + 1;
 
                     // GameObject child_object = _holdpoint.gameObject;
-                    item.transform.position = new Vector3(_holdpoint.transform.position.x, _holdpoint.transform.position.y + 0.2f, _holdpoint.transform.position.z);
+                    item.transform.position = new Vector3 (item.transform.position.x, _holdpoint.transform.position.y + 0.2f, item.transform.position.z);
                     item.transform.parent = _holdpoint.transform;
                     player_3rd_person_controller.is_player_carry = true;
                     carried_item = item;
                     carried_item.GetComponent<PickUpItem>().is_pick_up = true;
+                    //carried_item.GetComponent<PickUpItem>().ResetOurRotation();
                     carried_item.tag = "Untagged";
                     carried_item.GetComponent<Rigidbody>().isKinematic = true;
                 }

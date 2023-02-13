@@ -11,6 +11,9 @@ public class PickUpItem : MonoBehaviour
     public bool is_pick_up = false;
     public bool is_expiry_timer_change_after_pick_up = false;
     public item_type our_item = item_type.pizza_box;
+    public Quaternion originalRotationValue;
+    public Transform originalValue;
+
 
     // Transform initial_spawn position;
 
@@ -32,6 +35,8 @@ public class PickUpItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalValue = this.gameObject.transform;
+        originalRotationValue = transform.rotation;
         expiry_timer = expiry_time_on_floor;
        // StartCoroutine(ExpiryItem(expiry_timer));
     }
@@ -77,9 +82,15 @@ public class PickUpItem : MonoBehaviour
     {
 
     }
+    public void ResetOurRotation()
+    {
+        transform.rotation = originalRotationValue;
+        transform.localScale = originalValue.localScale;
+    }
 }
 public enum item_type
 {
     pizza_box,
-    milk
+    milk,
+    hambuger
 }

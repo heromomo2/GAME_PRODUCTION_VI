@@ -111,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16219066, y: 0.22118388, z: 0.14961475}
-  m_Center: {x: 0, y: 0.11059194, z: 0}
+  m_Size: {x: 0.19000006, y: 0.243745, z: 0.16174406}
+  m_Center: {x: 3.0563143e-15, y: 0.11237421, z: -0.000025981253}
 --- !u!114 &2096787485521779059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expiry_timer: 6.78
+  expiry_timer: 0
+  expiry_time_on_floor: 10.67
+  after_pick_up_expiry_time: 5
   is_pick_up: 0
+  is_expiry_timer_change_after_pick_up: 0
   our_item: 1
+  originalRotationValue: {x: 0, y: 0, z: 0, w: 0}

@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.586
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -44.797
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.589
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,18 +54,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2096787485521779059, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
-      propertyPath: expiry_timer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2096787485521779059, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
-      propertyPath: expiry_time_on_floor
-      value: 10.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 2096787485521779059, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
-      propertyPath: after_pick_up_expiry_time
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}

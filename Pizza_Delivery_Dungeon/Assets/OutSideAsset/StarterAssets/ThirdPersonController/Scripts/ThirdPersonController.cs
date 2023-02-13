@@ -85,6 +85,10 @@ namespace StarterAssets
 
         // player
         private float _speed;
+        //public float Get_Speed()// add a getter
+        //{
+        //    return _speed;
+        //}
         private float _animationBlend;
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
@@ -119,7 +123,7 @@ namespace StarterAssets
 
         // momo add code
 
-        [SerializeField ] private bool is_carry = false;
+        [SerializeField] private bool is_carry = false;
 
         public bool is_player_carry
         {
@@ -186,7 +190,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -209,14 +213,14 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
 
             // add code from me
-            if (is_carry == true) 
+            if (is_carry == true)
             {
                 if (_hasAnimator)
                 {
                     _animator.SetBool(_animIDCarrying, true);
                 }
             }
-            else 
+            else
             {
                 if (_hasAnimator)
                 {
@@ -224,8 +228,8 @@ namespace StarterAssets
                 }
             }
 
-           // JumpAndGravity();
-          //  GroundedCheck();
+            // JumpAndGravity();
+            //  GroundedCheck();
             Move();
             Pickup();// add
         }
@@ -471,7 +475,7 @@ namespace StarterAssets
         }
 
         // add by me
-        private void Pickup() 
+        private void Pickup()
         {
             //do the pick 
 
@@ -497,7 +501,7 @@ namespace StarterAssets
             {
                 pick_up = true;
             }
-          
+
         }
     }
 }
