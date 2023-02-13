@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 176817814}
   - component: {fileID: 176817813}
   - component: {fileID: 176817812}
+  - component: {fileID: 176817816}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -223,6 +224,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &176817816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176817811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303305ec1a7ae3c4ea20caa11994dfb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_ui_delierly_timer: {fileID: 0}
+  total_deliverly_time: 0
+  total_deliver_remaining: 0
+  stamina_bar: {fileID: 1962089398}
+  text_ui_money_earned: {fileID: 0}
+  total_money_earned: 0
+  text_ui_delierly_fail: {fileID: 0}
+  total_fail_delivery_remaining: 0
 --- !u!1001 &236193016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,6 +599,10 @@ PrefabInstance:
       propertyPath: _iscarry
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: player_HUD
+      value: 
+      objectReference: {fileID: 176817816}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: SprintSpeed
       value: 6
@@ -3356,7 +3381,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -3463,6 +3488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c472c5975130ec04ab9282349962ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_HUD: {fileID: 176817816}
 --- !u!114 &2032910432
 MonoBehaviour:
   m_ObjectHideFlags: 0

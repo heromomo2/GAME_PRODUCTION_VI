@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager game_manager { get; private set; }
 
-    public UnitStamina player_stamina = new UnitStamina(100, 100);
+    public UnitStamina player_stamina = new UnitStamina(100f, 100f, 30f, false, 25f, false, 10.0f );
 
     void Awake()
     {

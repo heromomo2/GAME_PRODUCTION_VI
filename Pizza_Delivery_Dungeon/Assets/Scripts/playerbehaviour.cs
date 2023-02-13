@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerbehaviour : MonoBehaviour
 {
+    [SerializeField] HUD player_HUD;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,25 +14,27 @@ public class playerbehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            PlayerTakeDmg(20);
-            Debug.Log(GameManager.game_manager.player_stamina.health);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            PlayerHeal(10);
-            Debug.Log(GameManager.game_manager.player_stamina.health);
-        }
+
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    PlayerUseStamin(5);
+        //}
+        //else
+        //{
+        //    PlayerRegenStamina();
+        //}
     }
 
-    private void PlayerTakeDmg(int dmg)
+    private void PlayerUseStamin(float  StaminaAmonut)
     {
-        GameManager.game_manager.player_stamina.DmgUnit(dmg);
-        Debug.Log(GameManager.game_manager.player_stamina.health);
+        GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+
+        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+      //  Debug.Log(GameManager.game_manager.player_stamina.health);
     }
-    private void PlayerHeal(int healthing)
+    private void PlayerRegenStamina()
     {
-        GameManager.game_manager.player_stamina.HealthUnit(healthing)
+        GameManager.game_manager.player_stamina.RegenStamin();
+        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
     }
 }

@@ -165,6 +165,12 @@ namespace StarterAssets
             }
         }
 
+        [SerializeField] HUD player_HUD;
+
+        [SerializeField] bool is_not_allow_to_sprint = false;
+
+
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -232,6 +238,7 @@ namespace StarterAssets
             //  GroundedCheck();
             Move();
             Pickup();// add
+            SprintCheck();
         }
 
         private void LateUpdate()
@@ -287,8 +294,17 @@ namespace StarterAssets
 
         private void Move()
         {
+            float targetSpeed;
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            if (is_not_allow_to_sprint == false) 
+            {
+                targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; 
+            }
+            else
+            {
+                targetSpeed = MoveSpeed;
+            }
+            
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -502,6 +518,44 @@ namespace StarterAssets
                 pick_up = true;
             }
 
+        }
+
+        private void SprintCheck()
+        {
+
+            if (_input.sprint)
+            {
+                Debug.Log(" you are press the sprint button");
+                if (GameManager.game_manager.player_stamina.Stamina > 0)
+                { 
+                    PlayerUseStamin(5);
+                    is_not_allow_to_sprint = false;
+                }
+                else 
+                {
+                    is_not_allow_to_sprint = true;
+                }
+            }
+            else
+            {
+                Debug.Log(" you are not press the sprint button");
+                PlayerRegenStamina();
+            }
+
+        }
+
+
+        private void PlayerUseStamin(float StaminaAmonut)
+        {
+            GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+
+            player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+            //  Debug.Log(GameManager.game_manager.player_stamina.health);
+        }
+        private void PlayerRegenStamina()
+        {
+            GameManager.game_manager.player_stamina.RegenStamin();
+            player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
         }
     }
 }

@@ -12,13 +12,13 @@ public class HUD : MonoBehaviour
 
     [Header("Stamina bar")] // how  much stamin for sprint
     public Slider stamina_bar;
-    public float max_stamina = 100f;
-    public float current_stamina;
-    [Range(0, 50)] [SerializeField] private float stamina_drain = 0.5f;
-    [Range(0, 50)] [SerializeField] private float stamina_regen = 0.5f;
+   // public float max_stamina = 100f;
+  //  public float current_stamina;
+  //  [Range(0, 50)] [SerializeField] private float stamina_drain = 0.5f;
+ //   [Range(0, 50)] [SerializeField] private float stamina_regen = 0.5f;
 
     [Header("Money earn")] // show how much money you earn 
-     public Text text_ui_money_earned;
+    public Text text_ui_money_earned;
     public float total_money_earned;
 
     [Header("Delivery Fail")] // show how many fail delivery you have left
@@ -29,26 +29,22 @@ public class HUD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        current_stamina = max_stamina;
-        stamina_bar.maxValue = max_stamina;
-        stamina_bar.value = max_stamina;
+
     }
 
     #region StaminaCode
 
 
 
-    public void UseStamina( int amonunt ) 
+    public void SetMaxStamina(float max_stamina)
     {
-        if (current_stamina - amonunt >= 0) 
-        {
-            current_stamina -= amonunt;
-            stamina_bar.value = current_stamina;
-        }
-        else 
-        {
-            Debug.Log("not engough stamina");
-        }
+        stamina_bar.maxValue = max_stamina;
+        stamina_bar.value = max_stamina;
+    }
+
+    public void SetStamina(float stamina)
+    {
+        stamina_bar.value = stamina;  
     }
     #endregion
 
