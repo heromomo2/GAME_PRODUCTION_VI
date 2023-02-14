@@ -8,11 +8,14 @@ public class PickUpItem : MonoBehaviour
     public float expiry_timer = 12.50f;
     public float expiry_time_on_floor = 12.50f;
     public float after_pick_up_expiry_time = 0f;
+    public float expiry_timer_while_carry_item = 0f;
     public bool is_pick_up = false;
     public bool is_expiry_timer_change_after_pick_up = false;
+    //public bool fail_to_ = false;
     public item_type our_item = item_type.pizza_box;
     public Quaternion originalRotationValue;
     public Transform originalValue;
+    public float expiry_tick;
 
 
     // Transform initial_spawn position;
@@ -55,29 +58,57 @@ public class PickUpItem : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
-            else if (expiry_timer > 0 && is_pick_up == true) 
+            else if (expiry_timer > 0 && is_pick_up == true)
             {
                 is_expiry_timer_change_after_pick_up = true;
-                StartCoroutine(ExpiryItemWhileCarried(after_pick_up_expiry_time));
+
+                // set up the timer for the player after pick up the item
+                if (after_pick_up_expiry_time > 0)
+                {
+                    expiry_timer_while_carry_item = after_pick_up_expiry_time;
+                }
+                //StartCoroutine(ExpiryItemWhileCarried(after_pick_up_expiry_time));
             }
+        }
+        else 
+        {
+            // the player pick up the item 
+            // we count down before it  expiry
+            if (expiry_timer_while_carry_item > 0)
+            {
+                expiry_timer_while_carry_item -= Time.deltaTime;
+            }
+            else 
+            {
+                if (is_pick_up == true)
+                {
+                    if (pick_up_item_event != null)
+                    {
+                        pick_up_item_event(1);
+                    }
+                }
+                Destroy(this.gameObject);
+            }
+
         }
         
     }
 
-    IEnumerator ExpiryItemWhileCarried(float timer)
-    {
-        yield return new WaitForSeconds(timer);
+    //IEnumerator ExpiryItemWhileCarried(float timer)
+    //{
+    //    yield return new WaitForSeconds(timer);
 
-        if (is_pick_up == true)
-        {
-            if (pick_up_item_event != null)
-            {
-                pick_up_item_event(1);
-            }
-        }
-        Destroy(this.gameObject);
+    //    expiry_tick = timer;
+    //    if (is_pick_up == true)
+    //    {
+    //        if (pick_up_item_event != null)
+    //        {
+    //            pick_up_item_event(1);
+    //        }
+    //    }
+    //    Destroy(this.gameObject);
 
-    }
+    //}
     private void OnDestroy()
     {
 
@@ -87,6 +118,9 @@ public class PickUpItem : MonoBehaviour
         transform.rotation = originalRotationValue;
         transform.localScale = originalValue.localScale;
     }
+
+
+    
 }
 public enum item_type
 {

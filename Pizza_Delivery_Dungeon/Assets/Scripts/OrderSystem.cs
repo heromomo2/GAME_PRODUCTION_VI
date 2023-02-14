@@ -43,6 +43,13 @@ public class OrderSystem : MonoBehaviour
     public float distance;
     public float time_between_objects;
     public float speed;
+    public float inital_deliver_time; // use for bonus point
+    public float end_deliver_time;// use for bonus point
+    [Header("HUD")]
+
+    [SerializeField] private HUD player_hud;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -168,7 +175,10 @@ public class OrderSystem : MonoBehaviour
 
 
 
-
+    /// <summary>
+    ///  complete a delivery
+    /// </summary>
+    /// <param name="de"></param>
 
     public void DestinyLocationEventListener(Delivery_event de)
     {
@@ -176,19 +186,37 @@ public class OrderSystem : MonoBehaviour
         {
             if (player.GetComponent<ThirdPersonController>() != null)
             {
-                //            Debug.Log("OrderSystem got the message from DestinyLocation");
+                //Debug.Log("OrderSystem got the message from DestinyLocation");
+
 
                 Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
                 if (holdpoint != null)
                 {
-                    holdpoint.RemoveCarriedItemFromPlayer();
+                    // figure out the item that was deliver for point
+                   // GameManager.game_manager.player_score.AddToScore(holdpoint.carried_item.GetComponent<PickUpItem>().our_item);
+                    
+
+                    end_deliver_time = holdpoint.carried_item.GetComponent<PickUpItem>().expiry_timer_while_carry_item;
+
+                   // Debug.Log("1end_deliver_time-> " + end_deliver_time);
+
+                    GameManager.game_manager.player_score.CheckForBonus(end_deliver_time,inital_deliver_time);
+                    Debug.Log(" end_deliver_time-> " + end_deliver_time + " inital_deliver_time-> "+ inital_deliver_time);
+
+                    player_hud.DisplayMoneyEarn(GameManager.game_manager.player_score.Score); // update the score on hud;
+
+                    holdpoint.RemoveCarriedItemFromPlayer();//remove the item from the player
                     is_destiny_selected = false;
                 }
+
             }
         }
 
     }
-
+    /// <summary>
+    ///  fail a delivery while carrying item
+    /// </summary>
+    /// <param name="i"></param>
     public void ItemEventListener(int i)
     {  // player is carry a expiry pizza
         if (i == 1)
@@ -253,6 +281,9 @@ public class OrderSystem : MonoBehaviour
 
                     time_between_objects = distance / speed;
 
+                    // need for calculateing bonus points 
+                    inital_deliver_time = time_between_objects;
+
                     holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects;
 
                 } // check what item is be pick up
@@ -278,7 +309,8 @@ public class OrderSystem : MonoBehaviour
                     // get the time for  travel time
                     time_between_objects = distance / speed;
 
-
+                    // need for calculateing bonus points 
+                    inital_deliver_time = time_between_objects;
                     // add the travel time to the milk 
                     holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);
                 }
@@ -319,6 +351,8 @@ public class OrderSystem : MonoBehaviour
                         // get the time for  travel time
                         time_between_objects = distance / speed;
 
+                        // need for calculateing bonus points 
+                        inital_deliver_time = time_between_objects;
 
                         // add the travel time to the hambuger
                         holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);

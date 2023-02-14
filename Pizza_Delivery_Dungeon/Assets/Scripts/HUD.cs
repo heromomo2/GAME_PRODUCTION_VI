@@ -12,14 +12,10 @@ public class HUD : MonoBehaviour
 
     [Header("Stamina bar")] // how  much stamin for sprint
     public Slider stamina_bar;
-   // public float max_stamina = 100f;
-  //  public float current_stamina;
-  //  [Range(0, 50)] [SerializeField] private float stamina_drain = 0.5f;
- //   [Range(0, 50)] [SerializeField] private float stamina_regen = 0.5f;
+  
 
     [Header("Money earn")] // show how much money you earn 
     public Text text_ui_money_earned;
-    public float total_money_earned;
 
     [Header("Delivery Fail")] // show how many fail delivery you have left
     public Text text_ui_delierly_fail;
@@ -33,9 +29,6 @@ public class HUD : MonoBehaviour
     }
 
     #region StaminaCode
-
-
-
     public void SetMaxStamina(float max_stamina)
     {
         stamina_bar.maxValue = max_stamina;
@@ -46,6 +39,14 @@ public class HUD : MonoBehaviour
     {
         stamina_bar.value = stamina;  
     }
+    #endregion
+
+    #region PointCode
+    public void DisplayMoneyEarn(float money_earned)
+    {
+        text_ui_money_earned.text = money_earned.ToString();
+    }
+
     #endregion
 
 }

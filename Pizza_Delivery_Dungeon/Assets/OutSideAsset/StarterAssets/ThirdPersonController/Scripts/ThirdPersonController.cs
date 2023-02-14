@@ -525,7 +525,7 @@ namespace StarterAssets
 
             if (_input.sprint)
             {
-                Debug.Log(" you are press the sprint button");
+               // Debug.Log(" you are press the sprint button");
                 if (GameManager.game_manager.player_stamina.Stamina > 0)
                 { 
                     PlayerUseStamin(5);
@@ -538,7 +538,7 @@ namespace StarterAssets
             }
             else
             {
-                Debug.Log(" you are not press the sprint button");
+             //   Debug.Log(" you are not press the sprint button");
                 PlayerRegenStamina();
             }
 
