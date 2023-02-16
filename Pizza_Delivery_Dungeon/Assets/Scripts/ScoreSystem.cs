@@ -58,7 +58,7 @@ public class ScoreSystem
     }
 
     // Constructor
-    public ScoreSystem(float score, int bonus_Score, int max_Percentage, int min_Percentage, int decent_Percentage)
+    public ScoreSystem(float score, int bonus_Score, int max_Percentage,  int decent_Percentage, int min_Percentage)
     {
         current_score = score;
 
@@ -108,17 +108,17 @@ public class ScoreSystem
         if (max_percentage_bonus_point_threshold <= left_time_to_delivery )
         {
             current_score += bonus_score * 3;
-            Debug.Log("you get bouns  max points on the delivery");
+            Debug.Log("you get bouns  max points on the delivery "+ "max_percentage_bonus_point_threshold-> "+ max_percentage_bonus_point_threshold);
         }
-        else if (decent_percentage_bonus_point_threshold <= left_time_to_delivery && max_percentage_bonus_point_threshold >= left_time_to_delivery && minimal_percentage_bonus_point_threshold <= left_time_to_delivery)
+        else if (decent_percentage_bonus_point_threshold <= left_time_to_delivery && max_percentage_bonus_point_threshold > left_time_to_delivery )
         {
             current_score += bonus_score * 2;
-            Debug.Log("you get bouns decent points on the delivery");
+            Debug.Log("you get bouns decent points on the delivery " + "decent_percentage_bonus_point_threshold -> " + decent_percentage_bonus_point_threshold);
         }
-        else if (minimal_percentage_bonus_point_threshold <= left_time_to_delivery && decent_percentage_bonus_point_threshold >= left_time_to_delivery && max_percentage_bonus_point_threshold >= left_time_to_delivery)
+        else if (minimal_percentage_bonus_point_threshold <= left_time_to_delivery && decent_percentage_bonus_point_threshold >left_time_to_delivery )
         {
             current_score += bonus_score * 1;
-            Debug.Log("you get min bouns points on the delivery");
+            Debug.Log("you get min bouns points on the delivery " + "minimal_percentage_bonus_point_threshold -> " + minimal_percentage_bonus_point_threshold);
         }
         else
         {

@@ -193,7 +193,7 @@ public class OrderSystem : MonoBehaviour
                 if (holdpoint != null)
                 {
                     // figure out the item that was deliver for point
-                   // GameManager.game_manager.player_score.AddToScore(holdpoint.carried_item.GetComponent<PickUpItem>().our_item);
+                    GameManager.game_manager.player_score.AddToScore(holdpoint.carried_item.GetComponent<PickUpItem>().our_item);
                     
 
                     end_deliver_time = holdpoint.carried_item.GetComponent<PickUpItem>().expiry_timer_while_carry_item;
@@ -202,6 +202,8 @@ public class OrderSystem : MonoBehaviour
 
                     GameManager.game_manager.player_score.CheckForBonus(end_deliver_time,inital_deliver_time);
                     Debug.Log(" end_deliver_time-> " + end_deliver_time + " inital_deliver_time-> "+ inital_deliver_time);
+
+                    GameManager.game_manager.built_In_difficulty.CheckForDifficuly();// increase Difficuly
 
                     player_hud.DisplayMoneyEarn(GameManager.game_manager.player_score.Score); // update the score on hud;
 
@@ -279,7 +281,8 @@ public class OrderSystem : MonoBehaviour
 
                     distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
 
-                    time_between_objects = distance / speed;
+                    time_between_objects = distance / GameManager.game_manager.built_In_difficulty.SpeedDifficuly;//  change to speed_Increase_difficuly_for_delivery instead speed
+
 
                     // need for calculateing bonus points 
                     inital_deliver_time = time_between_objects;
@@ -307,7 +310,7 @@ public class OrderSystem : MonoBehaviour
                         }
                     }
                     // get the time for  travel time
-                    time_between_objects = distance / speed;
+                    time_between_objects = distance / GameManager.game_manager.built_In_difficulty.SpeedDifficuly;
 
                     // need for calculateing bonus points 
                     inital_deliver_time = time_between_objects;
@@ -349,7 +352,7 @@ public class OrderSystem : MonoBehaviour
                         distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
 
                         // get the time for  travel time
-                        time_between_objects = distance / speed;
+                        time_between_objects = distance /GameManager.game_manager.built_In_difficulty.SpeedDifficuly;
 
                         // need for calculateing bonus points 
                         inital_deliver_time = time_between_objects;

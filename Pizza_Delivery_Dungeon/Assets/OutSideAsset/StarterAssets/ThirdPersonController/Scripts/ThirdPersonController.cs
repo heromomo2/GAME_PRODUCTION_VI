@@ -212,6 +212,11 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
             _PickupTimeoutDelta = PickupTimeout;// add by me
+
+            // get the player walk speed as the starting point speed difficuly;
+            GameManager.game_manager.built_In_difficulty.MinSpeedDifficuly = MoveSpeed;
+            GameManager.game_manager.built_In_difficulty.SpeedDifficuly = MoveSpeed;
+            GameManager.game_manager.built_In_difficulty.MaxSpeedDifficuly = SprintSpeed;
         }
 
         private void Update()
