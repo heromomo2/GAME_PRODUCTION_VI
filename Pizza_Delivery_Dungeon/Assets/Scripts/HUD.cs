@@ -17,9 +17,16 @@ public class HUD : MonoBehaviour
     [Header("Money earn")] // show how much money you earn 
     public Text text_ui_money_earned;
 
-    [Header("Delivery Fail")] // show how many fail delivery you have left
-    public Text text_ui_delierly_fail;
-    public float total_fail_delivery_remaining;
+    [Header("lives")] // show many lives you have
+    public Text text_ui_lives;
+ 
+
+    [Header("Delivered")] // show how many delivery you did
+    public Text text_ui_deliered;
+
+    [Header("GameTimer")] // show how much time is left
+    public Text text_ui_game_timer;
+
 
 
     // Start is called before the first frame update
@@ -49,4 +56,24 @@ public class HUD : MonoBehaviour
 
     #endregion
 
+    #region Game Timer
+    public void DisplayGameTimer(float game_timer)
+    {
+        text_ui_delierly_timer.text = game_timer.ToString();
+    }
+    #endregion
+
+    #region delivered
+    public void DisplayDelivered(int successs)
+    {
+        text_ui_deliered.text = successs.ToString();
+    }
+    #endregion
+
+    #region lives
+    public void Displaylives(int lives)
+    {
+        text_ui_lives.text = lives.ToString();
+    }
+    #endregion
 }
