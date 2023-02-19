@@ -205,10 +205,12 @@ public class OrderSystem : MonoBehaviour
 
                     GameManager.game_manager.built_In_difficulty.CheckForDifficuly();// increase Difficuly
 
-
+                    
 
                     player_hud.DisplayMoneyEarn(GameManager.game_manager.player_score.Score); // update the score on hud;
                     player_hud.DisplayDelivered(GameManager.game_manager.built_In_difficulty.DifficultyCounter);// 
+                    player_hud.DisplayDeliveredName(GameManager.game_manager.built_In_difficulty.DifficultyLevel);//
+
                     holdpoint.RemoveCarriedItemFromPlayer();//remove the item from the player
                     is_destiny_selected = false;
                 }

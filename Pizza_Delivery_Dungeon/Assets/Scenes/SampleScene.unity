@@ -326,6 +326,7 @@ MonoBehaviour:
   stamina_bar: {fileID: 1962089398}
   text_ui_money_earned: {fileID: 403516046}
   text_ui_lives: {fileID: 687654717}
+  text_ui_deliered_name: {fileID: 1802038768}
   text_ui_deliered: {fileID: 1232873797}
   text_ui_game_timer: {fileID: 118926895}
 --- !u!1001 &236193016
@@ -1037,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 176817816}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: SprintSpeed
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: LockCameraPosition
@@ -4441,7 +4442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.047169805, g: 0.046686105, b: 0.04556781, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4458,10 +4459,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Delivered:'
+  m_Text: Delivered:(Dally)
 --- !u!222 &1802038769
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -14,6 +14,12 @@ public class BuiltInDifficultySystem
 
     float min_speed_difficuly;
 
+    float player_move_speed;
+
+    float player_sprint_speed;
+
+    int difficulty_level = 0;
+
 
     // properties 
     public int DifficultyCounter
@@ -113,6 +119,19 @@ public class BuiltInDifficultySystem
         }
     }
 
+
+    public int DifficultyLevel
+    {
+        get
+        {
+            return difficulty_level;
+        }
+        set
+        {
+            difficulty_level = value;
+        }
+    }
+
     // Constructor
     public BuiltInDifficultySystem(int difficultyCounter, int Difficulythresholdzero, int Difficulythresholdone, int Difficulythresholdtwo, int Difficulythresholdthree, float Speeddifficuly, float Maxspeeddifficuly, float Minspeeddifficuly)
     {
@@ -122,7 +141,7 @@ public class BuiltInDifficultySystem
 
         difficuly_threshold_one = Difficulythresholdone;
 
-        difficuly_threshold_two = Difficulythresholdone;
+        difficuly_threshold_two = Difficulythresholdtwo;
 
         difficuly_threshold_three = Difficulythresholdthree;
 
@@ -144,23 +163,68 @@ public class BuiltInDifficultySystem
          // have use the sprint to make delivers
         if (difficuly_threshold_three < difficulty_counter) 
         {
+            float temp_max_speed = max_speed_difficuly / 4f; //   max_speed_difficuly =  7/ 4 =  1.75f
+
+            min_speed_difficuly = (temp_max_speed + temp_max_speed + temp_max_speed);// 5.25f
+
+            speed_Increase_difficuly_for_delivery = Random.Range(min_speed_difficuly, max_speed_difficuly);// ( 5.25f, 7f)
+            Debug.Log(" you have reached the final diffiuly level " + " speed is now-> " + speed_Increase_difficuly_for_delivery);
+
+            difficulty_level = 3;
 
         }// use the sprint to make delivers some of the time
         else if (difficuly_threshold_two < difficulty_counter && difficuly_threshold_three > difficulty_counter) 
         {
-            
-        }// use  sprint rarly or don't need sprint 
+            float temp_max_speed = max_speed_difficuly / 4f; //   max_speed_difficuly =  7/ 4 =  1.75f
+
+            min_speed_difficuly = (temp_max_speed + temp_max_speed); // (1.75 + 1.75) = 3.5)
+
+            speed_Increase_difficuly_for_delivery = Random.Range(min_speed_difficuly, (temp_max_speed + temp_max_speed + temp_max_speed)); // ((3.5f, 5.25f)
+
+            Debug.Log(" you have reached the second diffiuly level " + " speed is now-> " + speed_Increase_difficuly_for_delivery);
+
+            difficulty_level = 2;
+
+        }// 
         else if (difficuly_threshold_one < difficulty_counter && difficuly_threshold_two > difficulty_counter)
         {
-            speed_Increase_difficuly_for_delivery = Random.Range(MinSpeedDifficuly, 3.0f);
+            // one forth of clamp speed
+            float temp_max_speed =  max_speed_difficuly / 4f; //   max_speed_difficuly =  7/ 4 =  1.75f
+
+            min_speed_difficuly = player_move_speed; // 2f
+
+            speed_Increase_difficuly_for_delivery = Random.Range(min_speed_difficuly, (temp_max_speed + temp_max_speed)); // ( 2f, (1.75 + 1.75) = 3.5)
+
             Debug.Log(" you have reached the first diffiuly level " + " speed is now-> " + speed_Increase_difficuly_for_delivery);
+
+            difficulty_level = 1;
         }
         else if (difficuly_threshold_zero < difficulty_counter && difficuly_threshold_one > difficulty_counter)
         {
-            speed_Increase_difficuly_for_delivery = Random.Range(1, min_speed_difficuly);
-           Debug.Log(" you have reached the inital diffiuly level " + " speed is now-> " + speed_Increase_difficuly_for_delivery);
+            // one forth of clamp speed
+            min_speed_difficuly =  max_speed_difficuly / 4f; //   max_speed_difficuly =  7/ 4 =  1.75f
+
+            speed_Increase_difficuly_for_delivery = Random.Range(min_speed_difficuly, player_move_speed ); //  (1.75f, player walk speed(2))
+
+            Debug.Log(" you have reached the inital diffiuly level " + " speed is now-> " + speed_Increase_difficuly_for_delivery);
+
+            difficulty_level = 0;
         }
     }
     
+    // set up the clamp
+    public void GetAverageSpeed() 
+    {
+        /// get average of these two number
+        max_speed_difficuly = (player_sprint_speed + player_move_speed) / 2f; // (12 + 2) / 2 = 7
 
+        Debug.Log("GetAverageSpeed() ");
+    }
+
+    //get player speeds
+    public void GetPlayrSpeeds( float Playermovespeed, float Playersprintspeed)
+    {
+        player_move_speed = Playermovespeed;
+        player_sprint_speed = Playersprintspeed;
+    }
 }
