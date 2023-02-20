@@ -7,8 +7,7 @@ public class HUD : MonoBehaviour
 {
     [Header("Deliverly timer")] // how much time before the player deliver all the thing
     public Text text_ui_delierly_timer;
-    public float total_deliverly_time;
-    public float total_deliver_remaining;
+   
 
     [Header("Stamina bar")] // how  much stamin for sprint
     public Slider stamina_bar;
@@ -59,9 +58,9 @@ public class HUD : MonoBehaviour
     #endregion
 
     #region Game Timer
-    public void DisplayGameTimer(float game_timer)
+    public void DisplayGameTimer()
     {
-        text_ui_delierly_timer.text = game_timer.ToString();
+        text_ui_delierly_timer.text = GameManager.game_manager.GameTimer.ToString("F");
     }
     #endregion
 
@@ -105,4 +104,9 @@ public class HUD : MonoBehaviour
         text_ui_lives.text = lives.ToString();
     }
     #endregion
+
+    private void Update()
+    {
+        DisplayGameTimer();
+    }
 }
