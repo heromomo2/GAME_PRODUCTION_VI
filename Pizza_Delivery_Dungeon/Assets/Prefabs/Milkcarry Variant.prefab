@@ -55,5 +55,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2096787485521779059, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
+      propertyPath: expiry_time_on_floor
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2096787485521779059, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
+      propertyPath: after_pick_up_expiry_time
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}

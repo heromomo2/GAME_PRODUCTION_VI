@@ -24,20 +24,28 @@ public class OrderSystem : MonoBehaviour
     public GameObject pizza_prefab;
     public List<GameObject> pizza_list;
     public int max_pizza_spawned = 10;
-    public int max_spawn_amount = 0;
-    public float random_pizza_spawn_timer = 0f;
+    private float pizza_spawn_timer = 0f;
+    public float max_pizza_spawn_time = 10.0f;
+    public float min_pizza_spawn_time = 5.0f;
 
     [Header("Milk")]
     public GameObject milk_prefab;
     public List<GameObject> milk_list;
-    public int max_milk_spawned = 5;
-    public float random_milk_spawn_timer = 0f;
+    public int max_milk_spawned = 0;
+    private float milk_spawn_timer = 0f;
+    public float max_milk_spawn_time = 55.0f;
+    public float min_milk_spawn_time = 13.0f;
 
     [Header("Hambuger")]
     public GameObject hambuger_prefab;
     public List<GameObject> hambuger_list;
     public int max_hambuger_spawned = 2;
-    public float random_hambuger_spawn_timer = 0f;
+    private float hambuger_spawn_timer = 0f;
+    public float max_hambuger_spawn_time = 30.0f;
+    public float min_hambuger_spawn_time = 10.0f;
+
+    //  this is being use be spawn for all items
+    public int max_spawn_amount = 0;
 
     [Header("Destination")]
     public float distance;
@@ -79,16 +87,16 @@ public class OrderSystem : MonoBehaviour
             delivery_source_pizza = GameObject.FindGameObjectWithTag("DeliverySource");
         }
 
-        random_pizza_spawn_timer = 5.0f;//Random.Range(10, 40.0f);
+        pizza_spawn_timer = 5.0f;//Random.Range(10, 40.0f);
 
-        random_milk_spawn_timer = 3.0f;
+        milk_spawn_timer = 3.0f;
 
         // pizza gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(random_pizza_spawn_timer, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
+        StartCoroutine(StartGenerateDeliverlyBoxes(pizza_spawn_timer,max_pizza_spawn_time, min_pizza_spawn_time ,max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
         // milk gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(random_milk_spawn_timer, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
+        StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time ,min_milk_spawn_time,max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
         // hambuger gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(random_hambuger_spawn_timer, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
+        StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer,max_hambuger_spawn_time,min_hambuger_spawn_time ,max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
     }
 
@@ -125,7 +133,7 @@ public class OrderSystem : MonoBehaviour
 
 
 
-    IEnumerator StartGenerateDeliverlyBoxes(float timer, int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
+    IEnumerator StartGenerateDeliverlyBoxes(float timer,float max_time, float min_time , int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
     {
         yield return new WaitForSeconds(timer);
 
@@ -135,10 +143,14 @@ public class OrderSystem : MonoBehaviour
             {
                 if (our_item_prefab != null && delivery_source != null)
                 {
+                    /**
+                     * checking how many space we have in itemlist and making should  we don't pass the cap how many are allow on screen
+                     **/
                     max_spawn_amount = max_item_spawned - item_list.Count;
+
                     GameObject new_item;
 
-                    int random_amount = Random.Range(1, max_spawn_amount);
+                    int random_amount = Random.Range(1, max_spawn_amount);// random amount 
 
                     for (int i = random_amount; i > 0; i--)
                     {
@@ -154,20 +166,25 @@ public class OrderSystem : MonoBehaviour
 
                     }
 
-                    timer = Random.Range(0.5f, 4.0f);
+                    if (min_time != null && min_time != null)
+                    {
+                        timer = Random.Range(min_time, max_time);
 
-                    StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_item_spawned, item_list, our_item_prefab, delivery_source));
+                        StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source)); 
+                    }
 
                 }
 
             }
             else
             {
+                // we spawning while  clean the list of item of missing 
                 CleanUpListOfMissingGameObject(item_list);
 
-                timer = Random.Range(5.0f, 10.0f);
+                timer = Random.Range(min_time, max_time);
 
-                StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_item_spawned, item_list, our_item_prefab, delivery_source));
+                
+                StartCoroutine(StartGenerateDeliverlyBoxes(timer,max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source));
             }
         }
 

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 2785652759679602927}
   - component: {fileID: 2712866858764731760}
-  - component: {fileID: 8149972961123481103}
   - component: {fileID: 6651901648680350778}
   m_Layer: 7
   m_Name: Hambuger
@@ -115,26 +114,6 @@ CapsuleCollider:
   m_Height: 0.28
   m_Direction: 1
   m_Center: {x: -0.000000007450581, y: 0.09520307, z: -0.0000000037252903}
---- !u!114 &8149972961123481103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expiry_timer: 12.5
-  expiry_time_on_floor: 2
-  after_pick_up_expiry_time: 0
-  is_pick_up: 0
-  is_expiry_timer_change_after_pick_up: 0
-  our_item: 2
-  originalRotationValue: {x: 0, y: 0, z: 0, w: 0}
-  originalValue: {fileID: 0}
 --- !u!114 &6651901648680350778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,11 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836e03347c1f34e48b8f2a21d605b0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expiry_timer: 12.5
-  expiry_time_on_floor: 12.5
+  expiry_timer: 0
+  expiry_time_on_floor: 5
   after_pick_up_expiry_time: 0
+  expiry_timer_while_carry_item: 0
   is_pick_up: 0
   is_expiry_timer_change_after_pick_up: 0
-  our_item: 0
+  our_item: 2
   originalRotationValue: {x: 0, y: 0, z: 0, w: 0}
   originalValue: {fileID: 0}
+  expiry_tick: 0

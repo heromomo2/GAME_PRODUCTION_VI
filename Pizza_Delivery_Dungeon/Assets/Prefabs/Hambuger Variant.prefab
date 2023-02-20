@@ -55,18 +55,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6651901648680350778, guid: 2d434559430d5e54183217ebf67f2bba, type: 3}
-      propertyPath: our_item
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6651901648680350778, guid: 2d434559430d5e54183217ebf67f2bba, type: 3}
-      propertyPath: expiry_timer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6651901648680350778, guid: 2d434559430d5e54183217ebf67f2bba, type: 3}
-      propertyPath: expiry_time_on_floor
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8149972961123481103, guid: 2d434559430d5e54183217ebf67f2bba, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d434559430d5e54183217ebf67f2bba, type: 3}

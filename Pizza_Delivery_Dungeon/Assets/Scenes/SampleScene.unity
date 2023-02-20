@@ -4659,16 +4659,19 @@ MonoBehaviour:
   pizza_prefab: {fileID: 1406368634818447857, guid: e77240d20eb1b0340883786a8bb3028a, type: 3}
   pizza_list: []
   max_pizza_spawned: 10
-  max_spawn_amount: 3
-  random_pizza_spawn_timer: 0
+  max_pizza_spawn_time: 10
+  min_pizza_spawn_time: 5
   milk_prefab: {fileID: 573788950727280305, guid: 88bcc4d12dd4ee6449c59e51b0096cac, type: 3}
   milk_list: []
-  max_milk_spawned: 5
-  random_milk_spawn_timer: 0
+  max_milk_spawned: 3
+  max_milk_spawn_time: 30
+  min_milk_spawn_time: 5
   hambuger_prefab: {fileID: 4877035078419257135, guid: 705fd2924001c6a46926640beff62391, type: 3}
   hambuger_list: []
-  max_hambuger_spawned: 2
-  random_hambuger_spawn_timer: 0
+  max_hambuger_spawned: 1
+  max_hambuger_spawn_time: 20
+  min_hambuger_spawn_time: 5
+  max_spawn_amount: 3
   distance: 0
   time_between_objects: 0
   speed: 0

@@ -77,9 +77,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expiry_timer: 0
   expiry_time_on_floor: 12.5
-  after_pick_up_expiry_time: 6.8
+  after_pick_up_expiry_time: 0
+  expiry_timer_while_carry_item: 0
   is_pick_up: 0
   is_expiry_timer_change_after_pick_up: 0
   our_item: 0
   originalRotationValue: {x: 0, y: 0, z: 0, w: 0}
   originalValue: {fileID: 0}
+  expiry_tick: 0
