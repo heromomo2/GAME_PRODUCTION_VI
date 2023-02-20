@@ -1560,7 +1560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Timer:'
+  m_Text: 'ShiftTimer:'
 --- !u!222 &903641278
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4977,8 +4977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f20c610f798ff44dae2f5aa1dabb445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_timer: 0
-  game_time: 20
 --- !u!4 &2032910433
 Transform:
   m_ObjectHideFlags: 0

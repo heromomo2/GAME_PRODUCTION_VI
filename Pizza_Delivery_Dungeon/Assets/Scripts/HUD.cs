@@ -60,11 +60,11 @@ public class HUD : MonoBehaviour
     #region Game Timer
     public void DisplayGameTimer()
     {
-        text_ui_delierly_timer.text = GameManager.game_manager.GameTimer.ToString("F");
+        text_ui_delierly_timer.text = string.Format("{0:00}:{1:00}", GameManager.game_manager.time_and_lives.GetGameTimerMinute, GameManager.game_manager.time_and_lives.GetGameTimerSeconds);
     }
     #endregion
 
-    #region delivered
+    #region Delivered
     public void DisplayDelivered(int successs)
     {
         text_ui_deliered.text = successs.ToString();

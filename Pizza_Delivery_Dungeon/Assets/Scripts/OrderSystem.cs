@@ -241,6 +241,8 @@ public class OrderSystem : MonoBehaviour
                             dl.GetComponent<DestinyLocation>().FailDelivery();
                         }
                     }
+                    GameManager.game_manager.time_and_lives.RemoveALife();
+                    player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
                     holdpoint.RemoveExpiryPizzaPlayer();
                     is_destiny_selected = false;
                 }
