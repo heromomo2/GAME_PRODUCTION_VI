@@ -561,8 +561,8 @@ namespace StarterAssets
         }
         private void PlayerRegenStamina()
         {
-            GameManager.game_manager.player_stamina.RegenStamin();
-            player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+           GameManager.game_manager.player_stamina.RegenStamin();
+           player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
         }
     }
 }
