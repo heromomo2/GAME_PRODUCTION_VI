@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8159139369232493853, guid: bd52467f2a5301b4fb88c6956a7ff578, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da4373fa40b07e44abfd83185ea6147a, type: 2}
     - target: {fileID: 8172373444382231999, guid: bd52467f2a5301b4fb88c6956a7ff578, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -53,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8173151009083848665, guid: bd52467f2a5301b4fb88c6956a7ff578, type: 3}
       propertyPath: m_Name
-      value: SpikeTrapD Variantblock
+      value: SpikeTrapBlockBarricade
       objectReference: {fileID: 0}
     - target: {fileID: 8173186361270685859, guid: bd52467f2a5301b4fb88c6956a7ff578, type: 3}
       propertyPath: m_Layer
