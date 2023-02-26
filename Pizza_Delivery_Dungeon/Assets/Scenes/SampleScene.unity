@@ -942,6 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_boxhandle: {fileID: 309459616}
+  player_event: {fileID: 774161238}
   player_3rd_person_controller: {fileID: 774161234}
 --- !u!1 &601168942
 GameObject:
@@ -1301,7 +1302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &766486489
 GameObject:
@@ -1399,6 +1400,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3893294197879345259, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
   m_PrefabInstance: {fileID: 684940619}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &774161238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774161230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510e5e73c11c98544bb3a8840aa89a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &774161239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2331,7 +2344,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1880
+  m_Name: pb_Mesh-26176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5276,7 +5289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728981139399528482, guid: fedc447d91be5eb4fab4e81c04959555, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5728981139399528482, guid: fedc447d91be5eb4fab4e81c04959555, type: 3}
       propertyPath: m_LocalPosition.x

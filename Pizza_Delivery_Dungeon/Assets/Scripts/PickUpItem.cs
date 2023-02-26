@@ -94,21 +94,6 @@ public class PickUpItem : MonoBehaviour
         
     }
 
-    //IEnumerator ExpiryItemWhileCarried(float timer)
-    //{
-    //    yield return new WaitForSeconds(timer);
-
-    //    expiry_tick = timer;
-    //    if (is_pick_up == true)
-    //    {
-    //        if (pick_up_item_event != null)
-    //        {
-    //            pick_up_item_event(1);
-    //        }
-    //    }
-    //    Destroy(this.gameObject);
-
-    //}
     private void OnDestroy()
     {
 

@@ -98,6 +98,12 @@ public class OrderSystem : MonoBehaviour
         // hambuger gen
         StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer,max_hambuger_spawn_time,min_hambuger_spawn_time ,max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
+        /// when the player get hit with spike
+        if( player.GetComponent<PlayerEvent>() != null) 
+        {
+            player.GetComponent<PlayerEvent>().On_player_state_event += PlayerStateEventListener;
+        }
+
     }
 
     // Update is called once per frame
@@ -267,6 +273,33 @@ public class OrderSystem : MonoBehaviour
         }
     }
 
+
+    public void PlayerStateEventListener(int i)
+    {  
+        if (i == 1)
+        {
+            if (player.GetComponent<ThirdPersonController>() != null)
+            {
+                //Debug.Log("OrderSystem got the message from expiry item");
+
+                Boxhandle holdpoint = player.GetComponentInChildren(typeof(Boxhandle), true) as Boxhandle;
+                if (holdpoint != null)
+                {
+                    foreach (GameObject dl in destiny_location_list)
+                    {
+                        if (dl.GetComponent<DestinyLocation>() != null)
+                        {
+                            dl.GetComponent<DestinyLocation>().FailDelivery();
+                        }
+                    }
+                    GameManager.game_manager.time_and_lives.RemoveALife();
+                    player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
+                    holdpoint.RemoveCarriedItemFromPlayer();
+                    is_destiny_selected = false;
+                }
+            }
+        }
+    }
 
 
     void CleanUpListOfMissingGameObject(List<GameObject> our_list)

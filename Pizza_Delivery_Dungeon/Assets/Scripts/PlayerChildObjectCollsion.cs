@@ -8,6 +8,8 @@ public class PlayerChildObjectCollsion : MonoBehaviour
 {
     public Boxhandle player_boxhandle;
 
+    public PlayerEvent player_event;
+
 
 
     public ThirdPersonController player_3rd_person_controller;
@@ -33,11 +35,12 @@ public class PlayerChildObjectCollsion : MonoBehaviour
             }
         }
 
+
     }
 
     void OnCollisionExit(Collision collisionInfo)
     {
-        if (collisionInfo.gameObject.tag == "Pizzabox") 
+        if (collisionInfo.gameObject.tag == "Pizzabox")
         {
             if (this.gameObject.tag == "PlayerChild")
             {
@@ -45,4 +48,33 @@ public class PlayerChildObjectCollsion : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    ///  trap
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "trapspike")
+        {
+            if (this.gameObject.tag == "PlayerChild")
+            {
+                /// check for the player if they have an item
+                if (player_event.GetComponent<ThirdPersonController>() != null) 
+                {
+                    ThirdPersonController player_3rd_person_controller = player_event.GetComponent<ThirdPersonController>();
+                    if (player_3rd_person_controller.is_player_carry == true)
+                    {
+                        // tell the ordersystm that lost the item
+                        player_event.PlayerGotSpike();
+
+                        Debug.Log("Player got impale by spike trap");
+                    }
+                }
+
+            }
+        }
+
+
+    } 
 }

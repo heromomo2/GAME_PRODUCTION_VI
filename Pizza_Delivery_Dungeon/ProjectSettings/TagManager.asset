@@ -12,6 +12,7 @@ TagManager:
   - DestinyLocationTrigger
   - PlayerChild
   - Item
+  - trapspike
   layers:
   - Default
   - TransparentFX
