@@ -14,16 +14,15 @@ public class CollsionTrigger : MonoBehaviour
     {
         if (col.gameObject.CompareTag("PlayerChild"))
         {
-            
-                if (destiny_location != null) 
-                {
-                    destiny_location.GetComponent<DestinyLocation>().ReceiveDelivery();
-                    Debug.Log("Playerchild is the the trigger1");
-                }   
-            
+
+            if (destiny_location != null)
+            {
+                destiny_location.GetComponent<DestinyLocation>().ReceiveDelivery();
+                Debug.Log("Playerchild is the the trigger1");
+            }
+
         }
 
-        
     }
 
 }

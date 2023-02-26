@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
 {
-    public float expiry_timer = 12.50f;
+    [Header("floor vars")]
+    public float expiry_timer_while_on_floor = 12.50f;
     public float expiry_time_on_floor = 12.50f;
+
+
+    [Header("pickedup vars")]
+
     public float after_pick_up_expiry_time = 0f;
     public float expiry_timer_while_carry_item = 0f;
     public bool is_pick_up = false;
     public bool is_expiry_timer_change_after_pick_up = false;
-    //public bool fail_to_ = false;
+
+    [Header("items general")]
     public item_type our_item = item_type.pizza_box;
-    public Quaternion originalRotationValue;
-    public Transform originalValue;
-    public float expiry_tick;
+
+
 
 
     // Transform initial_spawn position;
@@ -38,10 +43,7 @@ public class PickUpItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalValue = this.gameObject.transform;
-        originalRotationValue = transform.rotation;
-        expiry_timer = expiry_time_on_floor;
-       // StartCoroutine(ExpiryItem(expiry_timer));
+        expiry_timer_while_on_floor = expiry_time_on_floor;
     }
 
     // Update is called once per frame
@@ -50,15 +52,15 @@ public class PickUpItem : MonoBehaviour
         if (is_expiry_timer_change_after_pick_up == false)
         {
             // items on the floor
-            if (expiry_timer > 0 && is_pick_up == false)
+            if (expiry_timer_while_on_floor > 0 && is_pick_up == false)
             {
-                expiry_timer -= Time.deltaTime;
+                expiry_timer_while_on_floor -= Time.deltaTime;
             }// remove destory if the player doesn't pick up in time
-            else if (expiry_timer < 0 && is_pick_up == false)
+            else if (expiry_timer_while_on_floor < 0 && is_pick_up == false)
             {
                 Destroy(this.gameObject);
             }
-            else if (expiry_timer > 0 && is_pick_up == true)
+            else if (expiry_timer_while_on_floor > 0 && is_pick_up == true)
             {
                 is_expiry_timer_change_after_pick_up = true;
 
@@ -67,10 +69,10 @@ public class PickUpItem : MonoBehaviour
                 {
                     expiry_timer_while_carry_item = after_pick_up_expiry_time;
                 }
-                //StartCoroutine(ExpiryItemWhileCarried(after_pick_up_expiry_time));
+
             }
         }
-        else 
+        else
         {
             // the player pick up the item 
             // we count down before it  expiry
@@ -78,7 +80,7 @@ public class PickUpItem : MonoBehaviour
             {
                 expiry_timer_while_carry_item -= Time.deltaTime;
             }
-            else 
+            else
             {
                 if (is_pick_up == true)
                 {
@@ -91,21 +93,11 @@ public class PickUpItem : MonoBehaviour
             }
 
         }
-        
-    }
-
-    private void OnDestroy()
-    {
 
     }
-    public void ResetOurRotation()
-    {
-        transform.rotation = originalRotationValue;
-        transform.localScale = originalValue.localScale;
-    }
 
 
-    
+
 }
 public enum item_type
 {

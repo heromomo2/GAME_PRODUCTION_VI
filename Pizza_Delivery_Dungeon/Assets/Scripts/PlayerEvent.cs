@@ -20,10 +20,6 @@ public class PlayerEvent : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-
-    }
 
     public void PlayerGotSpike()
     {

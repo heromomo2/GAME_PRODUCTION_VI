@@ -102,6 +102,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3137179744962770858, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
+      propertyPath: m_Name
+      value: DeliveryLoactionObjectTriggerBox
+      objectReference: {fileID: 0}
     - target: {fileID: 3515106882423603465, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
       propertyPath: m_Name
       value: visible trigger whilte
@@ -110,6 +114,14 @@ PrefabInstance:
       propertyPath: destiny_location
       value: 
       objectReference: {fileID: 1416685788292447946}
+    - target: {fileID: 7391213651819546255, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391213651819593519, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
+      propertyPath: m_LengthScale
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c982eb4d8885854aa6c2b59a9b8a22e, type: 3}
 --- !u!4 &1244490141949984860 stripped
@@ -151,7 +163,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 155844, guid: 4de73b6418e85f643bcd3c2edb0dfe0c, type: 3}
       propertyPath: m_Name
-      value: sptp_building_07
+      value: Delivery_building
       objectReference: {fileID: 0}
     - target: {fileID: 432000, guid: 4de73b6418e85f643bcd3c2edb0dfe0c, type: 3}
       propertyPath: m_RootOrder

@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carried_item: {fileID: 0}
-  _holdpoint: {fileID: 1405392843}
+  carry_point: {fileID: 1405392843}
   max_item_holded: 1
   item_holded_counter: 0
   player_3rd_person_controller: {fileID: 774161234}
@@ -4917,7 +4917,7 @@ GameObject:
   - component: {fileID: 1405392840}
   - component: {fileID: 1405392844}
   m_Layer: 0
-  m_Name: holdspot
+  m_Name: carrypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

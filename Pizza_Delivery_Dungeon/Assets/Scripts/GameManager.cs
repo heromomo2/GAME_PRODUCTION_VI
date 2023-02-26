@@ -17,30 +17,6 @@ public class GameManager : MonoBehaviour
     public TimeAndLives time_and_lives = new  TimeAndLives(3, 900);
 
 
-    //public float GameTimer
-    //{
-    //    get
-    //    {
-    //        return game_timer;
-    //    }
-    //    set
-    //    {
-    //        game_timer = value;
-    //    }
-    //}
-
-    //public float GameTime
-    //{
-    //    get
-    //    {
-    //        return game_time;
-    //    }
-    //    set
-    //    {
-    //        game_time = value;
-    //    }
-    //}
-
 
     void Awake()
     {

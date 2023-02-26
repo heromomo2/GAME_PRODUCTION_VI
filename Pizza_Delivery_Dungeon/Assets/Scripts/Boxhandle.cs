@@ -3,30 +3,25 @@ using UnityEngine;
 
 public class Boxhandle : MonoBehaviour
 {
+    // variable
     public GameObject carried_item;
 
-    public Transform _holdpoint;
+    public Transform carry_point;
 
 
     public int max_item_holded = 1;
+
     public int item_holded_counter = 0;
 
 
     public ThirdPersonController player_3rd_person_controller;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+   
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
+    /// <summary>
+    /// attend the item to the player
+    /// </summary>
+    /// <param name="item"></param>
     public void AttendCarriedItemToPlayer(GameObject item)
     {
         if (player_3rd_person_controller.is_player_pick_up == true)
@@ -36,14 +31,11 @@ public class Boxhandle : MonoBehaviour
                 if (max_item_holded > item_holded_counter)
                 {
                     item_holded_counter = item_holded_counter + 1;
-
-                    // GameObject child_object = _holdpoint.gameObject;
-                    item.transform.position = new Vector3 (item.transform.position.x, _holdpoint.transform.position.y + 0.2f, item.transform.position.z);
-                    item.transform.parent = _holdpoint.transform;
+                    item.transform.position = new Vector3 (item.transform.position.x, carry_point.transform.position.y + 0.2f, item.transform.position.z);
+                    item.transform.parent = carry_point.transform;
                     player_3rd_person_controller.is_player_carry = true;
                     carried_item = item;
                     carried_item.GetComponent<PickUpItem>().is_pick_up = true;
-                    //carried_item.GetComponent<PickUpItem>().ResetOurRotation();
                     carried_item.tag = "Untagged";
                     carried_item.GetComponent<Rigidbody>().isKinematic = true;
                 }
@@ -51,6 +43,10 @@ public class Boxhandle : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// remove the item when the player success
+    /// </summary>
     public void RemoveCarriedItemFromPlayer()
     {
         if (carried_item != null)
@@ -63,7 +59,12 @@ public class Boxhandle : MonoBehaviour
         }
     }
 
-    public void RemoveExpiryPizzaPlayer()
+
+    /// <summary>
+    /// remove the item  when  the player fails/
+    /// this method just reset the player after the item was expires
+    /// </summary>
+    public void ResetPlayerAfterFailDelivery()
     {
         player_3rd_person_controller.is_player_carry = false;
         player_3rd_person_controller.is_player_overlap_pizza = false;

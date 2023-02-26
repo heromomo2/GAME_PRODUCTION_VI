@@ -99,6 +99,7 @@ public class OrderSystem : MonoBehaviour
         StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer,max_hambuger_spawn_time,min_hambuger_spawn_time ,max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
         /// when the player get hit with spike
+        ///  we add listener to hear for  player state
         if( player.GetComponent<PlayerEvent>() != null) 
         {
             player.GetComponent<PlayerEvent>().On_player_state_event += PlayerStateEventListener;
@@ -266,7 +267,7 @@ public class OrderSystem : MonoBehaviour
                     }
                     GameManager.game_manager.time_and_lives.RemoveALife();
                     player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
-                    holdpoint.RemoveExpiryPizzaPlayer();
+                    holdpoint.ResetPlayerAfterFailDelivery();
                     is_destiny_selected = false;
                 }
             }
@@ -302,6 +303,10 @@ public class OrderSystem : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// clean up the list of item so the list isnt fill with misssing gameobject
+    /// </summary>
+    /// <param name="our_list"></param>
     void CleanUpListOfMissingGameObject(List<GameObject> our_list)
     {
         for (var i = our_list.Count - 1; i > -1; i--)
