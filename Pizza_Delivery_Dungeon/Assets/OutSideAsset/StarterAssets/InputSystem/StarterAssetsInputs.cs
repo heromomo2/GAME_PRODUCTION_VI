@@ -13,6 +13,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool pickup;//add
+		public bool roll;//add
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -51,6 +52,12 @@ namespace StarterAssets
 			PickUpInput(value.isPressed);
 	//		Debug.Log(" OnpickUP() was called");
 		}
+
+		public void OnRoll(InputValue value)
+		{
+			RollInput(value.isPressed);
+		  Debug.Log(" OnRoll() was called");
+		}
 #endif
 
 
@@ -69,10 +76,18 @@ namespace StarterAssets
 			jump = newJumpState;
 		}
 
+		// add
+		public void RollInput(bool newRollState)
+		{
+			roll = newRollState;
+			//Debug.Log(" RollInput() was called");
+		}
+
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
 		}
+		// add
 		public void PickUpInput(bool newPickUpState)
 		{
 			pickup = newPickUpState;

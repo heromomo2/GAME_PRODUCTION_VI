@@ -76,8 +76,8 @@ namespace StarterAssets
         public bool LockCameraPosition = false;
 
         [Space(10)]
-        [Tooltip("Time required to pass before being able to pickup again. Set to 0f to instantly pickup again")] // add me
-        public float PickupTimeout = 0.50f;
+        [Tooltip("Time required to pass before being able to Roll again. Set to 0f to instantly roll again")] // add me
+        public float RollTimeout = 0.50f;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -98,7 +98,7 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
-        private float _PickupTimeoutDelta;
+        private float _RollTimeoutDelta;// add by me
 
 
         // animation IDs
@@ -108,6 +108,7 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
         private int _animIDCarrying;// add by me
+        private int _animIDRoll;// add by me
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
@@ -169,6 +170,8 @@ namespace StarterAssets
 
         [SerializeField] bool is_not_allow_to_sprint = false;
 
+        [SerializeField] bool is_not_allow_to_roll = false;
+
 
 
         private bool IsCurrentDeviceMouse
@@ -211,7 +214,7 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-            _PickupTimeoutDelta = PickupTimeout;// add by me
+            _RollTimeoutDelta = RollTimeout;// add by me
 
             // get the player walk speed as the starting point speed difficuly;
         //    GameManager.game_manager.built_In_difficulty.MinSpeedDifficuly = MoveSpeed;
@@ -246,6 +249,7 @@ namespace StarterAssets
             Move();
             Pickup();// add
             SprintCheck();
+            RollCheck();
         }
 
         private void LateUpdate()
@@ -261,6 +265,7 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
             _animIDCarrying = Animator.StringToHash("Carrying"); // add by me
+            _animIDRoll = Animator.StringToHash("Roll"); // add by me
         }
 
         private void GroundedCheck()
@@ -500,25 +505,6 @@ namespace StarterAssets
         // add by me
         private void Pickup()
         {
-            //do the pick 
-
-            //if (_input.pickup== true && _PickupTimeoutDelta <= 0f)
-            //{
-            //    pick_up = true;
-            //}
-            //else 
-            //{
-            //    if (pick_up == true)
-            //    {
-            //        pick_up = false;
-            //        _input.pickup = false; 
-            //    }
-            //}
-            // jump timeout
-            //if (_PickupTimeoutDelta >= 0.0f)
-            //{
-            //    _PickupTimeoutDelta -= Time.deltaTime;
-            //}
 
             if (_input.pickup == true)
             {
@@ -529,26 +515,27 @@ namespace StarterAssets
 
         private void SprintCheck()
         {
-
-            if (_input.sprint)
-            {
-               // Debug.Log(" you are press the sprint button");
-                if (GameManager.game_manager.player_stamina.Stamina > 0)
-                { 
-                    PlayerUseStamin(5);
-                    is_not_allow_to_sprint = false;
-                }
-                else 
+           
+                if (_input.sprint)
                 {
-                    is_not_allow_to_sprint = true;
+                     Debug.Log(" you are press the sprint button");
+                    if (GameManager.game_manager.player_stamina.Stamina > 0)
+                    {
+                        PlayerUseStamin(5);
+                        is_not_allow_to_sprint = false;
+                    }
+                    else
+                    {
+                        is_not_allow_to_sprint = true;
+                    }
                 }
-            }
-            else
-            {
-             //   Debug.Log(" you are not press the sprint button");
-                PlayerRegenStamina();
-            }
-
+                else
+                {
+                       Debug.Log(" you are not press the sprint button");
+                    PlayerRegenStamina();
+                }
+            
+            
         }
 
 
@@ -564,5 +551,44 @@ namespace StarterAssets
            GameManager.game_manager.player_stamina.RegenStamin();
            player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
         }
+
+        private void RollCheck()
+        {
+            if (is_not_allow_to_roll == false)
+            {
+                if (_input.roll)
+                {
+                    Debug.Log(" you are press the roll button");
+
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDRoll, true);
+                    }
+                    _input.roll = false;
+                    is_not_allow_to_roll = true;
+                    _RollTimeoutDelta = RollTimeout;
+                }
+                else
+                {
+                    Debug.Log(" you aren't press the roll button");
+                    
+                } 
+            }
+            else 
+            {
+                if(_RollTimeoutDelta >= 0.0f) 
+                {
+                    _RollTimeoutDelta -= Time.deltaTime;
+
+                }
+                else 
+                {
+                    is_not_allow_to_roll = false;
+                    _input.roll = false;
+                }
+            }
+            
+        }
+
     }
 }
