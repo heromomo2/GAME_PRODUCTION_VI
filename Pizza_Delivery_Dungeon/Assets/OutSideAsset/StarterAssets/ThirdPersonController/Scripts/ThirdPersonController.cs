@@ -217,38 +217,42 @@ namespace StarterAssets
             _RollTimeoutDelta = RollTimeout;// add by me
 
             // get the player walk speed as the starting point speed difficuly;
-        //    GameManager.game_manager.built_In_difficulty.MinSpeedDifficuly = MoveSpeed;
-        //    GameManager.game_manager.built_In_difficulty.SpeedDifficuly = MoveSpeed;
-        //    GameManager.game_manager.built_In_difficulty.MaxSpeedDifficuly = SprintSpeed;
+            //    GameManager.game_manager.built_In_difficulty.MinSpeedDifficuly = MoveSpeed;
+            //    GameManager.game_manager.built_In_difficulty.SpeedDifficuly = MoveSpeed;
+            //    GameManager.game_manager.built_In_difficulty.MaxSpeedDifficuly = SprintSpeed;
             GameManager.game_manager.built_In_difficulty.GetPlayrSpeeds(MoveSpeed, SprintSpeed);
             GameManager.game_manager.built_In_difficulty.GetAverageSpeed();
         }
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
-
-            // add code from me
-            if (is_carry == true)
+            if (!is_not_allow_to_roll)
             {
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDCarrying, true);
-                }
-            }
-            else
-            {
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDCarrying, false);
-                }
-            }
+                _hasAnimator = TryGetComponent(out _animator);
 
-            // JumpAndGravity();
-            //  GroundedCheck();
-            Move();
-            Pickup();// add
-            SprintCheck();
+                // add code from me
+                if (is_carry == true)
+                {
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDCarrying, true);
+                    }
+                }
+                else
+                {
+                    if (_hasAnimator)
+                    {
+                        _animator.SetBool(_animIDCarrying, false);
+                    }
+                }
+
+                // JumpAndGravity();
+                //  GroundedCheck();
+
+                Move();
+                Pickup();// add
+                SprintCheck();
+            }
             RollCheck();
         }
 
@@ -308,15 +312,15 @@ namespace StarterAssets
         {
             float targetSpeed;
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            if (is_not_allow_to_sprint == false) 
+            if (is_not_allow_to_sprint == false)
             {
-                targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; 
+                targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
             }
             else
             {
                 targetSpeed = MoveSpeed;
             }
-            
+
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -515,27 +519,27 @@ namespace StarterAssets
 
         private void SprintCheck()
         {
-           
-                if (_input.sprint)
+
+            if (_input.sprint)
+            {
+                Debug.Log(" you are press the sprint button");
+                if (GameManager.game_manager.player_stamina.Stamina > 0)
                 {
-                     Debug.Log(" you are press the sprint button");
-                    if (GameManager.game_manager.player_stamina.Stamina > 0)
-                    {
-                        PlayerUseStamin(5);
-                        is_not_allow_to_sprint = false;
-                    }
-                    else
-                    {
-                        is_not_allow_to_sprint = true;
-                    }
+                    PlayerUseStamin(5);
+                    is_not_allow_to_sprint = false;
                 }
                 else
                 {
-                       Debug.Log(" you are not press the sprint button");
-                    PlayerRegenStamina();
+                    is_not_allow_to_sprint = true;
                 }
-            
-            
+            }
+            else
+            {
+                Debug.Log(" you are not press the sprint button");
+                PlayerRegenStamina();
+            }
+
+
         }
 
 
@@ -548,8 +552,8 @@ namespace StarterAssets
         }
         private void PlayerRegenStamina()
         {
-           GameManager.game_manager.player_stamina.RegenStamin();
-           player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+            GameManager.game_manager.player_stamina.RegenStamin();
+            player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
         }
 
         private void RollCheck()
@@ -562,33 +566,48 @@ namespace StarterAssets
 
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDRoll, true);
+                        _animator.SetTrigger(_animIDRoll);
                     }
                     _input.roll = false;
+                    
                     is_not_allow_to_roll = true;
                     _RollTimeoutDelta = RollTimeout;
                 }
                 else
                 {
                     Debug.Log(" you aren't press the roll button");
-                    
-                } 
+
+                }
             }
-            else 
+            else
             {
-                if(_RollTimeoutDelta >= 0.0f) 
+                if (_RollTimeoutDelta >= 0.0f)
                 {
                     _RollTimeoutDelta -= Time.deltaTime;
 
                 }
-                else 
+                else
                 {
                     is_not_allow_to_roll = false;
                     _input.roll = false;
                 }
             }
-            
+
+        }
+
+
+
+        private void RollMove()
+        {
+
+
+
+
         }
 
     }
+
+
+
+
 }
