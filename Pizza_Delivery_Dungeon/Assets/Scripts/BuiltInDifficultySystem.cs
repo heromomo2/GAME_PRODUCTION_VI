@@ -218,7 +218,7 @@ public class BuiltInDifficultySystem
         /// get average of these two number
         max_speed_difficuly = (player_sprint_speed + player_move_speed) / 2f; // (12 + 2) / 2 = 7
 
-        Debug.Log("GetAverageSpeed() ");
+     //   Debug.Log("GetAverageSpeed() ");
     }
 
     //get player speeds

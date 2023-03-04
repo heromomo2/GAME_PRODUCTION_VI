@@ -56,7 +56,7 @@ namespace StarterAssets
 		public void OnRoll(InputValue value)
 		{
 			RollInput(value.isPressed);
-		  Debug.Log(" OnRoll() was called");
+		//  Debug.Log(" OnRoll() was called");
 		}
 #endif
 

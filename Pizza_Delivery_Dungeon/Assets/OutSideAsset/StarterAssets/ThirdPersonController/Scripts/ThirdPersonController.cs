@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.Collections;// add
+using System.Collections.Generic;//add
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -170,8 +173,11 @@ namespace StarterAssets
 
         [SerializeField] bool is_not_allow_to_sprint = false;
 
-        [SerializeField] bool is_not_allow_to_roll = false;
+        [SerializeField] bool Is_rolling = false;
 
+        [SerializeField] AnimationCurve dodge_curve;
+
+        float dodger_timer;
 
 
         private bool IsCurrentDeviceMouse
@@ -222,11 +228,16 @@ namespace StarterAssets
             //    GameManager.game_manager.built_In_difficulty.MaxSpeedDifficuly = SprintSpeed;
             GameManager.game_manager.built_In_difficulty.GetPlayrSpeeds(MoveSpeed, SprintSpeed);
             GameManager.game_manager.built_In_difficulty.GetAverageSpeed();
+
+
+           Keyframe dodge_lastframe = dodge_curve[dodge_curve.length - 1];
+
+            dodger_timer = dodge_lastframe.time;
         }
 
         private void Update()
         {
-            if (!is_not_allow_to_roll)
+            if (!Is_rolling)
             {
                 _hasAnimator = TryGetComponent(out _animator);
 
@@ -253,6 +264,8 @@ namespace StarterAssets
                 Pickup();// add
                 SprintCheck();
             }
+
+            //
             RollCheck();
         }
 
@@ -535,7 +548,7 @@ namespace StarterAssets
             }
             else
             {
-                Debug.Log(" you are not press the sprint button");
+             //   Debug.Log(" you are not press the sprint button");
                 PlayerRegenStamina();
             }
 
@@ -558,52 +571,56 @@ namespace StarterAssets
 
         private void RollCheck()
         {
-            if (is_not_allow_to_roll == false)
+            // soo you're not spamming the button
+            if (Is_rolling == false)
             {
+                // get the input that you want to roll
                 if (_input.roll)
                 {
-                    Debug.Log(" you are press the roll button");
+                    // Debug.Log(" you are press the roll button");
 
-                    if (_hasAnimator)
-                    {
-                        _animator.SetTrigger(_animIDRoll);
-                    }
-                    _input.roll = false;
-                    
-                    is_not_allow_to_roll = true;
-                    _RollTimeoutDelta = RollTimeout;
+                    PlayerUseStamin(50);
+
+                    StartCoroutine(DodgeAction());
                 }
-                else
+                else // you release the button
                 {
-                    Debug.Log(" you aren't press the roll button");
-
+                   // Debug.Log(" you aren't press the roll button");
                 }
             }
-            else
-            {
-                if (_RollTimeoutDelta >= 0.0f)
-                {
-                    _RollTimeoutDelta -= Time.deltaTime;
-
-                }
-                else
-                {
-                    is_not_allow_to_roll = false;
-                    _input.roll = false;
-                }
-            }
+           
 
         }
 
-
-
-        private void RollMove()
+        private IEnumerator DodgeAction()
         {
+            Is_rolling = true;
 
+            if (_hasAnimator)
+            {
+                _animator.SetTrigger(_animIDRoll);
+            }
 
+            float timer = 0;
 
+            while (timer < dodger_timer) 
+            {
+                float speed = dodge_curve.Evaluate(timer);
+                Vector3 dir = (transform.forward *7f* speed);
+                _controller.Move(dir * Time.deltaTime);
 
+                timer += Time.deltaTime;
+               
+                yield return null;
+
+                Debug.Log(" while loop is being acesss");
+            }
+
+            Is_rolling = false;
+            _input.roll = false; //
         }
+
+
 
     }
 
