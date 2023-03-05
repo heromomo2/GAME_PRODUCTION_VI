@@ -30,6 +30,12 @@ public class PlayerChildObjectCollsion : MonoBehaviour
                     if (player_3rd_person_controller.is_player_carry != true)
                     {
                         player_boxhandle.AttendCarriedItemToPlayer(collision.gameObject);
+
+                        //  play the pick up particle effect
+                        if(collision.gameObject.GetComponent<PickUpItem>() != null) 
+                        {
+                            collision.gameObject.GetComponent<PickUpItem>().PlayPickUpParticle();
+                        }
                     }
                 }
             }

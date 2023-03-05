@@ -17,6 +17,11 @@ public class PickUpItem : MonoBehaviour
     public bool is_pick_up = false;
     public bool is_expiry_timer_change_after_pick_up = false;
 
+    [Header("items Particle")]
+
+    public GameObject pick_up_particle;
+    public GameObject fail_particle;
+
     [Header("items general")]
     public item_type our_item = item_type.pizza_box;
 
@@ -44,6 +49,15 @@ public class PickUpItem : MonoBehaviour
     void Start()
     {
         expiry_timer_while_on_floor = expiry_time_on_floor;
+
+        if (pick_up_particle != null)
+        {
+            pick_up_particle.SetActive(false);
+        }
+        if (fail_particle != null)
+        {
+            fail_particle.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -96,7 +110,20 @@ public class PickUpItem : MonoBehaviour
 
     }
 
-
+    public  void PlayPickUpParticle() 
+    {
+        if( pick_up_particle != null)
+        {
+            pick_up_particle.SetActive(true);
+        }
+    }
+    void PlayFailParticle()
+    {
+        if (fail_particle != null)
+        {
+            fail_particle.SetActive(true);
+        }
+    }
 
 }
 public enum item_type
