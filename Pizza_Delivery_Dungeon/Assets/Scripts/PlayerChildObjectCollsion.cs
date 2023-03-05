@@ -63,7 +63,7 @@ public class PlayerChildObjectCollsion : MonoBehaviour
                 if (player_event.GetComponent<ThirdPersonController>() != null) 
                 {
                     ThirdPersonController player_3rd_person_controller = player_event.GetComponent<ThirdPersonController>();
-                    if (player_3rd_person_controller.is_player_carry == true)
+                    if (player_3rd_person_controller.is_player_carry == true  && player_3rd_person_controller.Invincible == false)
                     {
                         // tell the ordersystm that lost the item
                         player_event.PlayerGotSpike();

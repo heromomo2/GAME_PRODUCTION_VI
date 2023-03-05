@@ -177,6 +177,22 @@ namespace StarterAssets
 
         [SerializeField] AnimationCurve dodge_curve;
 
+        private bool is_invincible = false;
+        [SerializeField] private float invincibility_delta_time;
+        public bool Invincible
+        {
+            get
+            {
+                return is_invincible;
+            }
+            set
+            {
+                is_invincible = value;
+            }
+        }
+
+
+
         float dodger_timer;
 
 
@@ -618,6 +634,36 @@ namespace StarterAssets
 
             Is_rolling = false;
             _input.roll = false; //
+        }
+
+        public void MethodThatTriggersInvulnerability()
+        {
+            if (!is_invincible)
+            {
+                StartCoroutine(BecomeTemporarilyInvincible());
+            }
+        }
+        private IEnumerator BecomeTemporarilyInvincible()
+        {
+            Debug.Log("Player turned invincible!");
+            is_invincible = true;
+
+            // yield return new WaitForSeconds(invincibilityDurationSeconds);
+            yield return new WaitForSeconds(1f);
+            is_invincible = false;
+            Debug.Log("Player is no longer invincible!");
+        }
+
+
+        public void TurnOnInvincibleFrame()
+        {
+            Debug.Log("Player turned on invincible during  frames");
+            is_invincible = true;
+        }
+        public  void TurnOffInvincibleFrame()
+        {
+            Debug.Log("Player turned off invincible during  frames");
+            is_invincible = false;
         }
 
 
