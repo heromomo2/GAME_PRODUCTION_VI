@@ -96,6 +96,7 @@ public class PickUpItem : MonoBehaviour
             }
             else
             {
+                PlayFailParticle();
                 if (is_pick_up == true)
                 {
                     if (pick_up_item_event != null)
@@ -103,7 +104,10 @@ public class PickUpItem : MonoBehaviour
                         pick_up_item_event(1);
                     }
                 }
-                Destroy(this.gameObject);
+
+                // Destroy(this.gameObject);
+
+                StartCoroutine(WaitAndPrint(1f));
             }
 
         }
@@ -117,14 +121,26 @@ public class PickUpItem : MonoBehaviour
             pick_up_particle.SetActive(true);
         }
     }
-    void PlayFailParticle()
+    public void PlayFailParticle()
     {
+        
         if (fail_particle != null)
         {
             fail_particle.SetActive(true);
         }
     }
 
+    public void DestoryExpicyItem() 
+    {
+        StartCoroutine(WaitAndPrint(1f));
+    }
+
+    IEnumerator WaitAndPrint(float waitTime)
+    {
+        PlayFailParticle();
+        yield return new WaitForSeconds(waitTime);
+        Destroy(this.gameObject);
+    }
 }
 public enum item_type
 {

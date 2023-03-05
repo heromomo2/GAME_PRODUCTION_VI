@@ -235,7 +235,7 @@ public class OrderSystem : MonoBehaviour
                     player_hud.DisplayDelivered(GameManager.game_manager.built_In_difficulty.DifficultyCounter);// 
                     player_hud.DisplayDeliveredName(GameManager.game_manager.built_In_difficulty.DifficultyLevel);//
 
-                    holdpoint.RemoveCarriedItemFromPlayer();//remove the item from the player
+                    holdpoint.RemoveCarriedItemFromPlayer(false);//remove the item from the player
                     is_destiny_selected = false;
                 }
 
@@ -295,7 +295,7 @@ public class OrderSystem : MonoBehaviour
                     }
                     GameManager.game_manager.time_and_lives.RemoveALife();
                     player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
-                    holdpoint.RemoveCarriedItemFromPlayer();
+                    holdpoint.RemoveCarriedItemFromPlayer(true);
                     is_destiny_selected = false;
                 }
             }

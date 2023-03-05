@@ -47,16 +47,25 @@ public class Boxhandle : MonoBehaviour
     /// <summary>
     /// remove the item when the player success
     /// </summary>
-    public void RemoveCarriedItemFromPlayer()
+    public void RemoveCarriedItemFromPlayer( bool is_item_lost)
     {
         if (carried_item != null)
         {
-            Destroy(carried_item);
+            if (is_item_lost == true)
+            {
+                carried_item.GetComponent<PickUpItem>().DestoryExpicyItem();
+            }
+            else
+            {
+                Destroy(carried_item);
+            }
             carried_item = null;
             player_3rd_person_controller.is_player_carry = false;
             player_3rd_person_controller.is_player_overlap_pizza = false;
             item_holded_counter = 0;
+            
         }
+        
     }
 
 
