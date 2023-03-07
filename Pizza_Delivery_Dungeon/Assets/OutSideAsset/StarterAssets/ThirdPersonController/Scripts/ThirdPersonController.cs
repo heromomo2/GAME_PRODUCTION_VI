@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;// add
 using System.Collections.Generic;//add
+using Cinemachine; //add
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -209,6 +210,11 @@ namespace StarterAssets
         }
 
 
+        [Header("Switch Camera stuff")]
+        [SerializeField] CinemachineVirtualCamera ThirdPersonCam;
+        [SerializeField] CinemachineVirtualCamera TopdownCam;
+
+
         private void Awake()
         {
             // get a reference to our main camera
@@ -283,6 +289,7 @@ namespace StarterAssets
 
             //
             RollCheck();
+            SwitchViewCheck();
         }
 
         private void LateUpdate()
@@ -667,10 +674,60 @@ namespace StarterAssets
         }
 
 
+        private void OnEnable()
+        {
+            if (TopdownCam != null && ThirdPersonCam != null)
+            {
+                SwitchCamera.Register(TopdownCam);
+                SwitchCamera.Register(ThirdPersonCam);
 
+                SwitchCamera.SwitchingCamera(ThirdPersonCam);
+            }
+        }
+        private void OnDisable()
+        {
+            if (TopdownCam != null && ThirdPersonCam != null)
+            {
+                SwitchCamera.Unregister(TopdownCam);
+                SwitchCamera.Unregister(ThirdPersonCam);
+            }
+        }
+
+
+
+        private void SwitchViewCheck()
+        {
+
+            // get the input that you want to roll
+            if (_input.switchcamera)
+            {
+                Debug.Log(" you are pressing the switch view button");
+
+                if (ThirdPersonCam != null & TopdownCam != null) 
+                {
+                    if (SwitchCamera.IsActiveCamera(TopdownCam))
+                    {
+                        SwitchCamera.SwitchingCamera(ThirdPersonCam);
+                    }
+                    else if (SwitchCamera.IsActiveCamera(ThirdPersonCam))
+                    {
+                        SwitchCamera.SwitchingCamera(TopdownCam);
+                    }
+                }
+                else 
+                {
+                    Debug.LogError("topdowncam or thirdpersoncam is null");
+                }
+                _input.switchcamera = false;
+            }
+            else // you release the button
+            {
+                Debug.Log(" you aren't pressing the switch view button");
+            }
+
+        }
     }
 
-
-
+   
 
 }

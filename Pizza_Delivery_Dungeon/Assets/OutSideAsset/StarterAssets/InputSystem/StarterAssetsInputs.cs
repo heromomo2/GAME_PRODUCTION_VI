@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool pickup;//add
 		public bool roll;//add
+		public bool switchcamera;//add
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -58,6 +59,11 @@ namespace StarterAssets
 			RollInput(value.isPressed);
 		//  Debug.Log(" OnRoll() was called");
 		}
+		public void OnSwitchCamera(InputValue value)
+		{
+			SwitchCameraInput(value.isPressed);
+			 //Debug.Log(" OnSwitchView() was called");
+		}
 #endif
 
 
@@ -92,7 +98,13 @@ namespace StarterAssets
 		{
 			pickup = newPickUpState;
 		}
+		// add
+		public void SwitchCameraInput(bool newSwitchCamera)
+		{
+			switchcamera = newSwitchCamera;
+			// Debug.Log("  SwitchViewInputwas called");
 
+		}
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
