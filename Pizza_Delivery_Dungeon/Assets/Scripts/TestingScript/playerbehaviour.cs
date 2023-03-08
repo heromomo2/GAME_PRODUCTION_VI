@@ -25,16 +25,23 @@ public class playerbehaviour : MonoBehaviour
         //}
     }
 
-    private void PlayerUseStamin(float  StaminaAmonut)
-    {
-        GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+    //    private void PlayerUseStamin(float  StaminaAmonut, bool is_flat_amonut)
+    //    {
+    //        if (!is_flat_amonut)
+    //        {
+    //            GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+    //        }
+    //        else 
+    //        {
+    //            GameManager.game_manager.player_stamina.FlatStaminUsed(StaminaAmonut);
+    //        }
 
-        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
-      //  Debug.Log(GameManager.game_manager.player_stamina.health);
-    }
-    private void PlayerRegenStamina()
-    {
-        GameManager.game_manager.player_stamina.RegenStamin();
-        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
-    }
+    //        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+    //      //  Debug.Log(GameManager.game_manager.player_stamina.health);
+    //    }
+    //    private void PlayerRegenStamina()
+    //    {
+    //        GameManager.game_manager.player_stamina.RegenStamin();
+    //        player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
+    //    }
 }

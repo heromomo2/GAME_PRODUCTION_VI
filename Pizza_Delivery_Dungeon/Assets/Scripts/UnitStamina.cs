@@ -88,7 +88,7 @@ public class UnitStamina
 
 
     // Constructor
-    public UnitStamina(float stamina, float max_stamina, float staminaregen_speed, bool pasuestamina_regen, float initalchunk, bool inital_chunk_used,float delaytime_stamina_regen)
+    public UnitStamina(float stamina, float max_stamina, float staminaregen_speed, bool pasuestamina_regen, float initalchunk, bool inital_chunk_used, float delaytime_stamina_regen)
     {
         current_stamina = stamina;
         current_max_stamina = max_stamina;
@@ -105,6 +105,7 @@ public class UnitStamina
 
     public void UseStamin(float StaminaAmount)
     {
+
         if (current_stamina > 0)
         {
             if (!is_inital_chunk_used)
@@ -120,6 +121,21 @@ public class UnitStamina
         }
     }
 
+    public void FlatStaminUsed(float StaminaAmount)
+    {
+        if (current_stamina > 0)
+        {
+            if (!is_inital_chunk_used)
+            {
+                current_stamina -= StaminaAmount;
+                is_inital_chunk_used = true;
+            }
+
+            delay_time_stamina_regen_timer = delay_time_stamina_regen;
+        }
+    }
+
+
     public void RegenStamin()
     {
         if (delay_time_stamina_regen_timer < 0f)
@@ -130,7 +146,7 @@ public class UnitStamina
                 is_inital_chunk_used = false;
             }
         }
-        else 
+        else
         {
             delay_time_stamina_regen_timer -= Time.deltaTime;
             is_inital_chunk_used = false;

@@ -215,6 +215,11 @@ namespace StarterAssets
         [SerializeField] CinemachineVirtualCamera TopdownCam;
 
 
+
+
+        public AnimationCurve dodge_animation_Curve;
+
+
         private void Awake()
         {
             // get a reference to our main camera
@@ -254,7 +259,7 @@ namespace StarterAssets
 
            Keyframe dodge_lastframe = dodge_curve[dodge_curve.length - 1];
 
-            dodger_timer = dodge_lastframe.time;
+            dodger_timer = 2.367f;//dodge_lastframe.time;
         }
 
         private void Update()
@@ -561,7 +566,7 @@ namespace StarterAssets
                 Debug.Log(" you are press the sprint button");
                 if (GameManager.game_manager.player_stamina.Stamina > 0)
                 {
-                    PlayerUseStamin(5);
+                    PlayerUseStamin(5,false);
                     is_not_allow_to_sprint = false;
                 }
                 else
@@ -579,9 +584,16 @@ namespace StarterAssets
         }
 
 
-        private void PlayerUseStamin(float StaminaAmonut)
+        private void PlayerUseStamin(float StaminaAmonut, bool is_flat_amonut)
         {
-            GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+            if (!is_flat_amonut)
+            {
+                GameManager.game_manager.player_stamina.UseStamin(StaminaAmonut);
+            }
+            else
+            {
+                GameManager.game_manager.player_stamina.FlatStaminUsed(StaminaAmonut);
+            }
 
             player_HUD.SetStamina(GameManager.game_manager.player_stamina.Stamina);
             //  Debug.Log(GameManager.game_manager.player_stamina.health);
@@ -597,18 +609,25 @@ namespace StarterAssets
             // soo you're not spamming the button
             if (Is_rolling == false)
             {
-                // get the input that you want to roll
-                if (_input.roll)
+                if (GameManager.game_manager.player_stamina.Stamina > 0 && GameManager.game_manager.player_stamina.Stamina >= 50 )
                 {
-                    // Debug.Log(" you are press the roll button");
+                    // get the input that you want to roll
+                    if (_input.roll)
+                    {
+                        // Debug.Log(" you are press the roll button");
 
-                    PlayerUseStamin(50);
+                        PlayerUseStamin(50, true);
 
-                    StartCoroutine(DodgeAction());
+                        StartCoroutine(DodgeAction());
+                    }
+                    else // you release the button
+                    {
+                        // Debug.Log(" you aren't press the roll button");
+                    }
                 }
-                else // you release the button
+                else 
                 {
-                   // Debug.Log(" you aren't press the roll button");
+                    _input.roll = false;
                 }
             }
            
@@ -628,8 +647,8 @@ namespace StarterAssets
 
             while (timer < dodger_timer) 
             {
-                float speed = dodge_curve.Evaluate(timer);
-                Vector3 dir = (transform.forward *7f* speed);
+                float speed = dodge_curve.Evaluate(timer/dodger_timer);
+                Vector3 dir = (transform.forward *10f* speed);
                 _controller.Move(dir * Time.deltaTime);
 
                 timer += Time.deltaTime;
