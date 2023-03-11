@@ -2844,15 +2844,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[1].inSlope
-      value: 0.0010048406
+      value: 0.080486804
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[2].inSlope
-      value: 0.0007640416
+      value: 0.66747165
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[3].inSlope
-      value: -0.03235766
+      value: -1.0069798
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[4].inSlope
@@ -2868,7 +2868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[1].outSlope
-      value: 0.0010048406
+      value: 0.080486804
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[2].inWeight
@@ -2876,7 +2876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[2].outSlope
-      value: 0.0007640416
+      value: 0.66747165
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[3].inWeight
@@ -2884,7 +2884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[3].outSlope
-      value: -0.03235766
+      value: -1.0069798
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[4].inWeight
@@ -2900,15 +2900,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[1].outWeight
-      value: 0.27590403
+      value: 0.96527135
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[2].outWeight
-      value: 0.19191028
+      value: 0.1844331
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[3].outWeight
-      value: 0.33333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: dodge_curve.m_Curve.Array.data[4].outWeight
