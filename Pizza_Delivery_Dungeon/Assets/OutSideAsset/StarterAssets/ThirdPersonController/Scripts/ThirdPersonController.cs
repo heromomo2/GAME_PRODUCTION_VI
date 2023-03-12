@@ -224,6 +224,8 @@ namespace StarterAssets
 
        public float dodger_speed_thing = 9;
 
+        public int  dodge_stamina_amount = 25;
+
 
         private void Awake()
         {
@@ -614,14 +616,14 @@ namespace StarterAssets
             // soo you're not spamming the button
             if (Is_rolling == false)
             {
-                if (GameManager.game_manager.player_stamina.Stamina > 0 && GameManager.game_manager.player_stamina.Stamina >= 50 )
+                if (GameManager.game_manager.player_stamina.Stamina > 0 && GameManager.game_manager.player_stamina.Stamina >= dodge_stamina_amount)
                 {
                     // get the input that you want to roll
                     if (_input.roll)
                     {
                         // Debug.Log(" you are press the roll button");
 
-                        PlayerUseStamin(50, true);
+                        PlayerUseStamin(dodge_stamina_amount, true);
 
                         StartCoroutine(DodgeAction());
                     }
