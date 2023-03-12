@@ -2,7 +2,7 @@
 using System.Collections;// add
 using System.Collections.Generic;//add
 using Cinemachine; //add
-using StarterAssets;//add
+//using StarterAssets;//add
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
