@@ -2,6 +2,7 @@
 using System.Collections;// add
 using System.Collections.Generic;//add
 using Cinemachine; //add
+using StarterAssets;//add
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -218,6 +219,10 @@ namespace StarterAssets
 
 
         public AnimationCurve dodge_animation_Curve;
+
+
+
+       public float dodger_speed_thing = 9;
 
 
         private void Awake()
@@ -648,7 +653,7 @@ namespace StarterAssets
             while (timer < dodger_timer) 
             {
                 float speed = dodge_curve.Evaluate(timer/dodger_timer);
-                Vector3 dir = (transform.forward *10f* speed);
+                Vector3 dir = (transform.forward * dodger_speed_thing * speed);
                 _controller.Move(dir * Time.deltaTime);
 
                 timer += Time.deltaTime;

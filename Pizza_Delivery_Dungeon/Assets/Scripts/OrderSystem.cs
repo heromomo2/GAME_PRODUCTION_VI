@@ -92,15 +92,15 @@ public class OrderSystem : MonoBehaviour
         milk_spawn_timer = 3.0f;
 
         // pizza gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(pizza_spawn_timer,max_pizza_spawn_time, min_pizza_spawn_time ,max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
+        StartCoroutine(StartGenerateDeliverlyBoxes(pizza_spawn_timer, max_pizza_spawn_time, min_pizza_spawn_time, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
         // milk gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time ,min_milk_spawn_time,max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
+        StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time, min_milk_spawn_time, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
         // hambuger gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer,max_hambuger_spawn_time,min_hambuger_spawn_time ,max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
+        StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer, max_hambuger_spawn_time, min_hambuger_spawn_time, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
         /// when the player get hit with spike
         ///  we add listener to hear for  player state
-        if( player.GetComponent<PlayerEvent>() != null) 
+        if (player.GetComponent<PlayerEvent>() != null)
         {
             player.GetComponent<PlayerEvent>().On_player_state_event += PlayerStateEventListener;
         }
@@ -140,7 +140,7 @@ public class OrderSystem : MonoBehaviour
 
 
 
-    IEnumerator StartGenerateDeliverlyBoxes(float timer,float max_time, float min_time , int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
+    IEnumerator StartGenerateDeliverlyBoxes(float timer, float max_time, float min_time, int max_item_spawned, List<GameObject> item_list, GameObject our_item_prefab, GameObject delivery_source)
     {
         yield return new WaitForSeconds(timer);
 
@@ -177,7 +177,7 @@ public class OrderSystem : MonoBehaviour
                     {
                         timer = Random.Range(min_time, max_time);
 
-                        StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source)); 
+                        StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source));
                     }
 
                 }
@@ -190,8 +190,8 @@ public class OrderSystem : MonoBehaviour
 
                 timer = Random.Range(min_time, max_time);
 
-                
-                StartCoroutine(StartGenerateDeliverlyBoxes(timer,max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source));
+
+                StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source));
             }
         }
 
@@ -218,18 +218,18 @@ public class OrderSystem : MonoBehaviour
                 {
                     // figure out the item that was deliver for point
                     GameManager.game_manager.player_score.AddToScore(holdpoint.carried_item.GetComponent<PickUpItem>().our_item);
-                    
+
 
                     end_deliver_time = holdpoint.carried_item.GetComponent<PickUpItem>().expiry_timer_while_carry_item;
 
-                   // Debug.Log("1end_deliver_time-> " + end_deliver_time);
+                    // Debug.Log("1end_deliver_time-> " + end_deliver_time);
 
-                    GameManager.game_manager.player_score.CheckForBonus(end_deliver_time,inital_deliver_time);
-                    Debug.Log(" end_deliver_time-> " + end_deliver_time + " inital_deliver_time-> "+ inital_deliver_time);
+                    GameManager.game_manager.player_score.CheckForBonus(end_deliver_time, inital_deliver_time);
+                    Debug.Log(" end_deliver_time-> " + end_deliver_time + " inital_deliver_time-> " + inital_deliver_time);
 
                     GameManager.game_manager.built_In_difficulty.CheckForDifficuly();// increase Difficuly
 
-                    
+
 
                     player_hud.DisplayMoneyEarn(GameManager.game_manager.player_score.Score); // update the score on hud;
                     player_hud.DisplayDelivered(GameManager.game_manager.built_In_difficulty.DifficultyCounter);// 
@@ -276,7 +276,7 @@ public class OrderSystem : MonoBehaviour
 
 
     public void PlayerStateEventListener(int i)
-    {  
+    {
         if (i == 1)
         {
             if (player.GetComponent<ThirdPersonController>() != null)
@@ -413,7 +413,7 @@ public class OrderSystem : MonoBehaviour
                         distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
 
                         // get the time for  travel time
-                        time_between_objects = distance /GameManager.game_manager.built_In_difficulty.SpeedDifficuly;
+                        time_between_objects = distance / GameManager.game_manager.built_In_difficulty.SpeedDifficuly;
 
                         // need for calculateing bonus points 
                         inital_deliver_time = time_between_objects;
