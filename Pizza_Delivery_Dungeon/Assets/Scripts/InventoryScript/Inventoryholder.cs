@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+[System.Serializable]
 public class Inventoryholder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int inventorySize;
+    [SerializeField] protected InventorySysterm inventorySysterm;
 
-    // Update is called once per frame
-    void Update()
+    public InventorySysterm InventorySysterm => inventorySysterm;
+
+    public static UnityAction<InventorySysterm> OnDynamicInventoryDisplayeRequested;
+
+    private void Awake() 
     {
-        
+        inventorySysterm = new InventorySysterm(inventorySize);
     }
 }
