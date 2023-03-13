@@ -13,6 +13,7 @@ TagManager:
   - PlayerChild
   - Item
   - trapspike
+  - Bench
   layers:
   - Default
   - TransparentFX
