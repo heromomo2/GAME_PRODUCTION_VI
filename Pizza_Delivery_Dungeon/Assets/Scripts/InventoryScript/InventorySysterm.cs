@@ -15,7 +15,7 @@ public class InventorySysterm
     public int inventorySize => InventorySlots.Count;
 
     public UnityAction<InventorySlot> OnInventorySlotsChanged;
-    public InventorySysterm(int Size) 
+    public InventorySysterm(int Size) // the constructor that sets the amount of slots
     {
         inventorySlots = new List<InventorySlot>(Size);
         for(int i = 0; i < Size; i++)
@@ -31,7 +31,7 @@ public class InventorySysterm
         {
             foreach (var slot in invSlot)
             {
-                if (slot.RoomLeftInStack(amountToAdd)) 
+                if (slot.EnoughRoomLeftInStack(amountToAdd)) 
                 {
                     slot.AddToStack(amountToAdd);
                     OnInventorySlotsChanged?.Invoke(slot);
