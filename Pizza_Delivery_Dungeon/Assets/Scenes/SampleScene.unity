@@ -2263,7 +2263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2384,7 +2384,7 @@ RectTransform:
   - {fileID: 1593182415}
   - {fileID: 1043104996}
   m_Father: {fileID: 1157626356}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -5404,8 +5404,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1605817752}
   - {fileID: 479706804}
+  - {fileID: 1605817752}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7872,7 +7872,7 @@ RectTransform:
   - {fileID: 471619556}
   - {fileID: 140005184}
   m_Father: {fileID: 1157626356}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7891,8 +7891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c895489aa28254a8be3b9fdb76585c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemSprit: {fileID: 471619557}
+  ItemSprite: {fileID: 0}
   ItemCount: {fileID: 140005185}
+  AssignedInventorySlot:
+    item_data: {fileID: 0}
+    stack_size: -1
 --- !u!1001 &1613895476
 PrefabInstance:
   m_ObjectHideFlags: 0
