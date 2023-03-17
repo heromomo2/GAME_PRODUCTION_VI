@@ -42,24 +42,28 @@ public class InventorySysterm
         }
         if (HasFreeSlot(out InventorySlot freeslot))// gets the first available slot
         {
-            freeslot.UpdateInventorySlot(itemToAdd, amountToAdd);
-            OnInventorySlotsChanged?.Invoke(freeslot);
-            return true;
+            if (freeslot.EnoughRoomLeftInStack(amountToAdd))
+            {
+                freeslot.UpdateInventorySlot(itemToAdd, amountToAdd);
+                OnInventorySlotsChanged?.Invoke(freeslot);
+                return true;
+            }
+            // add implemetation to only take what can fill the stack, and check for another free slot to put the reminder in.
         }
 
         return false;
     }
 
-    public bool Containsitems(InventoryItemdata itemToAdd, out List<InventorySlot> invslot)
+    public bool Containsitems(InventoryItemdata itemToAdd, out List<InventorySlot> invslot)// do any of our slots have the item to add in them?
     {
-        invslot = inventorySlots.Where(i => i.Itemdata == itemToAdd).ToList();
+        invslot = inventorySlots.Where(i => i.Itemdata == itemToAdd).ToList(); // if they do, if not return false.
       
-        return invslot.Count > 1 ? true: false;
+        return invslot.Count > 1 ? true: false;// If they do return true, if not return false.
     }
 
     public bool HasFreeSlot(out  InventorySlot freeSlot) 
     {
-        freeSlot = inventorySlots.FirstOrDefault(i => i.Itemdata == null);
+        freeSlot = inventorySlots.FirstOrDefault(i => i.Itemdata == null);// fet the first free slot
         return freeSlot == null ? true : false;
 
     }

@@ -9,7 +9,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     [SerializeField] MouseItemData mouseInventoryItem;
     protected InventorySysterm inventorySysterm;
 
-    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
+    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary; // Pair up the UI slots with the system slots.
 
 
     public InventorySysterm InventorySysterm => inventorySysterm;
@@ -20,7 +20,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     {
     }
 
-    public abstract void AssignSlot(InventorySysterm invToDisPlay);
+    public abstract void AssignSlot(InventorySysterm invToDisPlay); // Implemented in the child classes.
 
     protected virtual void UpateSlot(InventorySlot updatedSlot)
     {
@@ -39,6 +39,8 @@ public abstract class InventoryDisplay : MonoBehaviour
 
         // Clicked slot has an item - mouse doesn't have an item- pick up that item.
 
+        // Does the cliked slot have item data- does the mouse have no item data
+
         if (clickedUISlot.AssignedInventorySlot.Itemdata != null && mouseInventoryItem.AssignedInventorySlot.Itemdata == null)
         {
             // if player is holding shift key split the stack?
@@ -49,7 +51,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 return;
 
             }
-            else
+            else// pick up the item in the clicked slot.
             {
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
                 clickedUISlot.ClearSlot();

@@ -32,7 +32,7 @@ public class InventorySlot
     }
     public bool EnoughRoomLeftInStack(int amountToAdd)
     {
-        if (stack_size + amountToAdd <= item_data.max_stack_size) 
+        if (item_data == null || Itemdata != null && stack_size + amountToAdd <= item_data.max_stack_size) 
         {
             return true;
         }
@@ -40,6 +40,7 @@ public class InventorySlot
         {
             return false;
         }
+        
     }
     public void ClearSlot()  // clears the slot
     {

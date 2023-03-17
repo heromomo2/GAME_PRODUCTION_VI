@@ -30,12 +30,15 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
-        if(AssignedInventorySlot.Itemdata != null) 
+        // TODO: Add controller support.
+
+        if(AssignedInventorySlot.Itemdata != null) // if has an item, follow the mouse position.
         {
             transform.position = Mouse.current.position.ReadValue();
             if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointOverUIObject()) 
             {
                 ClearSlot();
+                // TODO: drop the item on the ground
             }
         }
     }
