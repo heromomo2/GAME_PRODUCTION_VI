@@ -9,14 +9,12 @@ public class DynamicInventoryDisplay : InventoryDisplay
     [SerializeField] protected InventorySlot_UI slotPrefab;
     protected override void Start()
     {
-       // Inventoryholder.OnDynamicInventoryDisplayeRequested += RefreshDynamicInventory;
+       
         base.Start();
-        ///AssignSlot(inventorySysterm);
     }
 
     private void OnDestroy()
     {
-        ///Inventoryholder.OnDynamicInventoryDisplayeRequested -= RefreshDynamicInventory;
 
     }
 

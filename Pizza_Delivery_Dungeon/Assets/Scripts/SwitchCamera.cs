@@ -31,13 +31,13 @@ public static class SwitchCamera
     {
         cameras.Add(camera);
 
-        Debug.Log("Camera Registered: " + camera);
+     //   Debug.Log("Camera Registered: " + camera);
     }
 
     public static void Unregister(CinemachineVirtualCamera camera)
     {
         cameras.Remove(camera);
-        Debug.Log("Camera unregistered: " + camera);
+       // Debug.Log("Camera unregistered: " + camera);
 
     }
 }

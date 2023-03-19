@@ -748,7 +748,7 @@ namespace StarterAssets
             }
             else // you release the button
             {
-                Debug.Log(" you aren't pressing the switch view button");
+              //  Debug.Log(" you aren't pressing the switch view button");
             }
 
         }

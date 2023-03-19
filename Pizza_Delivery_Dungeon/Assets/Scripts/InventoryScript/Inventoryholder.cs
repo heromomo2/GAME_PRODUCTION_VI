@@ -9,6 +9,7 @@ public class Inventoryholder : MonoBehaviour
     [SerializeField] private int inventorySize;
     [SerializeField] protected InventorySysterm inventorySysterm;
 
+
     public InventorySysterm InventorySysterm => inventorySysterm;
 
     public static UnityAction<InventorySysterm> OnDynamicInventoryDisplayeRequested;
@@ -17,4 +18,5 @@ public class Inventoryholder : MonoBehaviour
     {
         inventorySysterm = new InventorySysterm(inventorySize);
     }
+ 
 }
