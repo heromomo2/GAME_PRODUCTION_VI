@@ -19,12 +19,15 @@ public class MainMenu : MonoBehaviour
                 leader_board_button = go;
             else if (go.name == "StartGameButton")
                 start_game_button = go;
+            else if (go.name == "HowToPlayButton")
+                How_To_Play_button = go;
             else if (go.name == "QuitButton")
                 Quit_button = go;
         }
 
         leader_board_button.GetComponent<Button>().onClick.AddListener(LeaderBoardButtonOnPress);
         start_game_button.GetComponent<Button>().onClick.AddListener(StartGameButtonOnPress);
+        How_To_Play_button.GetComponent<Button>().onClick.AddListener(HowToPlayButtonOnPress);
         Quit_button.GetComponent<Button>().onClick.AddListener(QuitButtionOnPress);
 
     }
@@ -34,17 +37,26 @@ public class MainMenu : MonoBehaviour
     {
         
     }
-
-    void LeaderBoardButtonOnPress()
-    {
-        
-    }
     void StartGameButtonOnPress()
     {
-        
+          Debug.Log("StartGameButtonOnPress");
     }
+    void HowToPlayButtonOnPress()
+    {
+        Debug.Log("HowToPlayButtonPress");
+        MenueManager.Instance.our_menu_State = MenueManager.MenuState.HowToPlayState;
+        MenueManager.ChangeMenuState();
+    }
+    void LeaderBoardButtonOnPress()
+    {
+        Debug.Log("LeaderBoardButtonOnPress");
+        MenueManager.Instance.our_menu_State = MenueManager.MenuState.LeaderBoardState;
+        MenueManager.ChangeMenuState();
+    }
+    
     void QuitButtionOnPress()
     {
-        
+        Debug.Log("QuitButtionOnPress");
+        MenueManager.Instance.QuitButtonOnPress();
     }
 }

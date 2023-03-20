@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenueManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class MenueManager : MonoBehaviour
     public GameObject MainMenu = null;
     public GameObject LeaderBoard = null;
     public GameObject HowToPlay = null;
+
+    public MenuState our_menu_State = MenuState.MainMenuState;
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -23,61 +26,51 @@ public class MenueManager : MonoBehaviour
         
     }
     private void Start()
-    {
-
+    {    
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allObjects)
         {
-            if (go.name == "MainMenu")
+            if (go.name == "MainMenuCanvas")
                 MainMenu = go;
-            else if (go.name == "LeaderBoard")
+            else if (go.name == "LeaderBoardCanvas")
                 LeaderBoard = go;
-            else if (go.name == "HowToPlay")
+            else if (go.name == "HowToPlayCanvas")
                 HowToPlay = go;
         }
 
     }
-
-    //public void ChangeGState(int newState)
-    //{
-    //    switch (newState)
-    //    {
-    //        case GameStates.MainMenuState:
-    //            main_menu.SetActive(true);
-    //            leader_board.SetActive(false);
-    //            SoundManager.Instance.PlayMusic();
-    //            break;
-    //        case GameStates.LeaderBoardState:
-    //            main_menu.SetActive(false);
-    //            leader_board.SetActive(true);
-    //            SoundManager.Instance.StopMusic();
-    //            break;
-    //        case GameStates.PauseState:
-    //            pause_menu.SetActive(true);
-    //            SoundManager.Instance.PlayMusic();
-    //            break;
-    //        case GameStates.GamemodeState:
-    //            is_game_over = false;
-    //            pause_menu.SetActive(false);
-    //            game_over.SetActive(false);
-    //            SoundManager.Instance.StopMusic();
-    //            break;
-    //        case GameStates.GameOverState:
-    //            is_game_over = true;
-    //            pause_menu.SetActive(false);
-    //            game_over.SetActive(true);
-    //            break;
-
-    //    }
-  //  }
-
-    static public class MenuState
+    public void QuitButtonOnPress()
+    {  
+        Application.Quit();
+    }
+    public static void ChangeMenuState()
     {
-        public const int MainMenuState = 1;
+        switch (Instance.our_menu_State)
+        {
+            case MenuState.MainMenuState:
+                Instance.MainMenu.SetActive(true);
+                Instance.LeaderBoard.SetActive(false);
+                Instance.HowToPlay.SetActive(false);
+                break;
+            case MenuState.LeaderBoardState:
+                Instance.MainMenu.SetActive(false);
+                Instance.LeaderBoard.SetActive(true);
+                Instance.HowToPlay.SetActive(false);
+                break;
+            case MenuState.HowToPlayState:
+                Instance.MainMenu.SetActive(false);
+                Instance.LeaderBoard.SetActive(false);
+                Instance.HowToPlay.SetActive(true);
+                break;
+        }
+    }
 
-        public const int LeaderBoardState = 2;
+    public  enum MenuState
+    {
+        MainMenuState,
 
-        public const int HowToPlayState = 5;
+        LeaderBoardState,
 
+        HowToPlayState 
     }
 }
