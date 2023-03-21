@@ -40,6 +40,7 @@ public class MainMenu : MonoBehaviour
     void StartGameButtonOnPress()
     {
           Debug.Log("StartGameButtonOnPress");
+        MenueManager.Instance.OpenScene("SampleScene");
     }
     void HowToPlayButtonOnPress()
     {

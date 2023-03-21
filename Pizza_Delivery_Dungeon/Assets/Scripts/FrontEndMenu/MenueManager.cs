@@ -43,6 +43,11 @@ public class MenueManager : MonoBehaviour
     {  
         Application.Quit();
     }
+    public void OpenScene(string scenename) 
+    {
+        Debug.Log("sceneName to load: " + scenename);
+        SceneManager.LoadScene(scenename);
+    }
     public static void ChangeMenuState()
     {
         switch (Instance.our_menu_State)
