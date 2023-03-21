@@ -1362,6 +1362,7 @@ GameObject:
   - component: {fileID: 602040010}
   - component: {fileID: 602040009}
   - component: {fileID: 602040008}
+  - component: {fileID: 602040012}
   m_Layer: 5
   m_Name: LeaderBoardCanvas
   m_TagString: Untagged
@@ -1456,9 +1457,9 @@ RectTransform:
   - {fileID: 1649378512}
   - {fileID: 1142005977}
   - {fileID: 2050639313}
+  - {fileID: 1493150303}
   - {fileID: 1490022054}
   - {fileID: 1846375313}
-  - {fileID: 1493150303}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1467,6 +1468,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &602040012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602040007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b1a8ac3e32a284ba1193c6d3321f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  return_button: {fileID: 0}
+  Playernames:
+  - {fileID: 2014479084}
+  - {fileID: 1519447556}
+  - {fileID: 1613634913}
+  - {fileID: 773781774}
+  - {fileID: 1649378513}
+  PlayerMoney:
+  - {fileID: 1142005978}
+  - {fileID: 2050639314}
+  - {fileID: 1493150304}
+  - {fileID: 1490022055}
+  - {fileID: 1846375314}
 --- !u!1 &706960974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1975,7 @@ GameObject:
   - component: {fileID: 1142005979}
   - component: {fileID: 1142005978}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: PlayerMonenyText (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2459,7 +2485,7 @@ GameObject:
   - component: {fileID: 1490022056}
   - component: {fileID: 1490022055}
   m_Layer: 5
-  m_Name: Text (4)
+  m_Name: PlayerMonenyText  (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2477,11 +2503,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 602040011}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 91, y: -23}
+  m_AnchoredPosition: {x: 91, y: -31}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1490022055
@@ -2538,7 +2564,7 @@ GameObject:
   - component: {fileID: 1493150305}
   - component: {fileID: 1493150304}
   m_Layer: 5
-  m_Name: Text (6)
+  m_Name: PlayerMonenyText  (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2556,7 +2582,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 602040011}
-  m_RootOrder: 17
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2743,7 +2769,7 @@ GameObject:
   - component: {fileID: 1539412673}
   - component: {fileID: 1539412672}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: MoneyTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3490,7 +3516,7 @@ GameObject:
   - component: {fileID: 1782682640}
   - component: {fileID: 1782682639}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NameTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3690,7 +3716,7 @@ GameObject:
   - component: {fileID: 1846375315}
   - component: {fileID: 1846375314}
   m_Layer: 5
-  m_Name: Text (5)
+  m_Name: PlayerMonenyText  (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3708,11 +3734,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 602040011}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 91, y: -52}
+  m_AnchoredPosition: {x: 91, y: -55.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846375314
@@ -4301,7 +4327,7 @@ GameObject:
   - component: {fileID: 2050639315}
   - component: {fileID: 2050639314}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: PlayerMonenyText  (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
