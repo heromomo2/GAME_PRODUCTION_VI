@@ -669,23 +669,7 @@ namespace StarterAssets
             _input.roll = false; //
         }
 
-        public void MethodThatTriggersInvulnerability()
-        {
-            if (!is_invincible)
-            {
-                StartCoroutine(BecomeTemporarilyInvincible());
-            }
-        }
-        private IEnumerator BecomeTemporarilyInvincible()
-        {
-            Debug.Log("Player turned invincible!");
-            is_invincible = true;
-
-            // yield return new WaitForSeconds(invincibilityDurationSeconds);
-            yield return new WaitForSeconds(1f);
-            is_invincible = false;
-            Debug.Log("Player is no longer invincible!");
-        }
+        
 
 
         public void TurnOnInvincibleFrame()

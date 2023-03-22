@@ -26,9 +26,9 @@ public abstract class InventoryDisplay : MonoBehaviour
     {
         foreach (var slot in SlotDictionary)
         {
-            if (slot.Value == updatedSlot)
+            if (slot.Value == updatedSlot)// Slot value - the "Under the hood" Inventory slot.
             {
-                slot.Key.UpdateUISlot(updatedSlot);
+                slot.Key.UpdateUISlot(updatedSlot);// slot key - UI representation of the value.
             }
         }
     }
@@ -66,6 +66,7 @@ public abstract class InventoryDisplay : MonoBehaviour
 
             clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
             clickedUISlot.UpdateUISlot();
+
             mouseInventoryItem.ClearSlot();
             return;
         }
@@ -73,11 +74,12 @@ public abstract class InventoryDisplay : MonoBehaviour
         // is the slot stack size + mouse stack size > slot max stack size? if so, take from mouse.
         //If different items, them swap the items.
 
-        // both slots have the same? if so the comine them.
+       
         if (clickedUISlot.AssignedInventorySlot.Itemdata != null && mouseInventoryItem.AssignedInventorySlot.Itemdata != null)
         {
             bool isSameItem = clickedUISlot.AssignedInventorySlot.Itemdata == mouseInventoryItem.AssignedInventorySlot.Itemdata;
 
+            // both slots have the same? if so the comine them.
             if (isSameItem && clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
             {
                 clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
@@ -96,6 +98,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 else // slot is not at max, so take what's need from the mouse inventory.
                 {
                     int remainingOnMouse = mouseInventoryItem.AssignedInventorySlot.StackSize - leftInStack;
+
                     clickedUISlot.AssignedInventorySlot.AddToStack(leftInStack);
                     clickedUISlot.UpdateUISlot();
 

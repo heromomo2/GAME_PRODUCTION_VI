@@ -23,9 +23,10 @@ public class MouseItemData : MonoBehaviour
     public void UpdateMouseSlot(InventorySlot invSlot) 
     {
         AssignedInventorySlot.AssignItem(invSlot);
+        ItemSprite.color = Color.white;
         ItemSprite.sprite = invSlot.Itemdata.icon;
         ItemCount.text = invSlot.StackSize.ToString();
-        ItemCount.color = Color.white;
+        ItemCount.color = Color.black;
     }
 
     private void Update()
