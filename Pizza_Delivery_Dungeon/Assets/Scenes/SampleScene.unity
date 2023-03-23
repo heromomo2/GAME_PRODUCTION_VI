@@ -5617,8 +5617,10 @@ MonoBehaviour:
   inventorySize: 1
   inventorySysterm:
     inventorySlots: []
-  firsttest: {fileID: 11400000, guid: f0073cc1bb6830a4cab8880cedfe9175, type: 2}
-  did: {fileID: 1642121231}
+  pizza_item_data: {fileID: 11400000, guid: f0073cc1bb6830a4cab8880cedfe9175, type: 2}
+  milk_item_data: {fileID: 0}
+  burger_item_data: {fileID: 0}
+  dynamic_inventory_display: {fileID: 1642121231}
   ThirdPerson: {fileID: 774161234}
 --- !u!65 &1157904410
 BoxCollider:

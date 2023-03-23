@@ -8,8 +8,12 @@ public class ChestInventory : Inventoryholder, IInteractable
 
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }
 
-    [SerializeField] private InventoryItemdata firsttest;
-    [SerializeField] DynamicInventoryDisplay did;
+    [SerializeField] private InventoryItemdata pizza_item_data;
+    [SerializeField] private InventoryItemdata milk_item_data;
+    [SerializeField] private InventoryItemdata burger_item_data;
+
+    [SerializeField] DynamicInventoryDisplay dynamic_inventory_display;
+
     [SerializeField] public ThirdPersonController ThirdPerson;
 
     public void Interact(Interactor interactor, out bool InteractSuccessfull)
@@ -17,7 +21,7 @@ public class ChestInventory : Inventoryholder, IInteractable
         ThirdPerson.StopPlayerMovementWhileUI();
        
         OnDynamicInventoryDisplayeRequested?.Invoke(inventorySysterm);
-       // test();
+        GenitemData();
         InteractSuccessfull = true;
     }
 
@@ -27,16 +31,18 @@ public class ChestInventory : Inventoryholder, IInteractable
         ThirdPerson.AllowPlayerInputMovementOutUI();
     }
     
-    void test() 
+    void GenitemData() 
     {
-        inventorySysterm.AddToInventory(firsttest, 1);
-        did.RefreshDynamicInventory(inventorySysterm);
-        did.AssignSlot(inventorySysterm);
+
+
+        inventorySysterm.AddToInventory(pizza_item_data, 1);
+        dynamic_inventory_display.RefreshDynamicInventory(inventorySysterm);
+        dynamic_inventory_display.AssignSlot(inventorySysterm);
 
     }
 
 
-    void Update 
+    void Update ()
     { 
     }
 }
