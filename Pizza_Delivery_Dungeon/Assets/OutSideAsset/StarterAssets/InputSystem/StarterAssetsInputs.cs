@@ -9,6 +9,8 @@ namespace StarterAssets
     {
         [Header("Character Input Values")]
         public Vector2 move;
+        public bool ismove = true;// add
+        public bool iscursorLocked = true;// add
         public Vector2 look;
         public bool jump;
         public bool sprint;
@@ -26,9 +28,11 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
-			MoveInput(value.Get<Vector2>());
-            Debug.Log(" OnMove was called");
-
+            if (ismove == true)
+            {
+                MoveInput(value.Get<Vector2>());
+                Debug.Log(" OnMove was called");
+            }
         }
 
 		public void OnLook(InputValue value)
@@ -71,7 +75,10 @@ namespace StarterAssets
 
         public void MoveInput(Vector2 newMoveDirection)
         {
-            move = newMoveDirection;
+            if (ismove == true) 
+            {
+                move = newMoveDirection;
+            }
         }
 
         public void LookInput(Vector2 newLookDirection)
@@ -107,9 +114,18 @@ namespace StarterAssets
             // Debug.Log("  SwitchViewInputwas called");
 
         }
-        private void OnApplicationFocus(bool hasFocus)
+        public void OnApplicationFocus(bool hasFocus)
         {
-            SetCursorState(cursorLocked);
+            iscursorLocked = hasFocus;
+            if (iscursorLocked) 
+            {
+                //SetCursorState(cursorLocked); 
+                SetCursorState(true);
+            }
+            else 
+            {
+                SetCursorState(false);
+            }
         }
 
         private void SetCursorState(bool newState)

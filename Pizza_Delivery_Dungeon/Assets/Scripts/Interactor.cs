@@ -7,6 +7,8 @@ public class Interactor : MonoBehaviour
 {
     public Transform InteractionPoint;
     public LayerMask InteractionLayer;
+
+    //public bool isInteracting = false;
     public float InteractionPointRadius = 1f;
     public bool IsInteracting { get; private set; }
 
@@ -14,27 +16,45 @@ public class Interactor : MonoBehaviour
     {
         var colliders = Physics.OverlapSphere(InteractionPoint.position, InteractionPointRadius, InteractionLayer);
 
-        if (Keyboard.current.eKey.wasPressedThisFrame) 
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            for (int i = 0; i < colliders.Length; i++) 
+            for (int i = 0; i < colliders.Length; i++)
             {
                 var interactable = colliders[i].GetComponent<IInteractable>();
-                if (interactable != null) 
+                if (interactable != null)
                 {
                     StartInteraction(interactable);
                 }
             }
         }
+
+        //exit the chest
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                var interactable = colliders[i].GetComponent<IInteractable>();
+                if (interactable != null)
+                {
+                    // EndInteraction();
+                    interactable.EndInteraction();
+                    EndInteraction();
+                }
+            }
+
+        }
     }
 
-    void StartInteraction(IInteractable interactable) 
+    void StartInteraction(IInteractable interactable)
     {
         interactable.Interact(this, out bool InterSuccessful);
         IsInteracting = true;
     }
 
-    void EndInteraction() 
+    void EndInteraction()
     {
+      
         IsInteracting = false;
     }
+
 }

@@ -227,6 +227,9 @@ namespace StarterAssets
         public int  dodge_stamina_amount = 25;
 
 
+        public bool is_the_player_moving = true;
+
+
         private void Awake()
         {
             // get a reference to our main camera
@@ -271,37 +274,43 @@ namespace StarterAssets
 
         private void Update()
         {
-            if (!Is_rolling)
-            {
-                _hasAnimator = TryGetComponent(out _animator);
-
-                // add code from me
-                if (is_carry == true)
+           
+                if (!Is_rolling)
                 {
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDCarrying, true);
-                    }
-                }
-                else
-                {
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDCarrying, false);
-                    }
-                }
+                    _hasAnimator = TryGetComponent(out _animator);
 
-                // JumpAndGravity();
-                //  GroundedCheck();
+                    // add code from me
+                    if (is_carry == true)
+                    {
+                        if (_hasAnimator)
+                        {
+                            _animator.SetBool(_animIDCarrying, true);
+                        }
+                    }
+                    else
+                    {
+                        if (_hasAnimator)
+                        {
+                            _animator.SetBool(_animIDCarrying, false);
+                        }
+                    }
 
-                Move();
-                Pickup();// add
-                SprintCheck();
-            }
+                    // JumpAndGravity();
+                    //  GroundedCheck();
+
+                    Move();
+                    Pickup();// add
+                    SprintCheck();
+                }
 
             //
-            RollCheck();
-            SwitchViewCheck();
+            if (is_the_player_moving == true) 
+            {
+                RollCheck();
+                SwitchViewCheck();
+            }
+            
+            
         }
 
         private void LateUpdate()
@@ -360,15 +369,22 @@ namespace StarterAssets
         {
             float targetSpeed;
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            if (is_not_allow_to_sprint == false)
+            if (is_the_player_moving == false)
             {
-                targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+                targetSpeed = 0;
             }
             else
             {
-                targetSpeed = MoveSpeed;
+                if (is_not_allow_to_sprint == false)
+                {
+                    targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+                }
+                else
+                {
+                    targetSpeed = MoveSpeed;
+                }
             }
-
+            
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -736,8 +752,29 @@ namespace StarterAssets
             }
 
         }
+
+        public void StopPlayerMovementWhileUI()
+        {
+            _input.cursorInputForLook = true;
+            _input.move = Vector2.zero;
+            _input.ismove = false;
+            // _input.iscursorLocked = false;
+            // _input.cursorLocked = false;
+            _input.OnApplicationFocus(false);
+            is_the_player_moving = false;
+        }
+        public void AllowPlayerInputMovementOutUI()
+        {
+            _input.cursorInputForLook = true;
+            _input.ismove = true;
+            //   _input.iscursorLocked = true;
+            //    _input.cursorLocked = true;
+            _input.OnApplicationFocus(true);
+            is_the_player_moving = true;
+
+            Debug.Log("AllowPlayerInputMovementOutUI");
+        }
     }
 
    
-
 }

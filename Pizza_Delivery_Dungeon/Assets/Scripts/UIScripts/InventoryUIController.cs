@@ -32,10 +32,7 @@ public class InventoryUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Keyboard.current.bKey.wasPressedThisFrame) 
-        //{
-        //    DisplayInventory(new InventorySysterm(Random.RandomRange(1,3)));
-        //}
+       
         if (InventoryPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) 
         {
             InventoryPanel.gameObject.SetActive(false);

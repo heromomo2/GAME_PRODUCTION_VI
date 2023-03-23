@@ -63,8 +63,7 @@ public class InventorySysterm
 
     public bool HasFreeSlot(out  InventorySlot freeSlot) 
     {
-        //freeSlot = null;
-        //return true;
+        
 
         freeSlot = inventorySlots.FirstOrDefault(i => i.Itemdata == null);// fet the first free slot
         return freeSlot == null ?  false: true;
