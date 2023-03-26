@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3775930148522429789}
   m_Layer: 0
   m_Name: benchpart
-  m_TagString: Untagged
+  m_TagString: benchpart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabMilk: {fileID: 0}
   prefabBurger: {fileID: 0}
+  prefabPizza: {fileID: 0}
   point_of_display: {fileID: 6713786899271003925}
   display_item_list:
   - {fileID: 5343562427424282858}

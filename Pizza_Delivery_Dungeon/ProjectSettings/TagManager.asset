@@ -14,6 +14,7 @@ TagManager:
   - Item
   - trapspike
   - Bench
+  - benchpart
   layers:
   - Default
   - TransparentFX

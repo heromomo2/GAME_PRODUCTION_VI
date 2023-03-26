@@ -1861,7 +1861,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 151614373205785441, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 151614373205785441, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_TagString
@@ -1921,7 +1921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2025384525393183659, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_TagString
-      value: Bench
+      value: benchpart
       objectReference: {fileID: 0}
     - target: {fileID: 2763781187575116021, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: e_text
@@ -1969,7 +1969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5343562427424282858, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5343562427424282858, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_IsActive
@@ -5581,7 +5581,7 @@ GameObject:
   m_Layer: 0
   m_Name: carrypoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8224,6 +8224,7 @@ MonoBehaviour:
   inital_deliver_time: 0
   end_deliver_time: 0
   player_hud: {fileID: 176817816}
+  bench: {fileID: 1968852671}
 --- !u!4 &1856370094
 Transform:
   m_ObjectHideFlags: 0
@@ -8607,8 +8608,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1968852672}
+  - component: {fileID: 1968852673}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: bench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8628,6 +8630,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1968852673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968852671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7feedcd929280d344a6fbebf78baad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Benchpartslist:
+  - {fileID: 1533795273}
+  - {fileID: 1240259634}
 --- !u!4 &1992338797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8176685844279534609, guid: bd52467f2a5301b4fb88c6956a7ff578, type: 3}
@@ -9443,7 +9460,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 151614373205785441, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 151614373205785441, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_TagString
@@ -9503,7 +9520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2025384525393183659, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_TagString
-      value: Bench
+      value: benchpart
       objectReference: {fileID: 0}
     - target: {fileID: 2763781187575116021, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: e_text
@@ -9551,7 +9568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5343562427424282858, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5343562427424282858, guid: 82d92b434e67f9646855fdf552e90132, type: 3}
       propertyPath: m_IsActive

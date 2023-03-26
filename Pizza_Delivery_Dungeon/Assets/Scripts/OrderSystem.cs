@@ -57,6 +57,9 @@ public class OrderSystem : MonoBehaviour
 
     [SerializeField] private HUD player_hud;
 
+    [Header("theBench")]
+
+    [SerializeField] GameObject bench;
 
 
     // Start is called before the first frame update
@@ -67,7 +70,6 @@ public class OrderSystem : MonoBehaviour
         foreach (GameObject dl in GameObject.FindGameObjectsWithTag("DestinyLocation"))
         {
             destiny_location_list.Add(dl);
-
 
         }
 
@@ -92,9 +94,9 @@ public class OrderSystem : MonoBehaviour
         milk_spawn_timer = 3.0f;
 
         // pizza gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(pizza_spawn_timer, max_pizza_spawn_time, min_pizza_spawn_time, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
+     //   StartCoroutine(StartGenerateDeliverlyBoxes(pizza_spawn_timer, max_pizza_spawn_time, min_pizza_spawn_time, max_pizza_spawned, pizza_list, pizza_prefab, delivery_source_pizza));
         // milk gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time, min_milk_spawn_time, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
+     //   StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time, min_milk_spawn_time, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
         // hambuger gen
         StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer, max_hambuger_spawn_time, min_hambuger_spawn_time, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
@@ -103,6 +105,12 @@ public class OrderSystem : MonoBehaviour
         if (player.GetComponent<PlayerEvent>() != null)
         {
             player.GetComponent<PlayerEvent>().On_player_state_event += PlayerStateEventListener;
+        }
+
+        
+        if (bench != null && bench.GetComponent<bench>()!= null)  
+        {
+            bench.GetComponent<bench>().On_bench_event += BenchEventListener;
         }
 
     }
@@ -193,6 +201,29 @@ public class OrderSystem : MonoBehaviour
 
                 StartCoroutine(StartGenerateDeliverlyBoxes(timer, max_time, min_time, max_item_spawned, item_list, our_item_prefab, delivery_source));
             }
+        }
+
+    }
+
+
+    void BenchAskToGenerateDeliverly(List<GameObject> item_list, GameObject our_item_prefab, GameObject player) 
+    {
+        Debug.Log("BenchAskToGenerateDeliverly was called");
+        if (item_list != null) 
+        {
+            if (our_item_prefab != null && player != null) 
+            {
+                CleanUpListOfMissingGameObject(item_list);
+                if (!player.GetComponent<ThirdPersonController>().is_player_carry)
+                {
+                    GameObject new_item;
+                    new_item = Instantiate(our_item_prefab, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), Quaternion.identity);
+                    new_item.GetComponent<PickUpItem>().On_pick_up_item_event += ItemEventListener;
+                    item_list.Add(new_item);
+                }
+            }
+
+
         }
 
     }
@@ -302,6 +333,16 @@ public class OrderSystem : MonoBehaviour
         }
     }
 
+
+
+    public void BenchEventListener(int i)
+    {
+        if (i == 1)
+        {
+            Debug.Log("BenchEventListener was called");
+            BenchAskToGenerateDeliverly(hambuger_list, hambuger_prefab, player);
+        }
+    }
 
     /// <summary>
     /// clean up the list of item so the list isnt fill with misssing gameobject

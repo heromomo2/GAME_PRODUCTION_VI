@@ -63,5 +63,13 @@ PrefabInstance:
       propertyPath: after_pick_up_expiry_time
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2202660732278313551, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847962387371003260, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e51fe706056928b4586f68a8eeaabac5, type: 3}
