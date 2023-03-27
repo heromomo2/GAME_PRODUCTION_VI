@@ -47,6 +47,23 @@ public class bench : MonoBehaviour
             {
                 bench_event(1);
             }
+            
+        }
+        else if (i == 2) 
+        {
+            // spawn burger
+            if (bench_event != null)
+            {
+                bench_event(2);
+            }
+        }
+        else if (i == 3)
+        {
+            // spawn burger
+            if (bench_event != null)
+            {
+                bench_event(3);
+            }
         }
     }
 

@@ -12,6 +12,7 @@ public class Boxhandle : MonoBehaviour
 
     public Transform carry_point;
 
+    public Transform carry_point_1;
 
     public int max_item_holded = 1;
 
@@ -35,7 +36,7 @@ public class Boxhandle : MonoBehaviour
                 if (max_item_holded > item_holded_counter)
                 {
                     item_holded_counter = item_holded_counter + 1;
-                    item.transform.position = new Vector3 (item.transform.position.x, carry_point.transform.position.y + 0.2f, item.transform.position.z);
+                    item.transform.position = carry_point_1.transform.position;    //new Vector3 (item.transform.position.x, carry_point.transform.position.y + 0.2f, item.transform.position.z);
                     item.transform.parent = carry_point.transform;
                     player_3rd_person_controller.is_player_carry = true;
                     carried_item = item;

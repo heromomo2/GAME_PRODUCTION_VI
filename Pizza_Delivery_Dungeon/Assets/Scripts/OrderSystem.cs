@@ -337,10 +337,21 @@ public class OrderSystem : MonoBehaviour
 
     public void BenchEventListener(int i)
     {
+        Debug.Log("BenchEventListener was called");
         if (i == 1)
         {
-            Debug.Log("BenchEventListener was called");
+            Debug.Log("hamburger spawn on player");
             BenchAskToGenerateDeliverly(hambuger_list, hambuger_prefab, player);
+        }
+        if (i == 2) 
+        {
+            Debug.Log("milk spawn on player");
+            BenchAskToGenerateDeliverly( milk_list, milk_prefab, player);
+        }
+        if (i == 3)
+        {
+            Debug.Log("pizza spawn on player");
+            BenchAskToGenerateDeliverly(pizza_list, pizza_prefab, player);
         }
     }
 
