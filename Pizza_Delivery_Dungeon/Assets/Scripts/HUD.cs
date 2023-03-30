@@ -28,12 +28,20 @@ public class HUD : MonoBehaviour
     [Header("GameTimer")] // show how much time is left
     public Text text_ui_game_timer;
 
+    [Header("BenchUI")] // show item info before pick up
+    public GameObject bench_ui;
+    public Text bench_text_ui_deliered_name;
+    public Text bench_text_ui_deliered_money;
+    public Text bench_text_ui_deliered_epire;
+
+    [Header("timerUI")] // show how many time you have to deliver
+    public Slider time_stamina_bar;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        HideBenchInfo();
     }
 
     #region StaminaCode
@@ -99,6 +107,23 @@ public class HUD : MonoBehaviour
     public void Displaylives(int lives)
     {
         text_ui_lives.text = lives.ToString();
+    }
+    #endregion
+
+    #region Bench
+    public void GetInfoOnBenchOverlap(string name, string money, float epiretime) 
+    {
+        bench_text_ui_deliered_name.text = name;
+        bench_text_ui_deliered_money.text = money;
+        bench_text_ui_deliered_epire.text = epiretime.ToString("F0")+ "sec";
+    }
+    public void HideBenchInfo()
+    {
+        bench_ui.SetActive(false);
+    }
+    public void ShowBenchInfo()
+    {
+        bench_ui.SetActive(true);
     }
     #endregion
 

@@ -227,6 +227,12 @@ public class OrderSystem : MonoBehaviour
         }
 
     }
+    void BenchAskToRemoveALiveFromPlayer()
+    {
+        Debug.Log("BenchAskToRemoveALiveFromPlayer was called");
+        GameManager.game_manager.time_and_lives.RemoveALife();
+        player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
+    }
 
 
 
@@ -352,6 +358,11 @@ public class OrderSystem : MonoBehaviour
         {
             Debug.Log("pizza spawn on player");
             BenchAskToGenerateDeliverly(pizza_list, pizza_prefab, player);
+        }
+        if (i == 4)
+        {
+            Debug.Log("player has let item expicy on bench");
+            BenchAskToRemoveALiveFromPlayer();
         }
     }
 

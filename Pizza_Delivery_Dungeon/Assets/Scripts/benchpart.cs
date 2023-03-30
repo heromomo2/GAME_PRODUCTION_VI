@@ -17,14 +17,18 @@ public class benchpart : MonoBehaviour
     [Header("display item")]
     public Transform point_of_display;
     public List<GameObject> display_item_list;
+    public float expiry_timer;
+    public float expiry_time_on_bench = 60.50f;
 
 
     /// <summary>
     /// 
     /// </summary>
-    //public GameObject choseitem;
     public item_type choseitem1;
     public bool do_we_have_an_item = false;
+    public bool is_player_in_trigger = false;
+    public string nameitem;
+    public string itemcost;
 
 
 
@@ -59,6 +63,8 @@ public class benchpart : MonoBehaviour
 
     private void Start()
     {
+        // set the timer
+        expiry_timer = expiry_time_on_bench;
         init();
     }
     void init()
@@ -79,10 +85,9 @@ public class benchpart : MonoBehaviour
         {
             our_world_canvas.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 2, this.transform.position.z);
         }
-        DisplayItemOnTop(item_type.hambuger);
-        choseitem1 = item_type.hambuger;
-        defaultWorldCavan();
-        do_we_have_an_item = true;
+        hideItemOnTop();
+        HideWorldCavan();
+        do_we_have_an_item = false;
     }
 
     void DisplayItemOnTop(item_type item_display)
@@ -135,7 +140,7 @@ public class benchpart : MonoBehaviour
         }
         if (expicy_text != null)
         {
-            expicy_text.text = expicy_time.ToString() + " sec";
+            expicy_text.text = expicy_time.ToString("F0") + " sec";
         }
         if (money_text != null)
         {
@@ -189,6 +194,11 @@ public class benchpart : MonoBehaviour
             if (other.tag == "PlayerChild")
             {
                 StepOnExistWorldCavan();
+                is_player_in_trigger = true;
+                if (bench_part_event != null)
+                {
+                    bench_part_event(5);
+                }
                 Debug.Log("name " + other.name);
                 if (other.GetComponentInParent<ThirdPersonController>())
                 {
@@ -197,6 +207,7 @@ public class benchpart : MonoBehaviour
                     {
                         Debug.Log("player in the bench trigger and press the e key ");
                     }
+                   
                 }
             }
         }
@@ -206,21 +217,7 @@ public class benchpart : MonoBehaviour
         }
     }
 
-    private void OnTriggers(Collider other)
-    {
-        if (do_we_have_an_item == true)
-        {
-            if (other.tag == "PlayerChild")
-            {
-                StepOnExistWorldCavan();
-
-            }
-        }
-        else
-        {
-            HideWorldCavan();
-        }
-    }
+  
 
     void OnTriggerStay(Collider other)
     {
@@ -287,6 +284,11 @@ public class benchpart : MonoBehaviour
             if (other.tag == "PlayerChild")
             {
                 ResetOnExistWorldCavan();
+                is_player_in_trigger = false;
+                if (bench_part_event != null)
+                {
+                    bench_part_event(6);
+                }
             }
         }
         else
@@ -299,6 +301,23 @@ public class benchpart : MonoBehaviour
 
     private void Update()
     {
+
+        if (do_we_have_an_item) 
+        {
+            if (expiry_timer > 0)
+            {
+                expiry_timer -= Time.deltaTime;
+            }
+            else 
+            {
+                expicy();
+            }
+
+            ChangeWorldCavan(nameitem, expiry_timer, itemcost);
+        }
+
+
+
         if (Keyboard.current.zKey.wasPressedThisFrame)
         {
             ChoseItem(item_type.hambuger);
@@ -311,46 +330,61 @@ public class benchpart : MonoBehaviour
         {
             ChoseItem(item_type.pizza_box);
         }
-
+        
     }
     // 
     void ChoseItem(item_type choose)
     {
         if (choose == item_type.pizza_box)
         {
-
+            nameitem = "Pizza";
+            itemcost = "13.99";
+            expiry_timer = 40f;
             hideItemOnTop();
             DisplayItemOnTop(choose);
             choseitem1 = item_type.pizza_box;
-            //choseitem = prefabPizza;
             do_we_have_an_item = true;
-            ChangeWorldCavan("Milk", 200, "5.99");
+            ChangeWorldCavan(nameitem,expiry_timer, itemcost);
             ResetOnExistWorldCavan();
             ShowWorldCavan();
         }
         else if (choose == item_type.hambuger)
         {
-
+            nameitem = "hamburger";
+            itemcost = "10.99";
+            expiry_timer = 30f;
             hideItemOnTop();
             DisplayItemOnTop(choose);
             choseitem1 = item_type.hambuger;
-            // choseitem = prefabBurger;
             do_we_have_an_item = true;
-            ChangeWorldCavan("Milk", 200, "12.99");
+            ChangeWorldCavan(nameitem, expiry_timer, itemcost);
             ResetOnExistWorldCavan();
             ShowWorldCavan();
         }
         else if (choose == item_type.milk)
-        { 
+        {
+            nameitem = "Milk";
+            itemcost = "2.99";
+            expiry_timer = 25f;
             hideItemOnTop();
             DisplayItemOnTop(choose);
             choseitem1 = item_type.milk;
-            //choseitem = prefabMilk;
             do_we_have_an_item = true;
-            ChangeWorldCavan("Milk", 200, "2.99");
+            ChangeWorldCavan(nameitem, expiry_timer, itemcost);
             ResetOnExistWorldCavan();
             ShowWorldCavan();
         }
     }
 
+    void expicy()
+    {
+        hideItemOnTop();
+        HideWorldCavan();
+        do_we_have_an_item = false;
+        // expi
+        if (bench_part_event != null)
+        {
+            bench_part_event(4);
+        }
+    }
 }

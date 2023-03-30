@@ -123,8 +123,12 @@ MonoBehaviour:
   - {fileID: 5343562427424282858}
   - {fileID: 151614373205785441}
   - {fileID: 3382847026830578142}
+  expiry_timer: 0
+  expiry_time_on_bench: 60.5
   choseitem1: 0
   do_we_have_an_item: 0
+  nameitem: 
+  itemcost: 
   our_world_canvas: {fileID: 6287051783465789422}
   backgroundimage: {fileID: 6287051783191202915}
   name_of_item_text: {fileID: 6287051783140447258}
@@ -548,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390679083592924407, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4390679083592924407, guid: fa44f0d9a5a05314ea800e30dbcc564a, type: 3}
       propertyPath: m_TagString
