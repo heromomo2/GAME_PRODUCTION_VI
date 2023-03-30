@@ -92,7 +92,10 @@ public class PickUpItem : MonoBehaviour
             // we count down before it  expiry
             if (expiry_timer_while_carry_item > 0)
             {
+               
                 expiry_timer_while_carry_item -= Time.deltaTime;
+
+                GameManager.game_manager.itemTimer2 = expiry_timer_while_carry_item;//
             }
             else
             {

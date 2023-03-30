@@ -42,6 +42,7 @@ public class HUD : MonoBehaviour
     void Start()
     {
         HideBenchInfo();
+        HideItemTimer();
     }
 
     #region StaminaCode
@@ -127,6 +128,25 @@ public class HUD : MonoBehaviour
     }
     #endregion
 
+    #region itemTimer
+    public void HideItemTimer()
+    {
+        time_stamina_bar.gameObject.SetActive(false);
+    }
+    public void ShowItemTimer()
+    {
+        time_stamina_bar.gameObject.SetActive(true);
+    }
+    public void SetitemTimer(float time)
+    {
+        time_stamina_bar.value = time;
+    }
+    public void SetItemTimerMexMin(float min_time, float max_time)
+    {
+        time_stamina_bar.maxValue = max_time;
+        time_stamina_bar.minValue = min_time;
+    }
+    #endregion
     private void Update()
     {
         DisplayGameTimer();

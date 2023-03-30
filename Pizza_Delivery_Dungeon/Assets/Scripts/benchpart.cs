@@ -261,15 +261,24 @@ public class benchpart : MonoBehaviour
                             // }
                             do_we_have_an_item = false;
                             hideItemOnTop();
+                            // hide it
+                            if (bench_part_event != null)
+                            {
+                                bench_part_event(6);
+                            }
                         }
                     }
                 }
             }
         }
-        //else
-        //{
-        //    HideWorldCavan();
-        //}
+        else
+        {
+            HideWorldCavan();
+            if (bench_part_event != null)
+            {
+                bench_part_event(6);
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public TimeAndLives time_and_lives = new  TimeAndLives(3, 900);
 
-
+    public float itemTimer2 = 0f;
 
     void Awake()
     {
@@ -48,5 +48,9 @@ public class GameManager : MonoBehaviour
         }
 
         time_and_lives.GameTimerUpDate();
+
     }
+
+
+
 }

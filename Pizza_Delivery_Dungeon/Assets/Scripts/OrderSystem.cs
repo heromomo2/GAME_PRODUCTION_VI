@@ -142,6 +142,7 @@ public class OrderSystem : MonoBehaviour
         }
 
         // Debug.Log("Pizzacount " + pizza_list.Count);
+        player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
     }
 
 
@@ -273,6 +274,7 @@ public class OrderSystem : MonoBehaviour
                     player_hud.DisplayDeliveredName(GameManager.game_manager.built_In_difficulty.DifficultyLevel);//
 
                     holdpoint.RemoveCarriedItemFromPlayer(false);//remove the item from the player
+                    player_hud.HideItemTimer();// hide the timer
                     is_destiny_selected = false;
                 }
 
@@ -305,6 +307,7 @@ public class OrderSystem : MonoBehaviour
                     GameManager.game_manager.time_and_lives.RemoveALife();
                     player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
                     holdpoint.ResetPlayerAfterFailDelivery();
+                    player_hud.HideItemTimer();// hide the timer
                     is_destiny_selected = false;
                 }
             }
@@ -333,6 +336,7 @@ public class OrderSystem : MonoBehaviour
                     GameManager.game_manager.time_and_lives.RemoveALife();
                     player_hud.Displaylives(GameManager.game_manager.time_and_lives.Playerlives);
                     holdpoint.RemoveCarriedItemFromPlayer(true);
+                    player_hud.HideItemTimer();// hide the timer
                     is_destiny_selected = false;
                 }
             }
@@ -413,6 +417,12 @@ public class OrderSystem : MonoBehaviour
 
                     holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects;
 
+                    /// show the timer
+                   /// GameManager.game_manager.itemTimer2 = holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time;
+                    player_hud.ShowItemTimer();
+                    player_hud.SetItemTimerMexMin(0, time_between_objects);
+                    //player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
+
                 } // check what item is be pick up
                 else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.milk)
                 {
@@ -440,6 +450,12 @@ public class OrderSystem : MonoBehaviour
                     inital_deliver_time = time_between_objects;
                     // add the travel time to the milk 
                     holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);
+
+                    /// show the timer
+                    /// GameManager.game_manager.itemTimer2 = holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time;
+                    player_hud.ShowItemTimer();
+                    player_hud.SetItemTimerMexMin(0, time_between_objects);
+                    //player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
                 }
                 else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.hambuger)
                 {
@@ -483,6 +499,13 @@ public class OrderSystem : MonoBehaviour
 
                         // add the travel time to the hambuger
                         holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects; //(time_between_objects - 10.0f);
+
+
+                        /// show the timer
+                        /// GameManager.game_manager.itemTimer2 = holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time;
+                        player_hud.ShowItemTimer();
+                        player_hud.SetItemTimerMexMin(0, time_between_objects);
+                        //player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
                     }
 
 
