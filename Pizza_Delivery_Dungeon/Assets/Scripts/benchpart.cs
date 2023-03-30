@@ -195,20 +195,15 @@ public class benchpart : MonoBehaviour
             {
                 StepOnExistWorldCavan();
                 is_player_in_trigger = true;
+
                 if (bench_part_event != null)
                 {
                     bench_part_event(5);
+                    Debug.Log(" bench_part_event(5);");
                 }
+
                 Debug.Log("name " + other.name);
-                if (other.GetComponentInParent<ThirdPersonController>())
-                {
-                    /// 
-                    if (Keyboard.current.eKey.wasPressedThisFrame)
-                    {
-                        Debug.Log("player in the bench trigger and press the e key ");
-                    }
-                   
-                }
+               
             }
         }
         else
@@ -287,12 +282,18 @@ public class benchpart : MonoBehaviour
                 is_player_in_trigger = false;
                 if (bench_part_event != null)
                 {
+                    Debug.Log(" bench_part_event(6);");
                     bench_part_event(6);
                 }
             }
         }
         else
         {
+            if (bench_part_event != null)
+            {
+                bench_part_event(6);
+            }
+
             HideWorldCavan();
         }
     }

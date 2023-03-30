@@ -5079,7 +5079,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 252.3, y: 78}
+  m_AnchoredPosition: {x: 274, y: 78.000015}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897072197
@@ -10704,12 +10704,9 @@ MonoBehaviour:
   Benchpartslist:
   - {fileID: 1533795273}
   - {fileID: 1240259634}
-  - {fileID: 1791000295}
-  - {fileID: 1854317638}
-  - {fileID: 376794185}
-  - {fileID: 670566692}
   hover_bench_part: {fileID: 0}
   found_hover_bench_part: 0
+  bench_part_was_hover: 0
   player_hud: {fileID: 176817816}
 --- !u!4 &1992338797 stripped
 Transform:
@@ -11476,7 +11473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 343, y: 77}
+  m_AnchoredPosition: {x: 364.7, y: 77}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119569413

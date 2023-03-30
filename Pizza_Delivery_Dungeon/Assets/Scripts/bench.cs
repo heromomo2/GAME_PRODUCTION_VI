@@ -13,6 +13,8 @@ public class bench : MonoBehaviour
 
     public bool found_hover_bench_part = false;
 
+    public bool bench_part_was_hover = false;
+
     [SerializeField] private HUD player_hud;
 
     public event Action<int> On_bench_event
@@ -81,73 +83,51 @@ public class bench : MonoBehaviour
         }
         else if (i == 5)
         {
-           // playe have eneter trigger
+            // playe have eneter trigger
+            bench_part_was_hover = true;
+            foundbenchpart();
         }
         else if (i == 6)
         {
             // playe have left the trigger
+            bench_part_was_hover = false;
+            Playerhasleave();
         }
     }
 
 
     private void Update()
     {
-        //if (found_hover_bench_part == false)
-        //{
-        //    if (hover_bench_part == null)
-        //    {
-        //        foreach (GameObject go in Benchpartslist)
-        //        {
-        //            if (go.AddComponent<benchpart>())
-        //            {
-        //                if (go.AddComponent<benchpart>() != null && go.AddComponent<benchpart>().is_player_in_trigger)
-        //                {
-        //                    hover_bench_part = go.AddComponent<benchpart>();
-        //                    found_hover_bench_part = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //        if (hover_bench_part != null)
-        //        {
-        //            player_hud.GetInfoOnBenchOverlap(hover_bench_part.nameitem, hover_bench_part.itemcost, hover_bench_part.expiry_timer);
-        //            player_hud.ShowBenchInfo();
-        //        } 
-            
-        //}
-        //else
-        //{
-        //    foreach (GameObject go in Benchpartslist)
-        //    {
-        //        if (go.AddComponent<benchpart>() != null)
-        //        {
-        //            if (!go.AddComponent<benchpart>().is_player_in_trigger)
-        //            {
-        //                hover_bench_part = null;
-        //                found_hover_bench_part = false;
-        //            }
-        //        }
-        //    }
-        //    player_hud.HideBenchInfo();
-        //}
+        //foundbenchpart();
+        info();
+        //Playerhasleave();
     }
 
     void foundbenchpart() 
     {
-        if (hover_bench_part == null)
+        if ( bench_part_was_hover == true)
         {
-            foreach (GameObject go in Benchpartslist)
-            {
-                if (go.AddComponent<benchpart>())
+           if (hover_bench_part == null)
+           {
+              foreach (GameObject go in Benchpartslist)
                 {
-                    if (go.AddComponent<benchpart>() != null && go.AddComponent<benchpart>().is_player_in_trigger)
-                    {
-                        hover_bench_part = go.AddComponent<benchpart>();
-                        found_hover_bench_part = true;
+                Debug.Log("test 2: bechpart " + go.name);
+                if (go.GetComponent<benchpart>() != null)
+                {
+                        if ( go.GetComponent<benchpart>().is_player_in_trigger) //go.AddComponent<benchpart>() != null &&
+                        {
+                            hover_bench_part = go.GetComponent<benchpart>();
+                            Debug.Log(" test 1: bechpart " + go.name);
+                            found_hover_bench_part = true;
+                        }
                     }
                 }
-            }
+           }
         }
+    }
+
+    void info() 
+    {
         if (hover_bench_part != null)
         {
             player_hud.GetInfoOnBenchOverlap(hover_bench_part.nameitem, hover_bench_part.itemcost, hover_bench_part.expiry_timer);
@@ -155,5 +135,26 @@ public class bench : MonoBehaviour
         }
     }
 
+    private void Playerhasleave()
+    {
+        if (bench_part_was_hover == false)
+        {
+            if (hover_bench_part != null)
+            {
+                foreach (GameObject go in Benchpartslist)
+                {
+                    if (go.GetComponent<benchpart>() != null)
+                    {
+                        if (!go.GetComponent<benchpart>().is_player_in_trigger)
+                        {
+                            hover_bench_part = null;
+                            found_hover_bench_part = false;
+                        }
+                    }
+                }
+                player_hud.HideBenchInfo();
+            }
+        }
+    }
 
 }

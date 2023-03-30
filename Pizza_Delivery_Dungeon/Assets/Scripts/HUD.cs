@@ -114,8 +114,8 @@ public class HUD : MonoBehaviour
     public void GetInfoOnBenchOverlap(string name, string money, float epiretime) 
     {
         bench_text_ui_deliered_name.text = name;
-        bench_text_ui_deliered_money.text = money;
-        bench_text_ui_deliered_epire.text = epiretime.ToString("F0")+ "sec";
+        bench_text_ui_deliered_money.text = "$ "+ money;
+        bench_text_ui_deliered_epire.text = epiretime.ToString("F0")+ " sec";
     }
     public void HideBenchInfo()
     {
