@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LeaderBoard : MonoBehaviour
 {
-    public GameObject return_button = null;
+    public GameObject Leader_board_return_button = null;
     public List<Text> Playernames;
     public List<Text> PlayerMoney;
 
@@ -15,12 +15,12 @@ public class LeaderBoard : MonoBehaviour
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allObjects)
         {
-            if (go.name == "ReturnButton1")
-                return_button = go;
+            if (go.name == "LeaderBoardReturnButton")
+                Leader_board_return_button = go;
           
         }
 
-        return_button.GetComponent<Button>().onClick.AddListener(ReturnButtonOnPress);
+        Leader_board_return_button.GetComponent<Button>().onClick.AddListener(LeaderBoardReturnButtonOnPress);
        
     }
 
@@ -29,7 +29,7 @@ public class LeaderBoard : MonoBehaviour
     {
 
     }
-    void ReturnButtonOnPress()
+    void LeaderBoardReturnButtonOnPress()
     {
         Debug.Log("ReturnButtonOnPress2");
         MenueManager.Instance.our_menu_State = MenueManager.MenuState.MainMenuState;

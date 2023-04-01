@@ -7,7 +7,7 @@ public class HowToPlay : MonoBehaviour
 {
     public GameObject next_button = null;
     public GameObject back_button = null;
-    public GameObject return_button = null;
+    public GameObject how_to_play_return_button = null;
     public GameObject page_number = null;
     // Start is called before the first frame update
     void Start()
@@ -15,8 +15,8 @@ public class HowToPlay : MonoBehaviour
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject go in allObjects)
         {
-            if (go.name == "ReturnButton")
-                return_button = go;
+            if (go.name == "HowToPlayReturnButton")
+                how_to_play_return_button = go;
             else if (go.name == "NextButton")
                 next_button = go;
             else if (go.name == "BackButton")
@@ -26,7 +26,7 @@ public class HowToPlay : MonoBehaviour
            
         }
 
-        return_button.GetComponent<Button>().onClick.AddListener(ReturnButtonOnPress);
+        how_to_play_return_button.GetComponent<Button>().onClick.AddListener(HowToPlayReturnButtonOnPress);
         next_button.GetComponent<Button>().onClick.AddListener(NextButtonOnPress);
         back_button.GetComponent<Button>().onClick.AddListener(BackButtonOnPress);
     }
@@ -37,7 +37,7 @@ public class HowToPlay : MonoBehaviour
         
     }
 
-    void ReturnButtonOnPress()
+    void HowToPlayReturnButtonOnPress()
     {
         Debug.Log("ReturnButtonOnPress");
         MenueManager.Instance.our_menu_State = MenueManager.MenuState.MainMenuState;

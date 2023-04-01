@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenueManager : MonoBehaviour
@@ -54,18 +55,21 @@ public class MenueManager : MonoBehaviour
         {
             case MenuState.MainMenuState:
                 Instance.MainMenu.SetActive(true);
+                Instance.MainMenu.GetComponent<MainMenu>().start_game_button.GetComponent<Button>().Select();
                 Instance.LeaderBoard.SetActive(false);
                 Instance.HowToPlay.SetActive(false);
                 break;
             case MenuState.LeaderBoardState:
                 Instance.MainMenu.SetActive(false);
                 Instance.LeaderBoard.SetActive(true);
+                Instance.LeaderBoard.GetComponent<LeaderBoard>().Leader_board_return_button.GetComponent<Button>().Select();
                 Instance.HowToPlay.SetActive(false);
                 break;
             case MenuState.HowToPlayState:
                 Instance.MainMenu.SetActive(false);
                 Instance.LeaderBoard.SetActive(false);
                 Instance.HowToPlay.SetActive(true);
+                Instance.HowToPlay.GetComponent<HowToPlay>().how_to_play_return_button.GetComponent<Button>().Select();
                 break;
         }
     }
