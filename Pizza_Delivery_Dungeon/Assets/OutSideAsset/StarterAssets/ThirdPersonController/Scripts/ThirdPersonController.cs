@@ -274,45 +274,49 @@ namespace StarterAssets
 
         private void Update()
         {
-           
-                if (!Is_rolling)
+
+            if (!Is_rolling)
+            {
+                _hasAnimator = TryGetComponent(out _animator);
+
+                // add code from me
+                if (is_carry == true)
                 {
-                    _hasAnimator = TryGetComponent(out _animator);
-
-                    // add code from me
-                    if (is_carry == true)
+                    if (_hasAnimator)
                     {
-                        if (_hasAnimator)
-                        {
-                            _animator.SetBool(_animIDCarrying, true);
-                        }
+                        _animator.SetBool(_animIDCarrying, true);
                     }
-                    else
+                }
+                else
+                {
+                    if (_hasAnimator)
                     {
-                        if (_hasAnimator)
-                        {
-                            _animator.SetBool(_animIDCarrying, false);
-                        }
+                        _animator.SetBool(_animIDCarrying, false);
                     }
-
-                    // JumpAndGravity();
-                    //  GroundedCheck();
-
-                    Move();
-                    Pickup();// add
-                    SprintCheck();
                 }
 
+                // JumpAndGravity();
+                //  GroundedCheck();
+
+                Move();
+                Pickup();// add
+                SprintCheck();
+            }
+
             //
-            if (is_the_player_moving == true) 
+            if (is_the_player_moving == true)
             {
                 RollCheck();
                 SwitchViewCheck();
             }
-            
-            
-        }
 
+            if (Keyboard.current.pKey.wasPressedThisFrame)
+            {
+                GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.Pause;
+                GamePlayMenuManager.ChangeGamePlayMenuState();
+                Time.timeScale = 0;
+            }
+        }
         private void LateUpdate()
         {
             CameraRotation();

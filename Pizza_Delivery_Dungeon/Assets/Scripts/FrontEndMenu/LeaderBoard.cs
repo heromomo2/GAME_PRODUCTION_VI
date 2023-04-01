@@ -32,8 +32,8 @@ public class LeaderBoard : MonoBehaviour
     void LeaderBoardReturnButtonOnPress()
     {
         Debug.Log("ReturnButtonOnPress2");
-        MenueManager.Instance.our_menu_State = MenueManager.MenuState.MainMenuState;
-        MenueManager.ChangeMenuState();
+        FrontEndMenuManager.Instance.our_menu_State = FrontEndMenuManager.FrontEndMenuState.MainMenuState;
+        FrontEndMenuManager.ChangeFrontEndMenuState();
     }
    
     

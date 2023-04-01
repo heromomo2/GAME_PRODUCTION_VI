@@ -40,24 +40,24 @@ public class MainMenu : MonoBehaviour
     void StartGameButtonOnPress()
     {
           Debug.Log("StartGameButtonOnPress");
-        MenueManager.Instance.OpenScene("SampleScene");
+        FrontEndMenuManager.Instance.OpenScene("SampleScene");
     }
     void HowToPlayButtonOnPress()
     {
         Debug.Log("HowToPlayButtonPress");
-        MenueManager.Instance.our_menu_State = MenueManager.MenuState.HowToPlayState;
-        MenueManager.ChangeMenuState();
+        FrontEndMenuManager.Instance.our_menu_State = FrontEndMenuManager.FrontEndMenuState.HowToPlayState;
+        FrontEndMenuManager.ChangeFrontEndMenuState();
     }
     void LeaderBoardButtonOnPress()
     {
         Debug.Log("LeaderBoardButtonOnPress");
-        MenueManager.Instance.our_menu_State = MenueManager.MenuState.LeaderBoardState;
-        MenueManager.ChangeMenuState();
+        FrontEndMenuManager.Instance.our_menu_State = FrontEndMenuManager.FrontEndMenuState.LeaderBoardState;
+        FrontEndMenuManager.ChangeFrontEndMenuState();
     }
     
     void QuitButtionOnPress()
     {
         Debug.Log("QuitButtionOnPress");
-        MenueManager.Instance.QuitButtonOnPress();
+        FrontEndMenuManager.Instance.QuitButtonOnPress();
     }
 }

@@ -40,8 +40,8 @@ public class HowToPlay : MonoBehaviour
     void HowToPlayReturnButtonOnPress()
     {
         Debug.Log("ReturnButtonOnPress");
-        MenueManager.Instance.our_menu_State = MenueManager.MenuState.MainMenuState;
-        MenueManager.ChangeMenuState();
+        FrontEndMenuManager.Instance.our_menu_State = FrontEndMenuManager.FrontEndMenuState.MainMenuState;
+        FrontEndMenuManager.ChangeFrontEndMenuState();
     }
     void NextButtonOnPress()
     {
