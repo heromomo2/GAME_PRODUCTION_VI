@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GamePlayMenuManager : MonoBehaviour
 {
     public GameObject PauseMenu = null;
+    public GameObject GameOver = null;
+    public GameObject GameOverLeaderboard = null;
 
     public GamePlayMenuState our_menu_State = GamePlayMenuState.Gamemode;
     public static GamePlayMenuManager Instance { get; private set; }
@@ -46,18 +48,32 @@ public class GamePlayMenuManager : MonoBehaviour
         switch (Instance.our_menu_State)
         {
             case GamePlayMenuState.Gamemode:
-                Instance.PauseMenu.SetActive(false); 
+                Instance.PauseMenu.SetActive(false);
+                Instance.GameOver.SetActive(false);
+                Instance.GameOverLeaderboard.SetActive(false);
                 break;
             case GamePlayMenuState.Pause:
                 Instance.PauseMenu.SetActive(true);
+                Instance.GameOver.SetActive(false);
+                Instance.GameOverLeaderboard.SetActive(false);
                 break;
-
+            case GamePlayMenuState.Gameover:
+                Instance.PauseMenu.SetActive(false);
+                Instance.GameOver.SetActive(true);
+                Instance.GameOverLeaderboard.SetActive(false);
+                break;
+            case GamePlayMenuState.OverLeaderBoard:
+                Instance.PauseMenu.SetActive(false);
+                Instance.GameOver.SetActive(false);
+                Instance.GameOverLeaderboard.SetActive(true); 
+                break;
         }
     }
     public enum GamePlayMenuState
     {
         Gamemode,
          Pause,
-        Gameover
+        Gameover,
+        OverLeaderBoard
     }
 }

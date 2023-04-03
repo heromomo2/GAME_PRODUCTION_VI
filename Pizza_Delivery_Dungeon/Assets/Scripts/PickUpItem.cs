@@ -95,7 +95,7 @@ public class PickUpItem : MonoBehaviour
                
                 expiry_timer_while_carry_item -= Time.deltaTime;
 
-                GameManager.game_manager.itemTimer2 = expiry_timer_while_carry_item;//
+                GameManager.game_manager.carry_item_timer = expiry_timer_while_carry_item;//
             }
             else
             {

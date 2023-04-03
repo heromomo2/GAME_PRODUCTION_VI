@@ -16,7 +16,11 @@ public class GameManager : MonoBehaviour
 
     public TimeAndLives time_and_lives = new  TimeAndLives(3, 900);
 
-    public float itemTimer2 = 0f;
+    public float carry_item_timer = 0f;
+
+    public GameObject gameover;
+
+    public bool is_game_over = false;
 
     void Awake()
     {
@@ -49,6 +53,45 @@ public class GameManager : MonoBehaviour
 
         time_and_lives.GameTimerUpDate();
 
+        /// game over stuff
+        if (time_and_lives.Playerlives <= 0) 
+        {
+            Debug.Log("you have no more lives");
+           
+            // checking your score
+            if (GameData.Instance.IsYourScoreRankWorthy(player_score.Score))
+            {
+                if (gameover!= null && gameover.GetComponent<GameOver>() != null && !is_game_over ) 
+                {
+                    if (GamePlayMenuManager.Instance.our_menu_State != GamePlayMenuManager.GamePlayMenuState.Gameover)
+                    {
+                        gameover.GetComponent<GameOver>().GameOverInitial(true);
+                        GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.Gameover;
+                        GamePlayMenuManager.ChangeGamePlayMenuState();
+                        gameover.GetComponent<GameOver>().score = player_score.Score;
+                        is_game_over = true;
+                        Time.timeScale = 0;
+                    }
+                }
+            }
+            else 
+            {
+                if (gameover != null && gameover.GetComponent<GameOver>() != null && !is_game_over)
+                {
+                    if (GamePlayMenuManager.Instance.our_menu_State != GamePlayMenuManager.GamePlayMenuState.Gameover)
+                    {
+                        gameover.GetComponent<GameOver>().GameOverInitial(false);
+                        GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.Gameover;
+                        GamePlayMenuManager.ChangeGamePlayMenuState();
+                        is_game_over = true;
+                        Time.timeScale = 0;
+                    }
+                    
+                }
+            }
+            
+        }
+        
     }
 
 

@@ -142,7 +142,7 @@ public class OrderSystem : MonoBehaviour
         }
 
         // Debug.Log("Pizzacount " + pizza_list.Count);
-        player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
+        player_hud.SetitemTimer(GameManager.game_manager.carry_item_timer);
     }
 
 
