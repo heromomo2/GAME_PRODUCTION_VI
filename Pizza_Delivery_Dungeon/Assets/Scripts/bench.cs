@@ -37,15 +37,16 @@ public class bench : MonoBehaviour
         {
             foreach(GameObject bp in Benchpartslist) 
             {
-                if (bp.AddComponent<benchpart>()) 
+                if (bp.GetComponent<benchpart>()) 
                 {
-                    bp.AddComponent<benchpart>().On_bench_part_event += benchpartlinster;
+                    bp.GetComponent<benchpart>().On_bench_part_event += benchpartlinster;
                 }
 
             }
         }
     }
 
+    GameObject choose_Ai_Bench_part = null;
     void benchpartlinster(int i) 
     {
         if(i == 1) 
@@ -98,9 +99,9 @@ public class bench : MonoBehaviour
 
     private void Update()
     {
-        //foundbenchpart();
+        
         info();
-        //Playerhasleave();
+       
     }
 
     void foundbenchpart() 
@@ -157,4 +158,36 @@ public class bench : MonoBehaviour
         }
     }
 
+
+    #region Ai function
+    /// <summary>
+    ///  Ai
+    /// </summary>
+    /// <returns></returns>
+    /// 
+    // check for empty space on the bench and pick the game object
+    public bool CheckForEmptySpotOnBench() 
+    {
+        foreach (GameObject bp in Benchpartslist) 
+        {
+            if (!bp.GetComponent<benchpart>().do_we_have_an_item) 
+            {
+                choose_Ai_Bench_part = bp;
+                return true;
+            }
+        }
+        return false;
+    }
+    // the Ai will call this fuction
+    public void PlaceitemOnBench(item_type item)
+    {
+        if (choose_Ai_Bench_part != null) 
+        {
+            if (choose_Ai_Bench_part.GetComponent<benchpart>())
+            {
+                choose_Ai_Bench_part.GetComponent<benchpart>().ChoseItem(item);
+            }
+        }
+    }
+    #endregion
 }

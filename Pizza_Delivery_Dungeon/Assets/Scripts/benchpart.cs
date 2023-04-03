@@ -343,7 +343,7 @@ public class benchpart : MonoBehaviour
         
     }
     // 
-    void ChoseItem(item_type choose)
+    public void ChoseItem(item_type choose)
     {
         if (choose == item_type.pizza_box)
         {

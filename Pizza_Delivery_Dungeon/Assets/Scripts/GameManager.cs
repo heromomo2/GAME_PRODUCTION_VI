@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("you have no more lives");
            
             // checking your score
-            if (GameData.Instance.IsYourScoreRankWorthy(player_score.Score))
+            if (GameData.Instance != null && GameData.Instance.IsYourScoreRankWorthy(player_score.Score))
             {
                 if (gameover!= null && gameover.GetComponent<GameOver>() != null && !is_game_over ) 
                 {
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             }
             else 
             {
-                if (gameover != null && gameover.GetComponent<GameOver>() != null && !is_game_over)
+                if (GameData.Instance != null && gameover != null && gameover.GetComponent<GameOver>() != null && !is_game_over)
                 {
                     if (GamePlayMenuManager.Instance.our_menu_State != GamePlayMenuManager.GamePlayMenuState.Gameover)
                     {

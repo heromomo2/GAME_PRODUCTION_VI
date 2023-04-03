@@ -15,17 +15,19 @@ TagManager:
   - trapspike
   - Bench
   - benchpart
+  - node
+  - Ai
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Build
   - Water
   - UI
   - Player
   - PlayerChild
   - interactable
-  - 
+  - AI
   - 
   - 
   - 

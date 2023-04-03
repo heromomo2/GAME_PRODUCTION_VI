@@ -19,7 +19,7 @@ GameObject:
   m_TagString: benchpart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &164662223326817613
 Transform:
@@ -127,6 +127,7 @@ MonoBehaviour:
   expiry_time_on_bench: 60.5
   choseitem1: 0
   do_we_have_an_item: 0
+  is_player_in_trigger: 0
   nameitem: 
   itemcost: 
   our_world_canvas: {fileID: 6287051783465789422}
