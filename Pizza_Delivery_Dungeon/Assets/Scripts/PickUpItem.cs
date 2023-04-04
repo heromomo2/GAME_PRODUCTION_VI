@@ -16,6 +16,7 @@ public class PickUpItem : MonoBehaviour
     public float expiry_timer_while_carry_item = 0f;
     public bool is_pick_up = false;
     public bool is_expiry_timer_change_after_pick_up = false;
+    public bool is_item_gone = false;
 
     [Header("items Particle")]
 
@@ -99,18 +100,20 @@ public class PickUpItem : MonoBehaviour
             }
             else
             {
-                PlayFailParticle();
-                if (is_pick_up == true)
+                if (is_item_gone == false) 
                 {
-                    if (pick_up_item_event != null)
+
+                    if (is_pick_up == true)
                     {
-                        pick_up_item_event(1);
+                        if (pick_up_item_event != null)
+                        {
+                            pick_up_item_event(1);
+                        }
                     }
+
+                    StartCoroutine(WaitAndPrint(1f));
+                    is_item_gone = true;
                 }
-
-                // Destroy(this.gameObject);
-
-                StartCoroutine(WaitAndPrint(1f));
             }
 
         }

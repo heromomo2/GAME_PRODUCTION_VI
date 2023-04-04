@@ -94,8 +94,7 @@ public class OrderGiverAI : MonoBehaviour
                     {
                         bench.GetComponent<bench>().PlaceitemOnBench(our_item);
                     }
-                    StartCoroutine(WaitAndPrint(other.GetComponent<Node>().delay,  other.gameObject));
-                    //MovePositionTransform = other.GetComponent<Node>().next_node;
+                    StartCoroutine(WaitAndPrint(other.GetComponent<Node>().delay,  other.gameObject));                   
                     is_carry_item = false;
                     is_move = true;
                 }
@@ -105,8 +104,6 @@ public class OrderGiverAI : MonoBehaviour
             {
                 is_move = false;
                 StartCoroutine(WaitAndPrint(other.GetComponent<Node>().delay, other.gameObject));
-                //MovePositionTransform = other.GetComponent<Node>().next_node;
-               
                 is_move = true;
             }
 
@@ -130,6 +127,7 @@ public class OrderGiverAI : MonoBehaviour
             if (bench.GetComponent<bench>().CheckForEmptySpotOnBench())
             {
                 PickRandomItem();
+                bench.GetComponent<bench>().allEmptyBench();
                 is_carry_item = true;
                 is_start_point = false;
                 is_move = true;

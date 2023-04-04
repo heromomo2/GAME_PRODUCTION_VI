@@ -2,10 +2,12 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class bench : MonoBehaviour
 {
     public List<GameObject> Benchpartslist;
+    public List<GameObject> EmptyBenchpartslist;
 
     private Action<int> bench_event = null;
 
@@ -172,11 +174,33 @@ public class bench : MonoBehaviour
         {
             if (!bp.GetComponent<benchpart>().do_we_have_an_item) 
             {
-                choose_Ai_Bench_part = bp;
                 return true;
             }
         }
         return false;
+    }
+
+    // the Ai will call this fuction
+    public void allEmptyBench()
+    {
+        EmptyBenchpartslist.Clear();
+
+        foreach (GameObject bp in Benchpartslist)
+        {
+            if (!bp.GetComponent<benchpart>().do_we_have_an_item)
+            {
+
+                EmptyBenchpartslist.Add(bp);
+                
+            }
+        }
+
+        if (EmptyBenchpartslist.Count > 1) 
+        {
+            int randomnum = 0;
+            randomnum = Random.Range(0, EmptyBenchpartslist.Count);
+            choose_Ai_Bench_part = EmptyBenchpartslist[randomnum];
+        }
     }
     // the Ai will call this fuction
     public void PlaceitemOnBench(item_type item)

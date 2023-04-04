@@ -603,7 +603,8 @@ namespace StarterAssets
             }
             else
             {
-             //   Debug.Log(" you are not press the sprint button");
+                //   Debug.Log(" you are not press the sprint button");
+                _input.sprint = false;
                 PlayerRegenStamina();
             }
 
