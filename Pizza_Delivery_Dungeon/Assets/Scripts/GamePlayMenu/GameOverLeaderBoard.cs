@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class GameOverLeaderBoard : MonoBehaviour
 {
     public GameObject game_over_leader_board_continue_button = null;
-    public Text[] leader_texts;
+    public List<Text> leader_money_texts;
+    public List<Text> leader_name_texts;
     public List<RankPlayerData> game_over_leader_board_list_players_data;
     // Start is called before the first frame update
     void Start()
@@ -27,24 +28,42 @@ public class GameOverLeaderBoard : MonoBehaviour
         //while (i < 5 )
         //{
         //    Text temp;
-            
+
         //    temp = GameObject.Find("PlayerText"+i).gameObject.GetComponent<Text>();
         //    leader_texts[i] = temp;
         //    i++;
-            
-        //}
-        
 
+        //}
+
+        game_over_leader_board_list_players_data = new List<RankPlayerData>();
         this.gameObject.SetActive(false);
     }
 
     public void UpdateGameOverLeaderBoard()
     {
         game_over_leader_board_list_players_data = new List<RankPlayerData>();
+
         GameData.Instance.CopyList(game_over_leader_board_list_players_data);
-        for (int i = 0; i< leader_texts.Length; i++)
+
+        if (GameData.Instance.RankPlayersDataCount() > 0)
         {
-            leader_texts[i].text = "<color=cyan>" + (1 + i).ToString() + ")" + game_over_leader_board_list_players_data[i].get_player_name_data().ToString() + "</color>" + " " + "<color=yellow>" + game_over_leader_board_list_players_data[i].get_player_score_data().ToString() + "</color>"; 
+            GameData.Instance.CopyList(game_over_leader_board_list_players_data);
+
+            for (int i = 0; i < game_over_leader_board_list_players_data.Count; i++)
+            {
+                if (i == 0)
+                {
+                    leader_name_texts[i].text = "<color=black>" + (1 + i).ToString() + ")" + game_over_leader_board_list_players_data[i].get_player_name_data().ToString() + "</color>";
+                    leader_money_texts[i].text = "<color=black>" + "$" + game_over_leader_board_list_players_data[i].get_player_score_data().ToString() + "</color>";
+
+                }
+                else
+                {
+                    leader_name_texts[i].text = "<color=black>" + (1 + i).ToString() + ")" + game_over_leader_board_list_players_data[i].get_player_name_data().ToString() + "</color>";
+                    leader_money_texts[i].text = "<color=black>" + "$" + game_over_leader_board_list_players_data[i].get_player_score_data().ToString() + "</color>";
+                }
+            }
+
         }
     }
     void GameOverLeaderBoardContinueButtonOnPress()

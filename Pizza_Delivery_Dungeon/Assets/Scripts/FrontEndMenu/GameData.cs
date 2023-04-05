@@ -52,7 +52,7 @@ public class GameData : MonoBehaviour
         if (has_elements && !has_save)
         {
 
-            StreamWriter sw = new StreamWriter(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt");
+            StreamWriter sw = new StreamWriter(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt"); //Path.DirectorySeparatorChar
 
             foreach (RankPlayerData rank_Player_data in rank_players_data)
             {
@@ -68,9 +68,9 @@ public class GameData : MonoBehaviour
 
     public void LoadAllRankPlayersData()
     {
-        if (File.Exists(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt"))
+        if (File.Exists(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt"))//Path.DirectorySeparatorChar
         {
-            StreamReader sr = new StreamReader(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt");
+            StreamReader sr = new StreamReader(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt");//Path.DirectorySeparatorChar
             string line;
             while ((line = sr.ReadLine()) != null)
             {
@@ -80,7 +80,7 @@ public class GameData : MonoBehaviour
                 if (signifier == PlayerDataSavingSignifiers.PlayerDataIdSignifier)
                 {
 
-                    rank_players_data.Add(new RankPlayerData(csv[1], int.Parse(csv[2])));
+                    rank_players_data.Add(new RankPlayerData(csv[1], float.Parse(csv[2])));
                 }
             }
         }
@@ -96,10 +96,10 @@ public class GameData : MonoBehaviour
                 {
                     return true;
                 }
-                else if (rank_players_data.Count <= 9)
-                {
-                    return true;
-                }
+                //else if (rank_players_data.Count <= 5)
+                //{
+                //    return true;
+                //}
             }
             return false;
         }

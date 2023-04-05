@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour
     {
         if (did_we_get_a_high_score) 
         {
-            game_over_text.GetComponent<Text>().text = "Thank you for playing.Please eneter your name blow.";
+            game_over_text.GetComponent<Text>().text = "Thank you for playing.Please enter your name blow.";
             game_over_input_Field.SetActive(true);
             game_over_eneter_button.SetActive(true);
             game_over_continue_button.SetActive(false);
@@ -57,15 +57,19 @@ public class GameOver : MonoBehaviour
         if (name != null && score != -1)
         {
             GameData.Instance.AddPlayerDataToRankPlayersData(new RankPlayerData(name, score));
+            GameData.Instance.SaveAllRankPlayersData();
         }
 
         GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.OverLeaderBoard;
         GamePlayMenuManager.ChangeGamePlayMenuState();
         GamePlayMenuManager.Instance.GameOverLeaderboard.GetComponent<GameOverLeaderBoard>().UpdateGameOverLeaderBoard();
+        GamePlayMenuManager.Instance.GameOverLeaderboard.GetComponent<GameOverLeaderBoard>().game_over_leader_board_continue_button.GetComponent<Button>().Select();
     }
     void GameOverContinueButtonOnPress()
     {
         GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.OverLeaderBoard;
+        GamePlayMenuManager.Instance.GameOverLeaderboard.GetComponent<GameOverLeaderBoard>().UpdateGameOverLeaderBoard();
+        GamePlayMenuManager.Instance.GameOverLeaderboard.GetComponent<GameOverLeaderBoard>().game_over_leader_board_continue_button.GetComponent<Button>().Select();
         GamePlayMenuManager.ChangeGamePlayMenuState();
     }
 

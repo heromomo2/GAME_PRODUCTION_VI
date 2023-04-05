@@ -74,12 +74,14 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else 
+            else if(GameData.Instance != null && !GameData.Instance.IsYourScoreRankWorthy(player_score.Score))
             {
+                Debug.Log(" your score not worthy2");
                 if (GameData.Instance != null && gameover != null && gameover.GetComponent<GameOver>() != null && !is_game_over)
                 {
                     if (GamePlayMenuManager.Instance.our_menu_State != GamePlayMenuManager.GamePlayMenuState.Gameover)
                     {
+                        Debug.Log(" your score not worthy");
                         gameover.GetComponent<GameOver>().GameOverInitial(false);
                         GamePlayMenuManager.Instance.our_menu_State = GamePlayMenuManager.GamePlayMenuState.Gameover;
                         GamePlayMenuManager.ChangeGamePlayMenuState();
