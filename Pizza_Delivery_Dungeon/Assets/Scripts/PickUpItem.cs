@@ -152,5 +152,6 @@ public enum item_type
 {
     pizza_box,
     milk,
-    hambuger
+    hambuger,
+    special
 }

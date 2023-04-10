@@ -96,6 +96,14 @@ public class bench : MonoBehaviour
             bench_part_was_hover = false;
             Playerhasleave();
         }
+        else if (i == 7)
+        {
+            // spawn ice cream
+            if (bench_event != null)
+            {
+                bench_event(7);
+            }
+        }
     }
 
 
@@ -160,6 +168,19 @@ public class bench : MonoBehaviour
         }
     }
 
+
+
+    public void AddMoreTimeToItemOnBench()
+    {
+        foreach (GameObject bp in Benchpartslist)
+        {
+            if (bp.GetComponent<benchpart>().do_we_have_an_item)
+            {
+                bp.GetComponent<benchpart>().expiry_timer = bp.GetComponent<benchpart>().expiry_timer + 5.00f;
+            }
+        }
+ 
+    }
 
     #region Ai function
     /// <summary>

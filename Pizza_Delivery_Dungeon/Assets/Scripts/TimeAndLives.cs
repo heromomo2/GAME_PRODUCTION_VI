@@ -80,10 +80,10 @@ public class TimeAndLives
 
 
     // Constructor
-    public TimeAndLives(int Playerlives, float Gamestarttime)
+    public TimeAndLives(int Playerlives, float GamestarttimeInseconds)
     {
         lives = Playerlives;
-        game_start_time = Gamestarttime;
+        game_start_time = GamestarttimeInseconds;
 
         // start set up the game timer
         game_current_time = game_start_time;

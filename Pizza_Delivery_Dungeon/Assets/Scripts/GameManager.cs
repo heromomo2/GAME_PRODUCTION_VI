@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public BuiltInDifficultySystem built_In_difficulty = new BuiltInDifficultySystem(0,0,5,10, 15,2,0,0);
 
 
-    public TimeAndLives time_and_lives = new  TimeAndLives(3, 900);
+    public TimeAndLives time_and_lives = new  TimeAndLives(3, 240);
 
     public float carry_item_timer = 0f;
 
@@ -53,11 +53,13 @@ public class GameManager : MonoBehaviour
 
         time_and_lives.GameTimerUpDate();
 
+        //Debug.Log("time_and_lives.GameTimer :" + time_and_lives.GameTimer);
+
         /// game over stuff
-        if (time_and_lives.Playerlives <= 0) 
+        if (time_and_lives.Playerlives <= 0 || time_and_lives.GameTimer < 0f ) 
         {
-            Debug.Log("you have no more lives");
            
+            Debug.Log("you have no more lives");
             // checking your score
             if (GameData.Instance != null && GameData.Instance.IsYourScoreRankWorthy(player_score.Score))
             {

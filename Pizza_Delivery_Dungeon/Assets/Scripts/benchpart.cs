@@ -258,6 +258,14 @@ public class benchpart : MonoBehaviour
                                     bench_part_event(3);
                                 }
                             }
+                            else if (choseitem1 == item_type.special)  //(choseitem == prefabPizza)
+                            {
+                                Debug.Log("ask from a iceCream");
+                                if (bench_part_event != null)
+                                {
+                                    bench_part_event(7);
+                                }
+                            }
                             // }
                             do_we_have_an_item = false;
                             hideItemOnTop();
@@ -340,7 +348,11 @@ public class benchpart : MonoBehaviour
         {
             ChoseItem(item_type.pizza_box);
         }
-        
+        else if (Keyboard.current.vKey.wasPressedThisFrame)
+        {
+            ChoseItem(item_type.special);
+        }
+
     }
     // 
     public void ChoseItem(item_type choose)
@@ -379,6 +391,19 @@ public class benchpart : MonoBehaviour
             hideItemOnTop();
             DisplayItemOnTop(choose);
             choseitem1 = item_type.milk;
+            do_we_have_an_item = true;
+            ChangeWorldCavan(nameitem, expiry_timer, itemcost);
+            ResetOnExistWorldCavan();
+            ShowWorldCavan();
+        }
+        else if (choose == item_type.special)
+        {
+            nameitem = "IceCream";
+            itemcost = "2.99";
+            expiry_timer = 200f;
+            hideItemOnTop();
+            DisplayItemOnTop(choose);
+            choseitem1 = item_type.special;
             do_we_have_an_item = true;
             ChangeWorldCavan(nameitem, expiry_timer, itemcost);
             ResetOnExistWorldCavan();

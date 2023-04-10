@@ -229,6 +229,7 @@ namespace StarterAssets
 
         public bool is_the_player_moving = true;
 
+        public bool is_allow_to_switch_camera = false;
 
         private void Awake()
         {
@@ -712,7 +713,7 @@ namespace StarterAssets
                 SwitchCamera.Register(TopdownCam);
                 SwitchCamera.Register(ThirdPersonCam);
 
-                SwitchCamera.SwitchingCamera(ThirdPersonCam);
+                SwitchCamera.SwitchingCamera(TopdownCam);
             }
         }
         private void OnDisable()
@@ -730,7 +731,7 @@ namespace StarterAssets
         {
 
             // get the input that you want to roll
-            if (_input.switchcamera)
+            if (_input.switchcamera && is_allow_to_switch_camera == true)
             {
                 Debug.Log(" you are pressing the switch view button");
 

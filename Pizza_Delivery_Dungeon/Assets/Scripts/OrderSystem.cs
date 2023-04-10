@@ -44,6 +44,14 @@ public class OrderSystem : MonoBehaviour
     public float max_hambuger_spawn_time = 30.0f;
     public float min_hambuger_spawn_time = 10.0f;
 
+    [Header("ice cream")]
+    public GameObject ice_cream_prefab;
+    public List<GameObject> iceice_cream_list;
+    public int max_ice_cream_spawned = 2;
+    private float ice_cream_spawn_timer = 0f;
+    public float max_ice_cream_spawn_time = 30.0f;
+    public float min_ice_cream_spawn_time = 10.0f;
+
     //  this is being use be spawn for all items
     public int max_spawn_amount = 0;
 
@@ -98,7 +106,7 @@ public class OrderSystem : MonoBehaviour
         // milk gen
      //   StartCoroutine(StartGenerateDeliverlyBoxes(milk_spawn_timer, max_milk_spawn_time, min_milk_spawn_time, max_milk_spawned, milk_list, milk_prefab, delivery_source_milk));
         // hambuger gen
-        StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer, max_hambuger_spawn_time, min_hambuger_spawn_time, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
+       // StartCoroutine(StartGenerateDeliverlyBoxes(hambuger_spawn_timer, max_hambuger_spawn_time, min_hambuger_spawn_time, max_hambuger_spawned, hambuger_list, hambuger_prefab, delivery_source_hambuger));
 
         /// when the player get hit with spike
         ///  we add listener to hear for  player state
@@ -276,6 +284,12 @@ public class OrderSystem : MonoBehaviour
                     holdpoint.RemoveCarriedItemFromPlayer(false);//remove the item from the player
                     player_hud.HideItemTimer();// hide the timer
                     is_destiny_selected = false;
+
+                    // add time to bench
+                    bench.GetComponent<bench>().AddMoreTimeToItemOnBench();
+                    // add time to game clock
+                    GameManager.game_manager.time_and_lives.GameTimer += 30.0f;
+
                 }
 
             }
@@ -368,6 +382,11 @@ public class OrderSystem : MonoBehaviour
             Debug.Log("player has let item expicy on bench");
             BenchAskToRemoveALiveFromPlayer();
         }
+        if (i == 7)
+        {
+            Debug.Log("ice cream spawn on player");
+            BenchAskToGenerateDeliverly(iceice_cream_list, ice_cream_prefab, player);
+        }
     }
 
     /// <summary>
@@ -419,6 +438,28 @@ public class OrderSystem : MonoBehaviour
 
                     /// show the timer
                    /// GameManager.game_manager.itemTimer2 = holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time;
+                    player_hud.ShowItemTimer();
+                    player_hud.SetItemTimerMexMin(0, time_between_objects);
+                    //player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
+
+                } // check what item is be pick up
+                else if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.special)
+                {
+                    // radom
+                    Selected_destiny = destiny_location_list[Random.Range(0, destiny_location_list.Count)];
+
+                    distance = Vector3.Distance(player.transform.position, Selected_destiny.GetComponent<DestinyLocation>().destiny_location_object.transform.position);
+
+                    time_between_objects = distance / GameManager.game_manager.built_In_difficulty.SpeedDifficuly;//  change to speed_Increase_difficuly_for_delivery instead speed
+
+
+                    // need for calculateing bonus points 
+                    inital_deliver_time = time_between_objects;
+
+                    holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time = time_between_objects;
+
+                    /// show the timer
+                    /// GameManager.game_manager.itemTimer2 = holdpoint.carried_item.GetComponent<PickUpItem>().after_pick_up_expiry_time;
                     player_hud.ShowItemTimer();
                     player_hud.SetItemTimerMexMin(0, time_between_objects);
                     //player_hud.SetitemTimer(GameManager.game_manager.itemTimer2);
@@ -478,6 +519,7 @@ public class OrderSystem : MonoBehaviour
                             temp_distination3 = dl;
                         }
                     }
+                    
 
                     Selected_destiny = temp_distination3;
 
