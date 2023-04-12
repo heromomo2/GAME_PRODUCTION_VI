@@ -136,7 +136,7 @@ public class benchpart : MonoBehaviour
     {
         if (name_of_item_text != null)
         {
-            name_of_item_text.text = "item: " +name;
+            name_of_item_text.text = "item: " + name;
         }
         if (expicy_text != null)
         {
@@ -144,7 +144,7 @@ public class benchpart : MonoBehaviour
         }
         if (money_text != null)
         {
-            money_text.text = "$ " + money ;
+            money_text.text = "$ " + money;
         }
     }
     void StepOnExistWorldCavan()
@@ -203,7 +203,7 @@ public class benchpart : MonoBehaviour
                 }
 
                 Debug.Log("name " + other.name);
-               
+
             }
         }
         else
@@ -212,7 +212,7 @@ public class benchpart : MonoBehaviour
         }
     }
 
-  
+
 
     void OnTriggerStay(Collider other)
     {
@@ -228,6 +228,12 @@ public class benchpart : MonoBehaviour
                 {
                     if (!other.GetComponentInParent<ThirdPersonController>().is_player_carry)
                     {
+                        // the player here
+                        if (bench_part_event != null)
+                        {
+                            bench_part_event(5);
+                        }
+
                         if (Keyboard.current.eKey.wasPressedThisFrame)
                         {
                             Debug.Log("player in the bench trigger and press the e key ");
@@ -286,32 +292,35 @@ public class benchpart : MonoBehaviour
             {
                 bench_part_event(6);
             }
+            // do_we_have_an_item = false;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (do_we_have_an_item == true)
+        if (other.tag == "PlayerChild")
         {
-            if (other.tag == "PlayerChild")
+            is_player_in_trigger = false;
+
+            if (do_we_have_an_item == true)
             {
                 ResetOnExistWorldCavan();
-                is_player_in_trigger = false;
+
                 if (bench_part_event != null)
                 {
                     Debug.Log(" bench_part_event(6);");
                     bench_part_event(6);
                 }
             }
-        }
-        else
-        {
-            if (bench_part_event != null)
+            else
             {
-                bench_part_event(6);
-            }
+                if (bench_part_event != null)
+                {
+                    bench_part_event(6);
+                }
 
-            HideWorldCavan();
+                HideWorldCavan();
+            }
         }
     }
     #endregion
@@ -320,13 +329,13 @@ public class benchpart : MonoBehaviour
     private void Update()
     {
 
-        if (do_we_have_an_item) 
+        if (do_we_have_an_item)
         {
             if (expiry_timer > 0)
             {
                 expiry_timer -= Time.deltaTime;
             }
-            else 
+            else
             {
                 expicy();
             }
@@ -366,7 +375,7 @@ public class benchpart : MonoBehaviour
             DisplayItemOnTop(choose);
             choseitem1 = item_type.pizza_box;
             do_we_have_an_item = true;
-            ChangeWorldCavan(nameitem,expiry_timer, itemcost);
+            ChangeWorldCavan(nameitem, expiry_timer, itemcost);
             ResetOnExistWorldCavan();
             ShowWorldCavan();
         }
@@ -399,8 +408,8 @@ public class benchpart : MonoBehaviour
         else if (choose == item_type.special)
         {
             nameitem = "IceCream";
-            itemcost = "2.99";
-            expiry_timer = 200f;
+            itemcost = "5.99";
+            expiry_timer = 15f;
             hideItemOnTop();
             DisplayItemOnTop(choose);
             choseitem1 = item_type.special;
@@ -420,6 +429,10 @@ public class benchpart : MonoBehaviour
         if (bench_part_event != null)
         {
             bench_part_event(4);
+        }
+        if (bench_part_event != null)
+        {
+            bench_part_event(6);
         }
     }
 }

@@ -92,6 +92,10 @@ public class ScoreSystem
         {
             current_score += 10.99f;
         }
+        else if (item == item_type.special)
+        {
+            current_score += 5.99f;
+        }
     }
 
     //check if you to reach the threshold for Bonus Points

@@ -45,7 +45,7 @@ public class OrderGiverAI : MonoBehaviour
 
     private void PickRandomItem()
     {
-        int random_num = Random.Range(1, 40);
+        int random_num = Random.Range(1, 47);
 
         if (random_num <= 10)
         {
@@ -60,6 +60,11 @@ public class OrderGiverAI : MonoBehaviour
         else if (random_num > 20 && random_num <= 40)
         {
             our_item = item_type.hambuger;
+            is_carry_item = true;
+        }
+        else if (random_num > 40 && random_num <= 47)
+        {
+            our_item = item_type.special;
             is_carry_item = true;
         }
     }

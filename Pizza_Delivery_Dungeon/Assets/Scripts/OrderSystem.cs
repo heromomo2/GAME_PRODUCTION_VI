@@ -265,6 +265,11 @@ public class OrderSystem : MonoBehaviour
                     // figure out the item that was deliver for point
                     GameManager.game_manager.player_score.AddToScore(holdpoint.carried_item.GetComponent<PickUpItem>().our_item);
 
+                    if (holdpoint.carried_item.GetComponent<PickUpItem>().our_item == item_type.special) 
+                    {
+                        GameManager.game_manager.player_stamina.Stamina += 50;
+                    }
+
 
                     end_deliver_time = holdpoint.carried_item.GetComponent<PickUpItem>().expiry_timer_while_carry_item;
 
@@ -289,6 +294,7 @@ public class OrderSystem : MonoBehaviour
                     bench.GetComponent<bench>().AddMoreTimeToItemOnBench();
                     // add time to game clock
                     GameManager.game_manager.time_and_lives.GameTimer += 30.0f;
+                    //player_hud.u
 
                 }
 

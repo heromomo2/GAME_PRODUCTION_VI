@@ -35,11 +35,11 @@ public class bench : MonoBehaviour
 
     private void Start()
     {
-        if (Benchpartslist.Count > 0) 
+        if (Benchpartslist.Count > 0)
         {
-            foreach(GameObject bp in Benchpartslist) 
+            foreach (GameObject bp in Benchpartslist)
             {
-                if (bp.GetComponent<benchpart>()) 
+                if (bp.GetComponent<benchpart>())
                 {
                     bp.GetComponent<benchpart>().On_bench_part_event += benchpartlinster;
                 }
@@ -49,18 +49,18 @@ public class bench : MonoBehaviour
     }
 
     GameObject choose_Ai_Bench_part = null;
-    void benchpartlinster(int i) 
+    void benchpartlinster(int i)
     {
-        if(i == 1) 
+        if (i == 1)
         {
             // spawn burger
             if (bench_event != null)
             {
                 bench_event(1);
             }
-            
+
         }
-        else if (i == 2) 
+        else if (i == 2)
         {
             // spawn burger
             if (bench_event != null)
@@ -109,35 +109,37 @@ public class bench : MonoBehaviour
 
     private void Update()
     {
-        
+
         info();
-       
+
     }
 
-    void foundbenchpart() 
+    void foundbenchpart()
     {
-        if ( bench_part_was_hover == true)
+        if (bench_part_was_hover == true)
         {
-           if (hover_bench_part == null)
-           {
-              foreach (GameObject go in Benchpartslist)
+            if (hover_bench_part == null)
+            {
+                foreach (GameObject go in Benchpartslist)
                 {
-                Debug.Log("test 2: bechpart " + go.name);
-                if (go.GetComponent<benchpart>() != null)
-                {
-                        if ( go.GetComponent<benchpart>().is_player_in_trigger) //go.AddComponent<benchpart>() != null &&
+                    Debug.Log("test 2: bechpart " + go.name);
+                    if (go.GetComponent<benchpart>() != null)
+                    {
+                        if (go.GetComponent<benchpart>().is_player_in_trigger) //go.AddComponent<benchpart>() != null &&
                         {
                             hover_bench_part = go.GetComponent<benchpart>();
                             Debug.Log(" test 1: bechpart " + go.name);
                             found_hover_bench_part = true;
+                            break;
+
                         }
                     }
                 }
-           }
+            }
         }
     }
 
-    void info() 
+    void info()
     {
         if (hover_bench_part != null)
         {
@@ -152,17 +154,19 @@ public class bench : MonoBehaviour
         {
             if (hover_bench_part != null)
             {
-                foreach (GameObject go in Benchpartslist)
-                {
-                    if (go.GetComponent<benchpart>() != null)
-                    {
-                        if (!go.GetComponent<benchpart>().is_player_in_trigger)
-                        {
-                            hover_bench_part = null;
-                            found_hover_bench_part = false;
-                        }
-                    }
-                }
+                //foreach (GameObject go in Benchpartslist)
+                //{
+                //    if (go.GetComponent<benchpart>() != null)
+                //    {
+                //      //  if (!go.GetComponent<benchpart>().is_player_in_trigger)
+                //       {
+                //            hover_bench_part = null;
+                //            found_hover_bench_part = false;
+                //       }
+                //    }
+                // }
+                hover_bench_part = null;
+                found_hover_bench_part = false;
                 player_hud.HideBenchInfo();
             }
         }
@@ -179,7 +183,7 @@ public class bench : MonoBehaviour
                 bp.GetComponent<benchpart>().expiry_timer = bp.GetComponent<benchpart>().expiry_timer + 5.00f;
             }
         }
- 
+
     }
 
     #region Ai function
@@ -189,11 +193,11 @@ public class bench : MonoBehaviour
     /// <returns></returns>
     /// 
     // check for empty space on the bench and pick the game object
-    public bool CheckForEmptySpotOnBench() 
+    public bool CheckForEmptySpotOnBench()
     {
-        foreach (GameObject bp in Benchpartslist) 
+        foreach (GameObject bp in Benchpartslist)
         {
-            if (!bp.GetComponent<benchpart>().do_we_have_an_item) 
+            if (!bp.GetComponent<benchpart>().do_we_have_an_item)
             {
                 return true;
             }
@@ -212,11 +216,11 @@ public class bench : MonoBehaviour
             {
 
                 EmptyBenchpartslist.Add(bp);
-                
+
             }
         }
 
-        if (EmptyBenchpartslist.Count > 1) 
+        if (EmptyBenchpartslist.Count > 1)
         {
             int randomnum = 0;
             randomnum = Random.Range(0, EmptyBenchpartslist.Count);
@@ -226,7 +230,7 @@ public class bench : MonoBehaviour
     // the Ai will call this fuction
     public void PlaceitemOnBench(item_type item)
     {
-        if (choose_Ai_Bench_part != null) 
+        if (choose_Ai_Bench_part != null)
         {
             if (choose_Ai_Bench_part.GetComponent<benchpart>())
             {

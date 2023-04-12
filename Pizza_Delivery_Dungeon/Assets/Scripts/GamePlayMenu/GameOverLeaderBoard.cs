@@ -23,18 +23,7 @@ public class GameOverLeaderBoard : MonoBehaviour
 
         game_over_leader_board_continue_button.GetComponent<Button>().onClick.AddListener(GameOverLeaderBoardContinueButtonOnPress);
 
-        //leader_texts = new[5] Text;
-        //int i = 0;
-        //while (i < 5 )
-        //{
-        //    Text temp;
-
-        //    temp = GameObject.Find("PlayerText"+i).gameObject.GetComponent<Text>();
-        //    leader_texts[i] = temp;
-        //    i++;
-
-        //}
-
+        
         game_over_leader_board_list_players_data = new List<RankPlayerData>();
         this.gameObject.SetActive(false);
     }
