@@ -52,7 +52,7 @@ public class GameData : MonoBehaviour
         if (has_elements && !has_save)
         {
 
-            StreamWriter sw = new StreamWriter(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt"); //Path.DirectorySeparatorChar
+            StreamWriter sw = new StreamWriter(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt"); //Path.DirectorySeparatorChar "/TextFiles/"
 
             foreach (RankPlayerData rank_Player_data in rank_players_data)
             {
@@ -68,9 +68,9 @@ public class GameData : MonoBehaviour
 
     public void LoadAllRankPlayersData()
     {
-        if (File.Exists(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt"))//Path.DirectorySeparatorChar
+        if (File.Exists(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt"))//Path.DirectorySeparatorChar or "/TextFiles/"
         {
-            StreamReader sr = new StreamReader(Application.dataPath + "/TextFiles/" + "LeaderBoardData.txt");//Path.DirectorySeparatorChar
+            StreamReader sr = new StreamReader(Application.dataPath + Path.DirectorySeparatorChar + "LeaderBoardData.txt");//Path.DirectorySeparatorChar "/TextFiles/"
             string line;
             while ((line = sr.ReadLine()) != null)
             {

@@ -345,22 +345,22 @@ public class benchpart : MonoBehaviour
 
 
 
-        if (Keyboard.current.zKey.wasPressedThisFrame)
-        {
-            ChoseItem(item_type.hambuger);
-        }
-        else if (Keyboard.current.xKey.wasPressedThisFrame)
-        {
-            ChoseItem(item_type.milk);
-        }
-        else if (Keyboard.current.cKey.wasPressedThisFrame)
-        {
-            ChoseItem(item_type.pizza_box);
-        }
-        else if (Keyboard.current.vKey.wasPressedThisFrame)
-        {
-            ChoseItem(item_type.special);
-        }
+        //if (Keyboard.current.zKey.wasPressedThisFrame)
+        //{
+        //    ChoseItem(item_type.hambuger);
+        //}
+        //else if (Keyboard.current.xKey.wasPressedThisFrame)
+        //{
+        //    ChoseItem(item_type.milk);
+        //}
+        //else if (Keyboard.current.cKey.wasPressedThisFrame)
+        //{
+        //    ChoseItem(item_type.pizza_box);
+        //}
+        //else if (Keyboard.current.vKey.wasPressedThisFrame)
+        //{
+        //    ChoseItem(item_type.special);
+        //}
 
     }
     // 
